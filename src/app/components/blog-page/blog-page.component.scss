@@ -1,3 +1,43 @@
 :host {
     display: block;
+    width: 900px;
+    margin: 0 auto;
+}
+
+header {
+    display: flex;
+    background-color: black;
+    color: white;
+    padding: 0 20px;
+}
+
+h2 {
+    margin: 0;
+    cursor: default;
+    outline: none;
+}
+
+ul {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 0;
+    padding-left: 10px;
+
+    li {
+        cursor: default;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: inherit;
+        width: 40px;
+        padding: 0 20px;
+        border-right: .5px solid white;
+        list-style: none;
+
+        &:hover {
+            color: black;
+            background-color: white;
+        }
+    }
 }

@@ -3,10 +3,11 @@ import { CommonModule } from '@angular/common';
 import { BlogPageComponent } from '../components/blog-page/blog-page.component';
 import { HomePageComponent } from '../components/blog-page/home-page/home-page.component';
 import { PostPageComponent } from '../components/blog-page/post-page/post-page.component';
+import { PostComponent } from '../components/blog-page/post-page/post/post.component';
 import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [BlogPageComponent, HomePageComponent, PostPageComponent],
+  declarations: [BlogPageComponent, HomePageComponent, PostPageComponent, PostComponent],
   imports: [
     CommonModule,
     RouterModule,
