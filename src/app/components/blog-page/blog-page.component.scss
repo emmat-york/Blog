@@ -1,6 +1,6 @@
 :host {
     display: block;
-    width: 900px;
+    width: 1022px;
     margin: 0 auto;
 }
 
@@ -8,13 +8,16 @@ header {
     display: flex;
     background-color: black;
     color: white;
-    padding: 0 20px;
+    padding-left: 20px;
+    height: 40px;
 }
 
 h2 {
+    display: flex;
+    align-items: center;
     margin: 0;
-    cursor: default;
     outline: none;
+    cursor: default;
 }
 
 ul {
@@ -33,11 +36,19 @@ ul {
         width: 40px;
         padding: 0 20px;
         border-right: .5px solid white;
+        font-size: 16px;
+        letter-spacing: 1px;
         list-style: none;
 
         &:hover {
+            cursor: pointer;
             color: black;
             background-color: white;
         }
     }
+}
+
+footer {
+    height: 100px;
+    background-color: black;
 }
