@@ -3,7 +3,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { BlogPageComponent } from './components/blog-page/blog-page.component';
 import { HomePageComponent } from './components/blog-page/home-page/home-page.component';
 import { PostPageComponent } from './components/blog-page/post-page/post-page.component';
-import { LoginPageComponent } from './components/login-page/login-page.component';
+import { LoginPageComponent } from './components/admin-page/login-page/login-page.component';
 
 const routes: Routes = [
   { path: '', component: BlogPageComponent, children: [

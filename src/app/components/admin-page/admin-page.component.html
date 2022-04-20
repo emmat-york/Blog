@@ -1,2 +1,18 @@
-<p>admin-component works!</p>
+<nav>
+    <h1>
+        <a routerLink="/">To Posts</a>
+    </h1>
+
+    <ul>
+        <li>
+            <a routerLinkActive="active-link" [routerLink]="['/admin', 'dashboard']">Dashboard</a>
+        </li>
+        <li>
+            <a routerLinkActive="active-link" [routerLink]="['/admin', 'create']">Create</a>
+        </li>
+        <li>
+            <a href="#" (click)="logOut($event)">Log out</a>
+        </li>
+    </ul>
+</nav>
 <router-outlet></router-outlet>
