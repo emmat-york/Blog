@@ -1,1 +1,38 @@
-<p>login-component works!</p>
+<form class="admin-form-group" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
+    <h2>Admin panel</h2>
+    <div class="">
+        <label for="email">Email</label>
+        <input type="text" name="email" id="email" formControlName="email">
+        <div 
+            class="error"
+            *ngIf="formGroup.controls['email'].touched
+            && formGroup.controls['email'].invalid"
+        >
+            <mark *ngIf="formGroup.controls['email'].errors?.['required']">
+                Field is required.
+            </mark>
+            <mark *ngIf="formGroup.controls['email'].errors?.['email']">
+                Please, fill correct email.
+            </mark>
+        </div>
+    </div>
+
+    <div class="">
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" formControlName="password">
+        <div
+            class="error"
+            *ngIf="formGroup.controls['password'].touched
+            && formGroup.controls['password'].invalid"
+        >
+            <mark *ngIf="formGroup.controls['password'].errors?.['required']">
+                Field is required.
+            </mark>
+            <mark *ngIf="formGroup.controls['password'].errors?.['minlength']">
+                Password must be more than {{ minPasswordLength }} symbols.
+            </mark>
+        </div>
+    </div>
+
+    <button type="submit" [disabled]="formGroup.invalid">Enter</button>
+</form>

@@ -6,6 +6,9 @@ import { DashboardPageComponent } from '../components/admin-page/dashboard-page/
 import { CreatePageComponent } from '../components/admin-page/create-page/create-page.component';
 import { EditPageComponent } from '../components/admin-page/edit-page/edit-page.component';
 import { LoginPageComponent } from '../components/admin-page/login-page/login-page.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
+import { SharedModule } from './shared.module';
 
 @NgModule({
   declarations: [
@@ -17,6 +20,8 @@ import { LoginPageComponent } from '../components/admin-page/login-page/login-pa
   ],
   imports: [
     CommonModule,
+    SharedModule,
+    ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: AdminPageComponent, children: [
         { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
@@ -27,5 +32,7 @@ import { LoginPageComponent } from '../components/admin-page/login-page/login-pa
       ] },
     ]),
   ],
+  exports: [RouterModule],
+  providers: [AuthService],
 })
 export class AdminModule { }

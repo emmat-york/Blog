@@ -1,3 +1,21 @@
+:host {
+    display: block;
+
+    .navigation {
+        display: flex;
+        justify-content: space-between;
+
+        ul {
+            display: flex;
+
+            li {
+                list-style: none;
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
 .active-link {
     color: red;
 }
