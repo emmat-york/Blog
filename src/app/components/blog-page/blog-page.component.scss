@@ -145,8 +145,9 @@
             background-color: rgb(26,31,37);
 
             .footer-links-content {
-                width: 1180px;
+                width: 1140px;
                 margin: 0 auto;
+                padding: 0 20px;
 
                 .footer-logo-image {
                     height: 40px;
@@ -156,7 +157,8 @@
                 }
                 
                 .contacts-header {
-                    margin: 24px 20px 0 20px;
+                    margin: 0;
+                    margin-top: 24px;
                     padding: 10px 0;
                     border-top: 1px solid #d0cece;
                     border-bottom: 1px solid #d0cece;
@@ -169,7 +171,8 @@
                 }
 
                 .footer-links-list {
-                    margin: 20px 20px 0 20px;
+                    margin: 0;
+                    margin-top: 20px;
                     padding: 0;
                     display: flex;
                     justify-content: space-around;
@@ -189,7 +192,8 @@
                 }
 
                 .contacts-list {
-                    margin: 20px 20px 0 20px;
+                    margin: 0;
+                    margin-top: 20px;
                     padding: 0;
                     display: flex;
                     justify-content: space-between;

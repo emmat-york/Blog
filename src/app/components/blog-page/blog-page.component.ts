@@ -17,6 +17,7 @@ export class BlogPageComponent implements OnInit {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  // Todo: Make directive for changing input background color and color
   public changeInputState(eventState: boolean): void {
     this.isInputFocused = eventState;
   }
