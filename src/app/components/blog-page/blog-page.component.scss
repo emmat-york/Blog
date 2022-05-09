@@ -3,6 +3,9 @@
     background-color: #F5EFEB;
 
     .global-header-with-nav {
+        width: 100%;
+        position: fixed;
+        top: 0;
         background-color: rgb(0, 0, 0);
 
         .header-wrapper {
@@ -196,7 +199,7 @@
                     margin-top: 20px;
                     padding: 0;
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: space-evenly;
 
                     .contact-list-item {
                         font-family: 'Cormorant SC', serif;

@@ -72,11 +72,36 @@
     .posts-container-wrapper {
         width: 1180px;
         margin: 0 auto;
-        background-color: white;
+        background-color: rgb(255, 255, 255);
 
         .paggination-container {
             height: 50px;
+            width: 762px;
+            margin: 0 auto;
             padding-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .paggination-results {
+                padding-right: 200px;
+                font-family: 'Noto Serif Display', serif;
+                font-size: 13px;
+                font-weight: 400;
+                color: rgb(105, 105, 105);
+            }
+
+            .next-page-button {
+                padding: 0;
+                font-family: 'Noto Serif Display', serif;
+                font-size: 15px;
+                font-weight: 400;
+                border: none;
+                background-color: rgb(255, 255, 255);
+                color: rgb(29,155,240);
+                display: block;
+                cursor: pointer;
+            }
         }
 
         .posts-container {
