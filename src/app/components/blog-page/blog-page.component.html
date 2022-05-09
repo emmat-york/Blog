@@ -1,23 +1,56 @@
-<header>
-    <h2
-    [routerLink]="['/']"
-    >The Sunday Times</h2>
-    <nav>
-        <ul>
-            <li>
-                First
-            </li>
-            <li>
-                Second
-            </li>
-            <li>
-                Third
-            </li>
-            <li>
-                Fourth
-            </li>
-        </ul>
-    </nav>
+<!-- Global Website Header -->
+<header class="global-header-with-nav">
+    <div class="header-wrapper">
+        <nav class="global-navigation-container">
+            <a class="global-logo-link" [routerLink]="['/']">
+                <img class="global-logo-image" src="../../../assets/Header_Logo.png" alt="Header_Logo">
+            </a>
+            <ul class="global-nav-list">
+                <li class="nav-list-item"><a class="nav-link" href="#">Today's sections</a></li>
+                <li class="nav-list-item"><a class="nav-link" href="#">Past six days</a></li>
+            </ul>
+        </nav>
+        <div class="additional-nav-content">
+            <a class="admin-link" [routerLink]="['/admin', 'login']">Log In</a>
+            <input
+                class="search-field"
+                [class.focused-input]="isInputFocused"
+                type="text"
+                placeholder="Search"
+                (focus)="changeInputState(true)"
+                (blur)="changeInputState(false)"
+            />
+        </div>
+    </div>
 </header>
+
+<!-- Main Website Content -->
 <router-outlet></router-outlet>
-<footer></footer>
+
+<!-- Global Website Footer -->
+<footer class="global-footer">
+    <div class="back-top-container">
+        <button class="back-top-button" (click)="goToScreenTop()">
+            <img class="back-top-image" src="../../../assets/Up_to_top.png" alt="Up_to_top">back to top
+        </button>
+    </div>
+    <div class="footer-links-container">
+        <div class="footer-links-content">
+            <img class="footer-logo-image" src="../../../assets/Footer_Logo.png" alt="Footer_Logo">
+            <h3 class="contacts-header">get in touch</h3>
+            <ul class="footer-links-list">
+                <li class="footer-list-item"><a class="footer-link" href="https://github.com/emmat-york" target="_blank">GitHub</a></li>
+                <li class="footer-list-item"><a class="footer-link" href="https://www.linkedin.com/in/andrey-filimonchik-35a033135/" target="_blank">LinkenIn</a></li>
+                <li class="footer-list-item"><a class="footer-link" href="https://www.instagram.com/emmat_york/" target="_blank">Instagram</a></li>
+                <li class="footer-list-item"><a class="footer-link" href="https://vk.com/emmat_york" target="_blank">VK</a></li>
+            </ul>
+            <ul class="contacts-list">
+                <li class="contact-list-item">Location: Tbilisi, Georgia</li>
+                <li class="contact-list-item">Email: AndrewReed1@yandex.ru</li>
+                <li class="contact-list-item">Tel: +995 595-41-81-73</li>
+                <li class="contact-list-item">Company: LeverX, Int.</li>
+                <li class="contact-list-item">Position: Software Engineer</li>
+            </ul>
+        </div>
+    </div>
+</footer>

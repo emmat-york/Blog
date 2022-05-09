@@ -1,8 +1,11 @@
 :host {
     display: flex;
     padding: 10px 0;
-    border-bottom: .5px solid rgb(138, 138, 138);
+    border-top: .5px solid rgb(138, 138, 138);
     cursor: pointer;
+    background-color: white;
+    height: 200px;
+    box-sizing: border-box;
 }
 
 aside {
