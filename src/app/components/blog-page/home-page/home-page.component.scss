@@ -5,7 +5,7 @@
 
     .auther-container-wrapper {
         height: 302px;
-        padding-top: 60px;
+        padding-top: 100px;
         padding-bottom: 40px;
         background-color: rgba(249, 249, 249);
         display: flex;
@@ -27,25 +27,24 @@
             }
 
             .auther-name-header {
-                font-family: 'Noto Serif Display', serif;
-                height: 44px;
-                font-weight: 800;
-                font-size: 34px;
                 margin: 0;
+                font-family: 'DM Serif Display', serif;
+                font-size: 40px;
+                font-weight: 400;
             }
 
             .additional-auther-info {
-                font-family: 'Cormorant SC', serif;
                 margin-top: 5px;
                 margin-bottom: 0;
+                font-family: 'Cormorant SC', serif;
                 font-size: 13px;
-                text-transform: uppercase;
-                color: rgba(105, 105, 105, .8);
                 line-height: 14px;
+                text-transform: uppercase;
+                color: rgba(105, 105, 105);
             }
 
             .JC-connection {
-                padding: 10px 0;
+                margin: 10px 0;
 
                 .fa-brands {
                     color: rgb(29,155,240);
@@ -54,17 +53,17 @@
                 .twitter_link {
                     font-family: 'Cormorant SC', serif;
                     text-decoration: underline;
-                    color: black;
+                    color: rgb(0, 0, 0);
                 }
             }
 
             .auther-bio {
-                font-family: 'Cormorant SC', serif;
-                text-align: center;
-                line-height: 27px;
-                font-size: 17px;
-                color: rgba(51, 51, 51);
                 margin: 0;
+                font-family: 'Cormorant SC', serif;
+                font-size: 17px;
+                line-height: 27px;
+                text-align: center;
+                color: rgba(51, 51, 51);
             }
         }
     }
@@ -85,7 +84,7 @@
 
             .paggination-results {
                 padding-right: 200px;
-                font-family: 'Noto Serif Display', serif;
+                font-family: 'Nunito', sans-serif;
                 font-size: 13px;
                 font-weight: 400;
                 color: rgb(105, 105, 105);
