@@ -3,7 +3,7 @@
     <div class="header-wrapper">
         <nav class="global-navigation-container">
             <a class="global-logo-link" [routerLink]="['/']">
-                <img class="global-logo-image" src="../../../assets/Header_Logo.png" alt="Header_Logo">
+                <img class="global-logo-image" src="../../../assets/header-logo.png" alt="header-logo">
             </a>
             <ul class="global-nav-list">
                 <li class="nav-list-item"><a class="nav-link" href="#">Today's sections</a></li>
@@ -27,24 +27,35 @@
 </header>
 
 <!-- Main Website Content -->
-<router-outlet></router-outlet>
+<main>
+    <router-outlet></router-outlet>
+</main>
 
 <!-- Global Website Footer -->
 <footer class="global-footer">
     <div class="back-top-container">
         <button class="back-top-button" (click)="goToScreenTop()">
-            <img class="back-top-image" src="../../../assets/Up_to_top.png" alt="Up_to_top">back to top
+            <img class="back-top-image" src="../../../assets/up-to-top.png" alt="up-to-top">
+            <span class="button-text">back to top</span>
         </button>
     </div>
     <div class="footer-links-container">
         <div class="footer-links-content">
-            <img class="footer-logo-image" src="../../../assets/Footer_Logo.png" alt="Footer_Logo">
+            <img class="footer-logo-image" src="../../../assets/footer-logo.png" alt="footer-logo">
             <h3 class="contacts-header">get in touch</h3>
             <ul class="footer-links-list">
-                <li class="footer-list-item"><a class="footer-link" href="https://github.com/emmat-york" target="_blank">GitHub</a></li>
-                <li class="footer-list-item"><a class="footer-link" href="https://www.linkedin.com/in/andrey-filimonchik-35a033135/" target="_blank">LinkenIn</a></li>
-                <li class="footer-list-item"><a class="footer-link" href="https://www.instagram.com/emmat_york/" target="_blank">Instagram</a></li>
-                <li class="footer-list-item"><a class="footer-link" href="https://vk.com/emmat_york" target="_blank">VK</a></li>
+                <li class="footer-list-item">
+                    <a class="footer-link" href="https://github.com/emmat-york" target="_blank">GitHub</a>
+                </li>
+                <li class="footer-list-item">
+                    <a class="footer-link" href="https://www.linkedin.com/in/andrey-filimonchik-35a033135/" target="_blank">LinkenIn</a>
+                </li>
+                <li class="footer-list-item">
+                    <a class="footer-link" href="https://www.instagram.com/emmat_york/" target="_blank">Instagram</a>
+                </li>
+                <li class="footer-list-item">
+                    <a class="footer-link" href="https://vk.com/emmat_york" target="_blank">VK</a>
+                </li>
             </ul>
             <ul class="contacts-list">
                 <li class="contact-list-item">Location: Tbilisi, Georgia</li>
