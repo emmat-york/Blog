@@ -13,14 +13,12 @@
             </ul>
         </nav>
         <div class="additional-nav-content">
-            <a class="admin-link" [routerLink]="['/admin', 'login']">Log In</a>
+            <a class="admin-link" [routerLink]="['/admin', 'login']">Log in</a>
             <input
                 class="search-field"
-                [class.focused-input]="isInputFocused"
                 type="text"
                 placeholder="Search"
-                (focus)="changeInputState(true)"
-                (blur)="changeInputState(false)"
+                colorObserver
             />
         </div>
     </div>

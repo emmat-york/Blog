@@ -1,18 +1,23 @@
-<nav class="navigation">
-    <h1>
-        <a routerLink="/">To Posts</a>
-    </h1>
+<!-- Admin Panel Header -->
+<header class="admin-header-with-nav" *ngIf="authService.isAuth()">
+    <div class="header-wrapper">
+        <nav class="admin-page-navigation">
+            <ul class="admin-nav-list">
+                <li class="nav-list-item">
+                    <a class="nav-link" routerLinkActive="active-link" [routerLink]="['/admin', 'dashboard']">Dashboard</a>
+                </li>
+                <li class="nav-list-item">
+                    <a class="nav-link" routerLinkActive="active-link" [routerLink]="['/admin', 'create']">Create</a>
+                </li>
+                <li class="nav-list-item log-out">
+                    <a class="nav-link" href="#" (click)="logOut($event)">Log out</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-    <ul>
-        <li>
-            <a routerLinkActive="active-link" [routerLink]="['/admin', 'dashboard']">Dashboard</a>
-        </li>
-        <li>
-            <a routerLinkActive="active-link" [routerLink]="['/admin', 'create']">Create</a>
-        </li>
-        <li>
-            <a href="#" (click)="logOut($event)">Log out</a>
-        </li>
-    </ul>
-</nav>
-<router-outlet></router-outlet>
+<!-- Login Form -->
+<main class="admin-content">
+    <router-outlet></router-outlet>
+</main>

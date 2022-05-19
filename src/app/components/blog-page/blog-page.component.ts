@@ -6,8 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./blog-page.component.scss']
 })
 export class BlogPageComponent implements OnInit {
-  public isInputFocused: boolean = false;
-
+  
   constructor() { }
 
   ngOnInit(): void {
@@ -15,10 +14,5 @@ export class BlogPageComponent implements OnInit {
 
   public goToScreenTop(): void {
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // Todo: Make directive for changing input background color and color
-  public changeInputState(eventState: boolean): void {
-    this.isInputFocused = eventState;
   }
 }
