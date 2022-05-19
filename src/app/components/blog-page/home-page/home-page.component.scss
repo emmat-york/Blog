@@ -1,11 +1,14 @@
+@import "../../../../common/styles-variables.scss";
+@import "../../../../common/mixins.scss";
+
 :host {
     display: block;
-    width: 1180px;
+    width: $external-container;
     margin: 0 auto;
 
     .auther-container-wrapper {
         height: 302px;
-        padding-top: 60px;
+        padding-top: 100px;
         padding-bottom: 40px;
         background-color: rgba(249, 249, 249);
         display: flex;
@@ -13,74 +16,113 @@
         align-items: center;
 
         .auther-container-header {
-            width: 762px;
+            width: $internal-container;
             margin: 0 auto;
             display: flex;
             flex-direction: column;
             align-items: center;
 
             .auther-header-image {
-                height: 100px;
-                width: 100px;
+                @include blockSize(100px, 100px);
                 border-radius: 50px;
                 margin-bottom: 20px;
             }
 
             .auther-name-header {
-                font-family: 'Noto Serif Display', serif;
-                height: 44px;
-                font-weight: 800;
-                font-size: 34px;
                 margin: 0;
+                font-family: 'DM Serif Display', serif;
+                font-size: 40px;
+                font-weight: 400;
+                letter-spacing: -1px;
             }
 
             .additional-auther-info {
-                font-family: 'Cormorant SC', serif;
                 margin-top: 5px;
                 margin-bottom: 0;
-                font-size: 13px;
-                text-transform: uppercase;
-                color: rgba(105, 105, 105, .8);
+                font-family: 'Cormorant SC', serif;
+                font-size: $small;
                 line-height: 14px;
+                text-transform: uppercase;
+                color: $dark-grey-1;
             }
 
-            .JC-connection {
-                padding: 10px 0;
+            .auther-main-link {
+                margin: 10px 0;
 
                 .fa-brands {
-                    color: rgb(29,155,240);
+                    color: $dark-blue;
                 }
 
-                .twitter_link {
-                    font-family: 'Cormorant SC', serif;
+                .twitter-link {
+                    font-family: 'Nunito', sans-serif;
+                    font-size: $medium;
+                    font-weight: 300;
                     text-decoration: underline;
-                    color: black;
+                    color: rgb(29, 29, 27);
                 }
             }
 
             .auther-bio {
-                font-family: 'Cormorant SC', serif;
-                text-align: center;
-                line-height: 27px;
-                font-size: 17px;
-                color: rgba(51, 51, 51);
                 margin: 0;
+                font-family: 'Cormorant SC', serif;
+                font-size: $large;
+                line-height: 27px;
+                text-align: center;
+                color: rgba(51, 51, 51);
             }
         }
     }
 
     .posts-container-wrapper {
-        width: 1180px;
+        width: $external-container;
         margin: 0 auto;
-        background-color: white;
+        background-color: $white;
 
         .paggination-container {
-            height: 50px;
+            @include blockSize(50px, $internal-container);
+            margin: 0 auto;
             padding-top: 30px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .paggination-dashboard {
+                padding-right: 200px;
+                font-family: 'Nunito', sans-serif;
+                font-size: $small;
+                font-weight: 400;
+                color: $dark-grey-1;
+            }
+
+            .next-page-button {
+                padding: 0;
+                border: none;
+                background-color: $white;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                .button-text {
+                    font-family: 'Nunito', sans-serif;
+                    font-size: $medium;
+                    font-weight: 500;
+                    line-height: 1;
+                    color: $dark-blue;
+                }
+
+                .next-button-image {
+                    @include blockSize(18px, 18px);
+                }
+            }
+
+            &:last-child {
+                padding-top: 0;
+                border-top: 0.5px solid rgb(138, 138, 138);
+            }
         }
 
         .posts-container {
-            width: 762px;
+            width: $internal-container;
             margin: 0 auto;
 
             .post {

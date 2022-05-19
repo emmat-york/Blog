@@ -1,38 +1,66 @@
 <form class="admin-form-group" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
-    <h2>Admin panel</h2>
-    <div class="">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email" formControlName="email">
-        <div 
-            class="error"
-            *ngIf="formGroup.controls['email'].touched
-            && formGroup.controls['email'].invalid"
-        >
-            <mark *ngIf="formGroup.controls['email'].errors?.['required']">
-                Field is required.
-            </mark>
-            <mark *ngIf="formGroup.controls['email'].errors?.['email']">
-                Please, fill correct email.
-            </mark>
-        </div>
+    <header class="form-group-header">
+        <img class="admin-logo-image" src="../../../../assets/logo-black.png" alt="header-logo">
+        <h2 class="log-in-header">Log in</h2>
+    </header>
+
+    <div *ngIf="(authService.loginErrors$ | async) as errorMessage">
+        {{ errorMessage }}
     </div>
 
-    <div class="">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" formControlName="password">
-        <div
-            class="error"
-            *ngIf="formGroup.controls['password'].touched
-            && formGroup.controls['password'].invalid"
-        >
-            <mark *ngIf="formGroup.controls['password'].errors?.['required']">
-                Field is required.
-            </mark>
-            <mark *ngIf="formGroup.controls['password'].errors?.['minlength']">
-                Password must be more than {{ minPasswordLength }} symbols.
-            </mark>
-        </div>
+    <div *ngIf="guardMessage">
+        {{ guardMessage }}
     </div>
 
-    <button type="submit" [disabled]="formGroup.invalid">Enter</button>
+    <section class="form-controls-container">
+        <div class="form-control-wrapper">
+            <div class="form-control">
+                <label class="label" for="email">Email</label>
+                <input
+                    class="control"
+                    type="text"
+                    name="email"
+                    id="email"
+                    formControlName="email"
+                    placeholder="EMAIL"
+                />
+            </div>
+
+            <div class="error" *ngIf="formGroup.controls['email'].touched
+                && formGroup.controls['email'].invalid">
+                <span *ngIf="formGroup.controls['email'].errors?.['email']">
+                    Please, fill correct email.
+                </span>
+            </div>
+        </div>
+
+        <div class="form-control-wrapper">
+            <div class="form-control">
+                <label class="label" for="password">Password</label>
+                <input
+                    class="control"
+                    type="password"
+                    name="password"
+                    id="password"
+                    formControlName="password"
+                    placeholder="PASSWORD"
+                />
+            </div>
+
+            <div class="error" *ngIf="formGroup.controls['password'].touched
+                && formGroup.controls['password'].invalid">
+                <span *ngIf="formGroup.controls['password'].errors?.['minlength']">
+                    Password must be more than {{ minPasswordLength }} symbols.
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <div class="submit-button-container">
+        <button class="submit-button" type="submit" [disabled]="formGroup.invalid || isSubmitted">
+            log in
+        </button>
+    </div>
+
+    <a class="back-link" [routerLink]="['/']">Return back</a>
 </form>

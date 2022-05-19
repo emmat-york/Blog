@@ -5,12 +5,19 @@ import { HomePageComponent } from '../components/blog-page/home-page/home-page.c
 import { PostPageComponent } from '../components/blog-page/post-page/post-page.component';
 import { PostComponent } from '../components/blog-page/post-page/post/post.component';
 import { RouterModule } from '@angular/router';
+import { SharedModule } from './shared.module';
 
 @NgModule({
-  declarations: [BlogPageComponent, HomePageComponent, PostPageComponent, PostComponent],
+  declarations: [
+    BlogPageComponent,
+    HomePageComponent,
+    PostPageComponent,
+    PostComponent,
+  ],
   imports: [
     CommonModule,
     RouterModule,
+    SharedModule,
   ]
 })
 export class BlogModule { }

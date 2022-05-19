@@ -1,14 +1,13 @@
 <article class="auther-container-wrapper">
     <header class="auther-container-header">
-        <img class="auther-header-image" src="../../../../assets/Jeremy_Clarkson.jpg" alt="Jeremy_Clarkson">
-        <h1 class="auther-name-header">Jeremy Clarkson</h1>
-        <h3 class="additional-auther-info">
-            columnist
-        </h3>
-        <div class="JC-connection">
+        <img class="auther-header-image" src="../../../../assets/jeremy-clarkson.jpg" alt="jeremy-clarkson">
+        <h1 class="auther-name-header">Jeremy Clarkson's review</h1>
+        <h3 class="additional-auther-info">columnist</h3>
+        <div class="auther-main-link">
             <i class="fa-brands fa-twitter"></i>
-            <a class="twitter_link" href="https://twitter.com/JeremyClarkson" target="_blank">@JeremyClarkson</a>
+            <a class="twitter-link" href="https://twitter.com/JeremyClarkson" target="_blank">@JeremyClarkson</a>
         </div>
+        
         <p class="auther-bio">
             The nation’s favourite motoring journalist, Jeremy Clarkson,
             writes a column in <i>The Sunday Times</i> News Review,
@@ -21,7 +20,11 @@
 
 <section class="posts-container-wrapper">
     <div class="paggination-container">
-
+        <div class="paggination-dashboard">Showing 1 - 10 of 168 results</div>
+        <button class="next-page-button">
+            <span class="button-text">Next page</span>
+            <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
+        </button>
     </div>
 
     <div class="posts-container">
@@ -29,5 +32,12 @@
         <app-post class="post" [routerLink]="['/post', 10]"></app-post>
         <app-post class="post" [routerLink]="['/post', 10]"></app-post>
         <app-post class="post" [routerLink]="['/post', 10]"></app-post>
+    </div>
+
+    <div class="paggination-container">
+        <button class="next-page-button">
+            <span class="button-text">Next page</span>
+            <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
+        </button>
     </div>
 </section>
