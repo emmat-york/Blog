@@ -1,17 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ArticleFormData } from '../models/create-page.model';
+import { Article } from '../models/create-page.model';
 
 @Pipe({
-  name: 'postSearch'
+  name: 'articleSearch'
 })
-export class PostSearchPipe implements PipeTransform {
+export class ArticleSearchPipe implements PipeTransform {
 
-  transform(posts: ArticleFormData[], searchRequest: string = ""): ArticleFormData[] {
+  transform(articles: Article[], searchRequest: string = ""): Article[] {
     if (!searchRequest.trim()) {
-      return posts;
+      return articles;
     };
+
     const lowercasedSearchRequest = searchRequest.toLocaleLowerCase();
 
-    return posts.filter(post => post.header.toLocaleLowerCase().includes(lowercasedSearchRequest));
+    return articles.filter(article => article.header.toLocaleLowerCase().includes(lowercasedSearchRequest));
   }
 }

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { take } from 'rxjs/operators';
 import { ArticleFormData } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-page',
@@ -24,18 +24,18 @@ export class CreatePageComponent implements OnInit {
   public onFormSubmit(): void {
     if (this.articleFormGroup.invalid) {
       return;
-    }
+    };
 
     const articleFormData: ArticleFormData = {
       ...this.articleFormGroup.value,
-      articleReleaseDate: new Date(),
+      releaseDate: new Date(),
     };
 
-    this.postServise.createPost(articleFormData)
-    .pipe(take(1))
-    .subscribe((data) => {
-      console.log(data);
+    console.log(articleFormData);
 
+    this.postServise.createArticle(articleFormData)
+    .pipe(take(1))
+    .subscribe(() => {
       this.articleFormGroup.reset();
     });
   }
@@ -45,6 +45,7 @@ export class CreatePageComponent implements OnInit {
       auther: [null, Validators.required],
       header: [null, Validators.required],
       article: [null, Validators.required],
+      photo: [null, Validators.required],
     });
   }
 }

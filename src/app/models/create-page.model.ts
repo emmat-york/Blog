@@ -2,10 +2,14 @@ export interface ArticleFormData {
     auther: string;
     header: string;
     article: string;
-    articleReleaseDate: Date;
-    id?: string;
+    releaseDate: Date;
+    photo: any;
 }
 
-export interface FbCreateResponse {
+export interface Article extends ArticleFormData {
+    id: string;
+}
+
+export interface CreateArticleResponse {
     name: string;
 }

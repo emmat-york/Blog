@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ArticleFormData } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
+import { Article } from 'src/app/models/create-page.model';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -9,24 +9,28 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./dashboard-page.component.scss']
 })
 export class DashboardPageComponent implements OnInit {
-  public postSearch: string = "";
-  public posts: ArticleFormData[];
+  public searchRequest: string = "";
+  public articles: Article[];
 
   constructor(private readonly postService: PostsService) { }
 
   public ngOnInit(): void {
-    this.postsInicizlization();
+    this.articlesInicialization();
   }
 
-  public postsInicizlization(): void {
-    this.postService.getAllPosts().subscribe((posts) => {
-      this.posts = posts;
+  public removeArticle(articleId: string): void {
+    this.postService.removeArticle(articleId)
+    .pipe(take(1))
+    .subscribe(() => {
+      this.articles = this.articles.filter(article => article.id !== articleId);
     });
   }
 
-  public deletePost(postId: string | undefined): void {
-    this.postService.removePost(postId).pipe(take(1)).subscribe(() => {
-      this.posts = this.posts.filter(post => post.id !== postId);
+  private articlesInicialization(): void {
+    this.postService.fetchArticles()
+    .pipe(take(1))
+    .subscribe((articles) => {
+      this.articles = articles;
     });
   }
 }
