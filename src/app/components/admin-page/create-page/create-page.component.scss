@@ -1,0 +1,14 @@
+@import "../../../../common/styles-variables.scss";
+@import "../../../../common/mixins.scss";
+
+:host {
+    display: block;
+
+    .create-form-group {
+        @include blockSize(600px, $internal-container);
+
+        textarea {
+            resize: none;
+        }
+    }
+}

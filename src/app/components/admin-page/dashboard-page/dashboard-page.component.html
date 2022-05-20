@@ -1,1 +1,23 @@
-<p>dashboard-page works!</p>
+<section *ngIf="posts; else loader">
+    <header>
+        <h2>Posts</h2>
+        <p>dashboard-page works!</p>
+        <input type="text" [(ngModel)]="postSearch">
+    </header>
+
+    <div *ngFor="let post of posts | postSearch: postSearch">
+        <article>
+            <p>{{ post.auther }}</p>
+            <h3>{{ post.header }}</h3>
+            <div>{{ post.article }}</div>
+            <div>{{ post.articleReleaseDate }}</div>
+            <button [routerLink]="['/admin', 'post', post.id, 'edit']">Open post</button>
+            <div>{{ post.id }}</div>
+            <button (click)="deletePost(post.id)">Delete post</button>
+        </article>
+    </div>
+</section>
+
+<ng-template #loader>
+    <div>Loading...</div>
+</ng-template>

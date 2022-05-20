@@ -8,5 +8,5 @@ export type UserFormData = Omit<LoginPayload, "returnSecureToken">;
 
 export interface AuthResponse {
     idToken: string;
-    expiresIn: string; // in seconds
+    expiresIn: string;
 }
