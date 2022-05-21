@@ -27,11 +27,8 @@
         </button>
     </div>
 
-    <div class="posts-container">
-        <app-post class="post" [routerLink]="['/post', 10]"></app-post>
-        <app-post class="post" [routerLink]="['/post', 10]"></app-post>
-        <app-post class="post" [routerLink]="['/post', 10]"></app-post>
-        <app-post class="post" [routerLink]="['/post', 10]"></app-post>
+    <div class="posts-container" *ngFor="let article of articles | articleSearch: commonService.searchRequest">
+        <app-post class="post" [article]="article" [routerLink]="['/post', 10]"></app-post>
     </div>
 
     <div class="paggination-container">

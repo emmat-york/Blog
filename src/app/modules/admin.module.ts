@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AdminPageComponent } from '../components/admin-page/admin-page.component';
 import { RouterModule } from '@angular/router';
 import { DashboardPageComponent } from '../components/admin-page/dashboard-page/dashboard-page.component';
@@ -20,7 +19,6 @@ import { AuthGuard } from '../services/auth.guard';
     EditPageComponent,
   ],
   imports: [
-    CommonModule,
     SharedModule,
     ReactiveFormsModule,
     RouterModule.forChild([
@@ -34,6 +32,6 @@ import { AuthGuard } from '../services/auth.guard';
     ]),
   ],
   exports: [RouterModule],
-  providers: [AuthService, AuthGuard],
+  providers: [AuthGuard],
 })
 export class AdminModule { }

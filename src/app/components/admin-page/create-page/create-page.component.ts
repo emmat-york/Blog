@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ArticleFormData } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
-import { take } from 'rxjs/operators';
+import { catchError, take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-page',
@@ -31,10 +31,15 @@ export class CreatePageComponent implements OnInit {
       releaseDate: new Date(),
     };
 
-    console.log(articleFormData);
-
     this.postServise.createArticle(articleFormData)
-    .pipe(take(1))
+    .pipe(
+      take(1),
+      catchError((error) => {
+        console.log(error);
+
+        return [];
+      }),
+    )
     .subscribe(() => {
       this.articleFormGroup.reset();
     });

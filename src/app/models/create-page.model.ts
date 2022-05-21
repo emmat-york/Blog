@@ -3,7 +3,7 @@ export interface ArticleFormData {
     header: string;
     article: string;
     releaseDate: Date;
-    photo: any;
+    photo: string;
 }
 
 export interface Article extends ArticleFormData {
@@ -12,4 +12,8 @@ export interface Article extends ArticleFormData {
 
 export interface CreateArticleResponse {
     name: string;
+}
+
+export interface FetchArticlesResponse {
+    [articleId: string]: ArticleFormData;
 }

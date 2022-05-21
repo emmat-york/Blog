@@ -1,0 +1,51 @@
+@import "../../../../common/styles-variables.scss";
+@import "../../../../common/mixins.scss";
+
+:host {
+    display: block;
+    width: 100%;
+    background-color: $light-grey;
+
+    .admin-dashboard-content {
+        width: $external-container;
+        margin: 0 auto;
+        background-color: $white;
+
+        .articles-container {
+            width: 762px;
+            margin: 0 auto;
+
+            .dashboard-header {
+                .header {
+                    margin-top: 0;
+                }
+            }
+
+            .article {
+
+                .edit-buttons-container {
+                    padding-bottom: 10px;
+                    display: flex;
+                    justify-content: space-between;
+    
+                    .edit-button {
+                        padding: 5px 10px 5px 0;
+                        border: none;
+                        font-family: "Nunito", sans-serif;
+                        font-size: 15px;
+                        font-weight: 500;
+                        line-height: 1;
+                        color: $dark-blue;
+                        background-color: $white;
+                        cursor: pointer;
+    
+                        &.remove {
+                            padding-left: 10px;
+                            color: rgb(255, 58, 58);
+                        }
+                    }  
+                }
+            }
+        }
+    }
+}

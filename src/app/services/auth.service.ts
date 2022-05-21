@@ -4,7 +4,9 @@ import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse, LoginPayload, UserFormData } from '../models/auth-model';
 
-@Injectable()
+@Injectable({
+  providedIn: "root"
+})
 export class AuthService {
   public loginErrors$: Subject<string> = new Subject<string>();
   private loginPath: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`;

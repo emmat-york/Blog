@@ -1,21 +1,19 @@
 <figure class="post-image-container">
     <img
         class="post-image"
-        src="https://www.formulapassion.it/wp-content/uploads/2021/10/Lexus-LX-2021.jpg"
-        alt="auto-image"
+        [src]="article.photo"
+        alt="article-image"
     />
 </figure>
 <section class="post-description-container">
     <header class="post-header-container">
-        <p class="post-auther">Jeremy Clarkson</p>
-        <h2 class="post-header">The Clarkson Review: Alpine A110 S</h2>
+        <p class="post-auther">{{ article.auther }}</p>
+        <h2 class="post-header">{{ article.header }}</h2>
     </header>
     <article class="text-description">
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-        Illo deserunt doloribus pariatur aut debitis officia. Dolor delectus vel voluptatibus.
-        Porro odio ex tenetur soluta optio consequuntur tempore magni dolorem. Quas.
+        {{ article.article | slice:0:200 }}...
     </article>
     <p class="post-date">
-        Sunday May 08 2022, 12.01am BST, The Sunday Times
+        {{ article.releaseDate | date: 'EEEE LLLL dd yyyy, hh zzz'}}, The Sunday Times
     </p>
 </section>

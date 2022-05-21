@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { Article, ArticleFormData, CreateArticleResponse } from '../models/create-page.model';
+import { Article, ArticleFormData, CreateArticleResponse, FetchArticlesResponse } from '../models/create-page.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -20,15 +20,15 @@ export class PostsService {
     return this.http.get(`${environment.fbDbUrl}/posts.json`)
     .pipe(
       map((response) => {
-      if (Object.keys(response).length === 0) {
+      if (!response) {
         return [];
       };
 
-      return Object.entries(response).reduce((articles, [articleId, article]): any => {
-        const mappedArticle: ArticleFormData = {
+      return Object.entries((response) as FetchArticlesResponse).reduce((articles, [articleId, article]): any => {
+        const mappedArticle: Article = {
           ...article,
           id: articleId,
-          articleReleaseDate: new Date(article.releaseDate),
+          releaseDate: new Date(article.releaseDate),
         };
 
         return [...articles, mappedArticle];
