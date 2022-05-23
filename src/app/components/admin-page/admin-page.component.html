@@ -1,25 +1,37 @@
-<!-- Admin Panel Header -->
-<div class="navigation-wrapper">
-<header class="admin-header-with-nav" *ngIf="authService.isAuth()">
-        <nav class="admin-page-navigation">
-            <ul class="admin-nav-list">
-                <li class="nav-list-item">
-                    <a class="nav-link" [routerLink]="['/admin', 'dashboard']">Dashboard</a>
-                </li>
-                <li class="nav-list-item">
-                    <a class="nav-link" [routerLink]="['/admin', 'create']">Create</a>
-                </li>
-                <li class="nav-list-item">
-                    <a class="nav-link" [routerLink]="['/']">Main page</a>
-                </li>
-            </ul>
+<section #adminContainer>
+    <!-- Admin Panel Header -->
+    <header class="navigation-wrapper" *ngIf="authService.isAuth()">
+        <div class="admin-header-with-nav">
+            <nav class="admin-page-navigation">
+                <div class="navigation-container">
+                    <a class="global-logo-link" [routerLink]="['/']">
+                        <img class="global-logo-image" src="../../../assets/header-logo.png" alt="header-logo">
+                    </a>
+                    <ul class="admin-nav-list">
+                        <li class="nav-list-item">
+                            <a class="nav-link" [routerLink]="['/']">To main page</a>
+                        </li>
+                        <li class="nav-list-item">
+                            <a class="nav-link" [routerLink]="['/admin', 'dashboard']">Dashboard</a>
+                        </li>
+                        <li class="nav-list-item">
+                            <a class="nav-link" [routerLink]="['/admin', 'create']">Create</a>
+                        </li>
+                    </ul>
+                </div>
 
-            <button class="log-out-link" (click)="logOut($event)">Log out</button>
-        </nav>
-</header>
-</div>
+                <button class="log-out-link" (click)="logOut($event)">Log out</button>
+            </nav>
+        </div>
+    </header>
 
-<!-- Login Form -->
-<main class="admin-content">
-    <router-outlet></router-outlet>
-</main>
+    <!-- Admin Panel Content -->
+    <main class="admin-content">
+        <router-outlet></router-outlet>
+    </main>
+
+    <!-- Admin Panel Footer -->
+    <footer *ngIf="authService.isAuth()">
+        <app-scroll-button (click)="commonService.goToScreenTop()"></app-scroll-button>
+    </footer>
+</section>

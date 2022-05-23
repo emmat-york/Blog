@@ -3,6 +3,7 @@
 
 :host {
     display: block;
+    height: inherit;
 
     .navigation-wrapper {
         background-color: $black;
@@ -19,40 +20,58 @@
                     display: flex;
                     justify-content: space-between;
                     align-items: center;
-    
-                    .admin-nav-list {
-                        height: inherit;
-                        margin: 0;
-                        padding: 0;
-                        display: flex;
-            
-                        .nav-list-item {
-                            list-style: none;
-                            box-sizing: border-box;
-                            border-left: 0.5px solid $white;
-                            color: $white;
-    
-                            .nav-link {
-                                height: 100%;
-                                padding: 0 10px;
-                                font-family: 'Noto Serif Display', serif;
-                                font-size: $small;
-                                font-weight: 500;
-                                letter-spacing: 0.3px;
-                                text-decoration: none;
-                                color: inherit;
-                                display: flex;
-                                justify-content: center;
-                                align-items: center;
-                            }
-    
-                            &:hover {
-                                background-color: $white;
-                                color: $black;
-                            }
 
-                            &:last-child {
-                                border-right: 0.5px solid $white;
+                    .navigation-container {
+                        height: inherit;
+                        display: flex;
+
+                        .global-logo-link {
+                            display: flex;
+                            align-items: center;
+        
+                            .global-logo-image {
+                                @include blockSize(20px, 170px);
+                                padding: 0 20px;
+                                display: flex;
+                                align-items: center;
+                                cursor: pointer;
+                            }
+                        }
+
+                        .admin-nav-list {
+                            height: inherit;
+                            margin: 0;
+                            padding: 0;
+                            display: flex;
+                
+                            .nav-list-item {
+                                list-style: none;
+                                box-sizing: border-box;
+                                border-left: 0.5px solid $white;
+                                color: $white;
+        
+                                .nav-link {
+                                    height: 100%;
+                                    padding: 0 10px;
+                                    font-family: 'Noto Serif Display', serif;
+                                    font-size: $small;
+                                    font-weight: 500;
+                                    letter-spacing: 0.3px;
+                                    text-decoration: none;
+                                    color: inherit;
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                }
+        
+                                &:hover {
+                                    background-color: $white;
+                                    color: $black;
+                                }
+    
+                                &:last-child {
+                                    border-right: 0.5px solid $white;
+                                }
                             }
                         }
                     }

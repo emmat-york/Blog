@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { CommonService } from 'src/app/services/common.service';
 
@@ -7,14 +7,20 @@ import { CommonService } from 'src/app/services/common.service';
   templateUrl: './blog-page.component.html',
   styleUrls: ['./blog-page.component.scss']
 })
-export class BlogPageComponent {
-  
+export class BlogPageComponent implements AfterViewInit {
+  @ViewChild("blogContainer", { static: false }) private screenContainer: ElementRef<HTMLElement>;
+  public isScreenScrollable: boolean = false;
+
   constructor(
     public readonly commonService: CommonService,
     public readonly authService: AuthService,
   ) { }
 
-  public goToScreenTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  public ngAfterViewInit(): void {
+    this.isScreenScrollable = CommonService.isScreenScrollable(this.screenContainer);
+  }
+
+  public logOut(): void {
+    this.authService.logOut();
   }
 }

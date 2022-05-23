@@ -18,6 +18,17 @@
             .dashboard-header {
                 .header {
                     margin-top: 0;
+                    padding-top: 20px;
+                }
+
+                .search-field {
+                    @include blockSize(40px, 100%);
+                    padding-left: 10px;
+                    font-family: 'Noto Serif Display', serif;
+                    font-size: $small;
+                    font-weight: 500;
+                    border: none;
+                    outline: none;
                 }
             }
 
@@ -41,7 +52,7 @@
     
                         &.remove {
                             padding-left: 10px;
-                            color: rgb(255, 58, 58);
+                            color: rgb(225, 0, 0);
                         }
                     }  
                 }
