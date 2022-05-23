@@ -1,0 +1,34 @@
+@import "../../../../common/styles-variables.scss";
+@import "../../../../common/mixins.scss";
+
+:host {
+    display: block;
+    background-color: $dark-grey-2;
+
+    .back-top-button {
+        @include blockSize(50px, $external-container);
+        margin: 0 auto;
+        padding: 0;
+        padding-left: 20px;
+        font-family: 'Cormorant SC', serif;
+        font-size: $medium;
+        line-height: 5rem;
+        border: none;
+        text-transform: uppercase;
+        background-color: inherit;
+        color: $white;
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        cursor: pointer;
+    
+        .back-top-image {
+            height: 30px;
+            padding-right: 12px;
+        }
+    
+        .button-text {
+            line-height: 1;
+        }
+    }
+}

@@ -1,0 +1,61 @@
+@import "../../../../common/styles-variables.scss";
+@import "../../../../common/mixins.scss";
+
+:host {
+    display: block;
+    @include blockSize(inherit, 100%);
+    background-color: $light-grey;
+
+    .admin-dashboard-content {
+        @include blockSize(inherit, $external-container);
+        margin: 0 auto;
+        background-color: $white;
+
+        .articles-container {
+            width: 762px;
+            margin: 0 auto;
+
+            .dashboard-header {
+                .header {
+                    margin-top: 0;
+                    padding-top: 20px;
+                }
+
+                .search-field {
+                    @include blockSize(40px, 100%);
+                    padding-left: 10px;
+                    font-family: 'Noto Serif Display', serif;
+                    font-size: $small;
+                    font-weight: 500;
+                    border: none;
+                    outline: none;
+                }
+            }
+
+            .article {
+                .edit-buttons-container {
+                    padding-bottom: 10px;
+                    display: flex;
+                    justify-content: space-between;
+    
+                    .edit-button {
+                        padding: 5px 10px 5px 0;
+                        border: none;
+                        font-family: "Nunito", sans-serif;
+                        font-size: 15px;
+                        font-weight: 500;
+                        line-height: 1;
+                        color: $dark-blue;
+                        background-color: $white;
+                        cursor: pointer;
+    
+                        &.remove {
+                            padding-left: 10px;
+                            color: rgb(225, 0, 0);
+                        }
+                    }  
+                }
+            }
+        }
+    }
+}

@@ -13,4 +13,5 @@ export const firebaseConfig = {
 export const environment: Environment = {
   production: false,
   apiKey: firebaseConfig.apiKey,
+  fbDbUrl: "https://autoreview-c2b09-default-rtdb.firebaseio.com",
 };

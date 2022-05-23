@@ -1,1 +1,39 @@
-<p>edit-page works!</p>
+<section class="page-wrapper">
+    <div *ngIf="article">
+        <div>{{ article.auther }}</div>
+        <div>{{ article.header }}</div>
+        <div>{{ article.article }}</div>
+        <div>{{ article.photo }}</div>
+    </div>
+    <form *ngIf="editPageFormGroup; else loader" [formGroup]="editPageFormGroup" (ngSubmit)="onFormSubmit()">
+        <header>
+            Article edit page
+        </header>
+    
+        <div>
+            <label for="auther">Auther</label>
+            <input id="auther" type="text" formControlName="auther">
+        </div>
+    
+        <div>
+            <label for="header">Header</label>
+            <input id="header" type="text" formControlName="header">
+        </div>
+    
+        <div>
+            <label for="article">Article</label>
+            <textarea id="article" cols="20" rows="15" formControlName="article"></textarea>
+        </div>
+    
+        <div>
+            <label for="photo">Photo</label>
+            <input type="text" id="photo" formControlName="photo">
+        </div>
+    
+        <button type="submit" [disabled]="editPageFormGroup.invalid || isSubmitted">Edit article</button>
+    </form>
+</section>
+
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>

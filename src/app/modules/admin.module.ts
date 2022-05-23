@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { AdminPageComponent } from '../components/admin-page/admin-page.component';
 import { RouterModule } from '@angular/router';
 import { DashboardPageComponent } from '../components/admin-page/dashboard-page/dashboard-page.component';
@@ -7,8 +6,9 @@ import { CreatePageComponent } from '../components/admin-page/create-page/create
 import { EditPageComponent } from '../components/admin-page/edit-page/edit-page.component';
 import { LoginPageComponent } from '../components/admin-page/login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
 import { SharedModule } from './shared.module';
+import { AuthGuard } from '../services/auth.guard';
+import { AdminService } from '../services/admin.service';
 
 @NgModule({
   declarations: [
@@ -19,20 +19,19 @@ import { SharedModule } from './shared.module';
     EditPageComponent,
   ],
   imports: [
-    CommonModule,
     SharedModule,
     ReactiveFormsModule,
     RouterModule.forChild([
       { path: '', component: AdminPageComponent, children: [
         { path: '', redirectTo: '/admin/login', pathMatch: 'full' },
         { path: 'login', component: LoginPageComponent },
-        { path: 'dashboard', component: DashboardPageComponent },
-        { path: 'create', component: CreatePageComponent },
-        { path: 'post/:id/edit', component: EditPageComponent },
+        { path: 'dashboard', component: DashboardPageComponent, canActivate: [AuthGuard] },
+        { path: 'create', component: CreatePageComponent, canActivate: [AuthGuard] },
+        { path: 'post/:id/edit', component: EditPageComponent, canActivate: [AuthGuard] },
       ] },
     ]),
   ],
   exports: [RouterModule],
-  providers: [AuthService],
+  providers: [AuthGuard, AdminService],
 })
 export class AdminModule { }

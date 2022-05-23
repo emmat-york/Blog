@@ -1,0 +1,19 @@
+<figure class="post-image-container">
+    <img
+        class="post-image"
+        [src]="article.photo"
+        alt="article-image"
+    />
+</figure>
+<section class="post-description-container">
+    <header class="post-header-container">
+        <p class="post-auther">{{ article.auther }}</p>
+        <h2 class="post-header">{{ article.header }}</h2>
+    </header>
+    <article class="text-description">
+        {{ article.article | slice:0:200 }}...
+    </article>
+    <p class="post-date">
+        {{ article.releaseDate | date: 'EEEE LLLL dd yyyy, hh zzz'}}, The Sunday Times
+    </p>
+</section>

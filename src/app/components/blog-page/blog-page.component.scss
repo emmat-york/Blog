@@ -1,15 +1,19 @@
+@import "../../../common/styles-variables.scss";
+@import "../../../common/mixins.scss";
+
 :host {
     display: block;
-    background-color: #F5EFEB;
+    background-color: $cream;
 
     .global-header-with-nav {
-        background-color: rgb(0, 0, 0);
+        width: 100%;
+        position: fixed;
+        background-color: $black;
 
         .header-wrapper {
-            height: 40px;
-            width: 1180px;
+            @include blockSize(40px, $external-container);
             margin: 0 auto;
-            color: rgb(255, 255, 255);
+            color: $white;
             display: flex;
             justify-content: space-between;
 
@@ -22,8 +26,7 @@
                     align-items: center;
 
                     .global-logo-image {
-                        height: 20px;
-                        width: 170px;
+                        @include blockSize(20px, 170px);
                         padding: 0 20px;
                         display: flex;
                         align-items: center;
@@ -35,22 +38,22 @@
                     height: inherit;
                     margin: 0;
                     padding-left: 0;
-                    border-left: 0.5px solid rgb(255, 255, 255);
+                    border-left: 0.5px solid $white;
                     display: flex;
                     align-items: center;
 
                     .nav-list-item {
                         height: 100%;
-                        border-right: 0.5px solid rgb(255, 255, 255);
+                        border-right: 0.5px solid $white;
                         display: flex;
                         justify-content: center;
                         align-items: center;
     
                         .nav-link {
                             height: inherit;
-                            padding: 0 20px;
+                            padding: 0 10px;
                             font-family: 'Noto Serif Display', serif;
-                            font-size: 13px;
+                            font-size: $small;
                             font-weight: 500;
                             letter-spacing: 0.3px;
                             text-decoration: none;
@@ -60,8 +63,8 @@
                         }
 
                         &:hover {
-                            background-color: rgb(255, 255, 255);
-                            color: rgb(0, 0, 0);
+                            background-color: #F3F2F0;
+                            color: $black;
                             cursor: pointer;
                         }
                     }
@@ -73,12 +76,11 @@
 
                 .admin-link {
                     padding: 0 20px;
-                    border-left: 0.5px solid rgb(255, 255, 255);
-                    font-family: 'Noto Serif Display', serif;
-                    font-size: 13px;
-                    font-weight: 500;
-                    letter-spacing: 0.3px;
+                    font-family: 'Nunito', sans-serif;
+                    font-size: $medium;
+                    font-weight: 400;
                     text-decoration: none;
+                    background-color: rgb(2,131,135);
                     color: inherit;
                     display: flex;
                     justify-content: center;
@@ -86,59 +88,31 @@
                     cursor: default;
 
                     &:hover {
-                        background-color: rgb(255, 255, 255);
-                        color: rgb(0, 0, 0);
+                        background-color: rgb(0,85,87);
                         cursor: pointer;
                     }
                 }
 
                 .search-field {
-                    padding-left: 20px;
+                    padding-left: 10px;
                     font-family: 'Noto Serif Display', serif;
-                    font-size: 13px;
+                    font-size: $small;
                     font-weight: 500;
                     border: none;
                     outline: none;
-                    background-color: rgb(61,63,69);
-                    color: rgb(255, 255, 255);
+                    background-color: $dark-grey-2;
+                    color: $white;
+                }
 
-                    &.focused-input {
-                        background-color: rgb(255, 255, 255);
-                        color: rgb(0, 0, 0);
-                    }
+                ::placeholder {
+                    font-size: $small;
+                    color: $white;
                 }
             }
         }
     }
 
     .global-footer {
-
-        .back-top-container {
-            background-color: rgb(61,63,69);
-
-            .back-top-image {
-                height: 30px;
-                padding-right: 16px;
-            }
-
-            .back-top-button {
-                height: 50px;
-                width: 1180px;
-                margin: 0 auto;
-                padding: 0;
-                font-family: 'Cormorant SC', serif;
-                font-size: 15px;
-                line-height: 5rem;
-                border: none;
-                text-transform: uppercase;
-                background-color: inherit;
-                color: rgb(255, 255, 255);
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                cursor: pointer;
-            }
-        }
 
         .footer-links-container {
             padding: 20px 0;
@@ -150,8 +124,7 @@
                 padding: 0 20px;
 
                 .footer-logo-image {
-                    height: 40px;
-                    width: 180px;
+                    @include blockSize(40px, 180px);
                     margin: 0 auto;
                     display: block;
                 }
@@ -160,14 +133,14 @@
                     margin: 0;
                     margin-top: 24px;
                     padding: 10px 0;
-                    border-top: 1px solid #d0cece;
-                    border-bottom: 1px solid #d0cece;
+                    border-top: 1px solid $medium-grey;
+                    border-bottom: 1px solid $medium-grey;
                     font-family: 'Cormorant SC', serif;
-                    font-size: 15px;
+                    font-size: $medium;
                     font-weight: 500;
                     text-align: center;
                     text-transform: uppercase;
-                    color: #d0cece;
+                    color: $medium-grey;
                 }
 
                 .footer-links-list {
@@ -175,17 +148,17 @@
                     margin-top: 20px;
                     padding: 0;
                     display: flex;
-                    justify-content: space-around;
+                    justify-content: space-evenly;
 
                     .footer-list-item {
                         list-style: none;
 
                         .footer-link {
-                            font-family: 'Cormorant SC', serif;
-                            font-size: 15px;
-                            font-weight: 400;
+                            font-family: 'Noto Serif Display', serif;
+                            font-size: $small;
+                            font-weight: 300;
                             text-decoration: none;
-                            color: #d0cece;
+                            color: $medium-grey;
                             cursor: pointer;
                         }
                     }
@@ -196,23 +169,18 @@
                     margin-top: 20px;
                     padding: 0;
                     display: flex;
-                    justify-content: space-between;
+                    justify-content: space-evenly;
 
                     .contact-list-item {
-                        font-family: 'Cormorant SC', serif;
-                        font-size: 15px;
-                        font-weight: 400;
+                        font-family: 'Noto Serif Display', serif;
+                        font-size: $small;
+                        font-weight: 300;
                         list-style: none;
                         text-decoration: none;
-                        color: #d0cece;
+                        color: $medium-grey;
                     }
                 }
             }
         }
     }
-}
-
-::placeholder {
-    font-size: 13px;
-    color: rgb(255, 255, 255);
 }
