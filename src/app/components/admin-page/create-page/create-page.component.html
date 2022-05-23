@@ -4,20 +4,24 @@
     </header>
 
     <div>
-        <label for="auther">Article auther</label>
+        <label for="auther">Auther</label>
         <input id="auther" type="text" formControlName="auther">
     </div>
 
     <div>
-        <label for="header">Article header</label>
+        <label for="header">Header</label>
         <input id="header" type="text" formControlName="header">
     </div>
 
     <div>
-        <label for="article">Article content</label>
+        <label for="article">Article</label>
         <textarea id="article" cols="20" rows="15" formControlName="article"></textarea>
     </div>
 
+    <div>
+        <label for="photo">Photo</label>
+        <input type="text" id="photo" formControlName="photo">
+    </div>
 
-    <button type="submit" [disabled]="false">Create post</button>
+    <button type="submit" [disabled]="articleFormGroup.invalid || isSubmitted">Create article</button>
 </form>

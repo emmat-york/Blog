@@ -2,7 +2,9 @@
 @import "../../../../common/mixins.scss";
 
 :host {
-    display: block;
+    height: 100vh;
+    display: flex;
+    align-items: center;
 
     .admin-form-group {
         height: 668px;
@@ -11,7 +13,7 @@
         background: url("../../../../assets/bg-login-image.png");
 
         .form-group-header {
-            padding: 10px;
+            padding: 10px 20px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -78,7 +80,6 @@
                 @include blockSize(44px, 338px);
                 display: block;
                 margin: 0 auto;
-                margin-bottom: 10px;
                 padding: 0;
                 border: none;
                 border-radius: 4px;
@@ -94,6 +95,7 @@
 
         .back-link {
             margin: 0 auto;
+            margin-top: 20px;
             text-decoration: none;
             font-family: 'Nunito', sans-serif;
             font-weight: 400;

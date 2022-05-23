@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { BlogModule } from './modules/blog.module';
 import { AdminModule } from './modules/admin.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './services/auth-interceptor';
+import { AuthInterceptor } from './services/auth.interceptor';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,

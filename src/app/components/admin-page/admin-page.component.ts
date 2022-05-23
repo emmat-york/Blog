@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminService } from 'src/app/services/admin.service';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -7,14 +8,13 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './admin-page.component.html',
   styleUrls: ['./admin-page.component.scss']
 })
-export class AdminPageComponent implements OnInit {
+export class AdminPageComponent {
 
   constructor(
     private readonly router: Router,
     public readonly authService: AuthService,
-    ) { }
-
-  ngOnInit(): void { }
+    public readonly adminService: AdminService,
+  ) { }
 
   public logOut(event: Event): void {
     event.preventDefault();
@@ -22,5 +22,4 @@ export class AdminPageComponent implements OnInit {
     this.authService.logOut();
     this.router.navigate(["/admin", "login"]);
   }
-
 }

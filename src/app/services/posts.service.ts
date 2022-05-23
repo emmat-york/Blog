@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { ArticleFormData, FbCreateResponse } from '../models/create-page.model';
+import { Article, ArticleFormData, CreateArticleResponse, FetchArticlesResponse } from '../models/create-page.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -12,38 +12,48 @@ export class PostsService {
 
   constructor(private readonly http: HttpClient) { }
 
-  public createPost(post: ArticleFormData): Observable<ArticleFormData> {
-    return this.http.post<FbCreateResponse>(`${environment.fbDbUrl}/posts.json`, post)
-    .pipe(map((response: FbCreateResponse) => {
-      return {
-        ...post,
-        id: response.name,
-        articleReleaseDate: new Date(post.articleReleaseDate),
-      };
-    }));
+  public createArticle(post: ArticleFormData): Observable<CreateArticleResponse> {
+    return this.http.post<CreateArticleResponse>(`${environment.fbDbUrl}/posts.json`, post);
   }
 
-  public getAllPosts(): Observable<ArticleFormData[]> {
+  public fetchArticles(): Observable<Article[]> {
     return this.http.get(`${environment.fbDbUrl}/posts.json`)
     .pipe(
       map((response) => {
-      if (Object.keys(response).length === 0) { // make helper for check ampty array
+      if (!response) {
         return [];
       };
 
-      return Object.entries(response).reduce((posts, [postId, postData]): any => {
-        const mappedPostData: ArticleFormData = {
-          ...postData,
-          id: postId,
-          articleReleaseDate: new Date(postData.articleReleaseDate),
+      return Object.entries((response) as FetchArticlesResponse).reduce((articles, [articleId, article]): any => {
+        const mappedArticle: Article = {
+          ...article,
+          id: articleId,
+          releaseDate: new Date(article.releaseDate),
         };
 
-        return [...posts, mappedPostData];
+        return [...articles, mappedArticle];
       }, []);
     }));
   }
 
-  public removePost(postId: string | undefined): Observable<void> {
-    return this.http.delete<void>(`${environment.fbDbUrl}/posts/${postId}.json`)
+  public getArticleById(articleId: string): Observable <Article> {
+    return this.http.get<ArticleFormData>(`${environment.fbDbUrl}/posts/${articleId}.json`)
+    .pipe(map((article) => {
+      const mappedArticle: Article = {
+        ...article,
+        id: articleId,
+        releaseDate: new Date(article.releaseDate),
+      };
+
+      return mappedArticle;
+    }));
+  }
+
+  public updateArticle(updatedArticle: Article): Observable <Article> {
+    return this.http.patch<Article>(`${environment.fbDbUrl}/posts/${updatedArticle.id}.json`, updatedArticle);
+  }
+
+  public removeArticle(articleId: string): Observable<void> {
+    return this.http.delete<void>(`${environment.fbDbUrl}/posts/${articleId}.json`)
   }
 }

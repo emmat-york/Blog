@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { take } from 'rxjs/operators';
 import { ArticleFormData } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
+import { catchError, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-page',
@@ -11,6 +11,7 @@ import { PostsService } from 'src/app/services/posts.service';
 })
 export class CreatePageComponent implements OnInit {
   public articleFormGroup: FormGroup;
+  public isSubmitted: boolean = false;
 
   constructor(
     private readonly formBuilber: FormBuilder,
@@ -24,18 +25,28 @@ export class CreatePageComponent implements OnInit {
   public onFormSubmit(): void {
     if (this.articleFormGroup.invalid) {
       return;
-    }
+    };
+
+    this.isSubmitted = true;
 
     const articleFormData: ArticleFormData = {
       ...this.articleFormGroup.value,
-      articleReleaseDate: new Date(),
+      releaseDate: new Date(),
     };
 
-    this.postServise.createPost(articleFormData)
-    .pipe(take(1))
-    .subscribe((data) => {
-      console.log(data);
+    this.postServise.createArticle(articleFormData)
+    .pipe(
+      take(1),
+      catchError((error) => {
+        console.log(error);
 
+        return [];
+      }),
+      tap(() => {
+        this.isSubmitted = false;
+      }),
+    )
+    .subscribe(() => {
       this.articleFormGroup.reset();
     });
   }
@@ -45,6 +56,7 @@ export class CreatePageComponent implements OnInit {
       auther: [null, Validators.required],
       header: [null, Validators.required],
       article: [null, Validators.required],
+      photo: [null, Validators.required],
     });
   }
 }

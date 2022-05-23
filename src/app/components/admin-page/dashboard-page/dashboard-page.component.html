@@ -1,23 +1,27 @@
-<section *ngIf="posts; else loader">
-    <header>
-        <h2>Posts</h2>
-        <p>dashboard-page works!</p>
-        <input type="text" [(ngModel)]="postSearch">
-    </header>
+<!-- Articles List -->
+<section class="admin-dashboard-content" *ngIf="articles; else loader">
+    <div class="articles-container">
+        <header class="dashboard-header">
+            <h2 class="header">Articles</h2>
+            <input class="search-field" type="text" [(ngModel)]="searchRequest" placeholder="Search">
+        </header>
 
-    <div *ngFor="let post of posts | postSearch: postSearch">
-        <article>
-            <p>{{ post.auther }}</p>
-            <h3>{{ post.header }}</h3>
-            <div>{{ post.article }}</div>
-            <div>{{ post.articleReleaseDate }}</div>
-            <button [routerLink]="['/admin', 'post', post.id, 'edit']">Open post</button>
-            <div>{{ post.id }}</div>
-            <button (click)="deletePost(post.id)">Delete post</button>
+        <article class="article" *ngFor="let article of articles | articleSearch: searchRequest">
+            <app-post class="post" [article]="article"></app-post>
+
+            <div class="edit-buttons-container">
+                <button class="edit-button" (click)="goToAditArticlePage(article.id)">
+                    Edit article
+                </button>
+                <button class="edit-button remove" (click)="removeArticle(article.id)">
+                    Remove article
+                </button>
+            </div>
         </article>
     </div>
 </section>
 
+<!-- Denamic Tempaltes -->
 <ng-template #loader>
-    <div>Loading...</div>
+    <app-loader></app-loader>
 </ng-template>
