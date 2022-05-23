@@ -7,10 +7,10 @@
         </header>
 
         <article class="article" *ngFor="let article of articles | articleSearch: searchRequest">
-            <app-post class="post" [article]="article" [routerLink]="['/post', 10]"></app-post>
+            <app-post class="post" [article]="article"></app-post>
 
             <div class="edit-buttons-container">
-                <button class="edit-button" [routerLink]="['/admin', 'post', article.id, 'edit']">
+                <button class="edit-button" (click)="goToAditArticlePage(article.id)">
                     Edit article
                 </button>
                 <button class="edit-button remove" (click)="removeArticle(article.id)">

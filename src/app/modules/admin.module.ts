@@ -6,9 +6,9 @@ import { CreatePageComponent } from '../components/admin-page/create-page/create
 import { EditPageComponent } from '../components/admin-page/edit-page/edit-page.component';
 import { LoginPageComponent } from '../components/admin-page/login-page/login-page.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
 import { SharedModule } from './shared.module';
 import { AuthGuard } from '../services/auth.guard';
+import { AdminService } from '../services/admin.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +32,6 @@ import { AuthGuard } from '../services/auth.guard';
     ]),
   ],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AdminService],
 })
 export class AdminModule { }

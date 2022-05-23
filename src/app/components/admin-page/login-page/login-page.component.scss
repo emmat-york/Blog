@@ -2,7 +2,9 @@
 @import "../../../../common/mixins.scss";
 
 :host {
-    display: block;
+    height: 100vh;
+    display: flex;
+    align-items: center;
 
     .admin-form-group {
         height: 668px;

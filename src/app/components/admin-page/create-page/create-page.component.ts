@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ArticleFormData } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
-import { catchError, take } from 'rxjs/operators';
+import { catchError, take, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-page',
@@ -11,6 +11,7 @@ import { catchError, take } from 'rxjs/operators';
 })
 export class CreatePageComponent implements OnInit {
   public articleFormGroup: FormGroup;
+  public isSubmitted: boolean = false;
 
   constructor(
     private readonly formBuilber: FormBuilder,
@@ -26,6 +27,8 @@ export class CreatePageComponent implements OnInit {
       return;
     };
 
+    this.isSubmitted = true;
+
     const articleFormData: ArticleFormData = {
       ...this.articleFormGroup.value,
       releaseDate: new Date(),
@@ -38,6 +41,9 @@ export class CreatePageComponent implements OnInit {
         console.log(error);
 
         return [];
+      }),
+      tap(() => {
+        this.isSubmitted = false;
       }),
     )
     .subscribe(() => {

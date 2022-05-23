@@ -3,11 +3,11 @@
 
 :host {
     display: block;
-    width: 100%;
+    @include blockSize(inherit, 100%);
     background-color: $light-grey;
 
     .admin-dashboard-content {
-        width: $external-container;
+        @include blockSize(inherit, $external-container);
         margin: 0 auto;
         background-color: $white;
 
@@ -33,7 +33,6 @@
             }
 
             .article {
-
                 .edit-buttons-container {
                     padding-bottom: 10px;
                     display: flex;

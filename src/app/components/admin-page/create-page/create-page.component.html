@@ -23,5 +23,5 @@
         <input type="text" id="photo" formControlName="photo">
     </div>
 
-    <button type="submit" [disabled]="false">Create post</button>
+    <button type="submit" [disabled]="articleFormGroup.invalid || isSubmitted">Create article</button>
 </form>

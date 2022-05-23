@@ -1,66 +1,62 @@
-<section #blogContainer>
-    <!-- Global Website Header -->
-    <header class="global-header-with-nav">
-        <div class="header-wrapper">
-            <nav class="global-navigation-container">
-                <a class="global-logo-link" [routerLink]="['/']">
-                    <img class="global-logo-image" src="../../../assets/header-logo.png" alt="header-logo">
-                </a>
-                <ul class="global-nav-list" *ngIf="authService.isAuth()">
-                    <li class="nav-list-item">
-                        <a class="nav-link" [routerLink]="['/admin', 'dashboard']">To dashboard</a>
-                    </li>
-                </ul>
-            </nav>
+<!-- Global Website Header -->
+<header class="global-header-with-nav">
+    <div class="header-wrapper">
+        <nav class="global-navigation-container">
+            <a class="global-logo-link" [routerLink]="['/']">
+                <img class="global-logo-image" src="../../../assets/header-logo.png" alt="header-logo">
+            </a>
+            <ul class="global-nav-list" *ngIf="authService.isAuth()">
+                <li class="nav-list-item">
+                    <a class="nav-link" [routerLink]="['/admin', 'dashboard']">To dashboard</a>
+                </li>
+            </ul>
+        </nav>
 
-            <div class="additional-nav-content">
-                <a class="admin-link" *ngIf="!authService.isAuth(); else logOutButton"
-                    [routerLink]="['/admin', 'login']">Log In</a>
-                <input class="search-field" type="text" placeholder="Search" colorObserver
-                    [(ngModel)]="commonService.searchRequest" />
-            </div>
+        <div class="additional-nav-content">
+            <a class="admin-link" *ngIf="!authService.isAuth(); else logOutButton"
+                [routerLink]="['/admin', 'login']">Log In</a>
+            <input class="search-field" type="text" placeholder="Search" colorObserver
+                [(ngModel)]="blogService.searchRequest" />
         </div>
-    </header>
+    </div>
+</header>
 
-    <!-- Main Website Content -->
-    <main>
-        <router-outlet></router-outlet>
-    </main>
+<!-- Main (Changing) Content -->
+<main>
+    <router-outlet></router-outlet>
+</main>
 
-    <!-- Global Website Footer -->
-    <footer class="global-footer">
-        <app-scroll-button *ngIf="isScreenScrollable" (click)="commonService.goToScreenTop()"></app-scroll-button>
-        <div class="footer-links-container">
-            <div class="footer-links-content">
-                <img class="footer-logo-image" src="../../../assets/footer-logo.png" alt="footer-logo">
-                <h3 class="contacts-header">get in touch</h3>
-                <ul class="footer-links-list">
-                    <li class="footer-list-item">
-                        <a class="footer-link" href="https://github.com/emmat-york" target="_blank">GitHub</a>
-                    </li>
-                    <li class="footer-list-item">
-                        <a class="footer-link" href="https://www.linkedin.com/in/andrey-filimonchik-35a033135/"
-                            target="_blank">LinkenIn</a>
-                    </li>
-                    <li class="footer-list-item">
-                        <a class="footer-link" href="https://www.instagram.com/emmat_york/"
-                            target="_blank">Instagram</a>
-                    </li>
-                    <li class="footer-list-item">
-                        <a class="footer-link" href="https://vk.com/emmat_york" target="_blank">VK</a>
-                    </li>
-                </ul>
-                <ul class="contacts-list">
-                    <li class="contact-list-item">Location: Tbilisi, Georgia</li>
-                    <li class="contact-list-item">Email: AndrewReed1@yandex.ru</li>
-                    <li class="contact-list-item">Tel: +995 595-41-81-73</li>
-                    <li class="contact-list-item">Company: LeverX, Int.</li>
-                    <li class="contact-list-item">Position: Software Engineer</li>
-                </ul>
-            </div>
+<!-- Global Website Footer -->
+<footer class="global-footer">
+    <app-scroll-button *ngIf="blogService.isFeatched$ | async" (click)="blogService.goToScreenTop()"></app-scroll-button>
+    <div class="footer-links-container">
+        <div class="footer-links-content">
+            <img class="footer-logo-image" src="../../../assets/footer-logo.png" alt="footer-logo">
+            <h3 class="contacts-header">get in touch</h3>
+            <ul class="footer-links-list">
+                <li class="footer-list-item">
+                    <a class="footer-link" href="https://github.com/emmat-york" target="_blank">GitHub</a>
+                </li>
+                <li class="footer-list-item">
+                    <a class="footer-link" href="https://www.linkedin.com/in/andrey-filimonchik-35a033135/" target="_blank">LinkenIn</a>
+                </li>
+                <li class="footer-list-item">
+                    <a class="footer-link" href="https://www.instagram.com/emmat_york/" target="_blank">Instagram</a>
+                </li>
+                <li class="footer-list-item">
+                    <a class="footer-link" href="https://vk.com/emmat_york" target="_blank">VKontakte</a>
+                </li>
+            </ul>
+            <ul class="contacts-list">
+                <li class="contact-list-item">Location: Tbilisi, Georgia</li>
+                <li class="contact-list-item">Email: AndrewReed1@yandex.ru</li>
+                <li class="contact-list-item">Tel: +995 595-41-81-73</li>
+                <li class="contact-list-item">Company: LeverX, Int.</li>
+                <li class="contact-list-item">Position: Software Engineer</li>
+            </ul>
         </div>
-    </footer>
-</section>
+    </div>
+</footer>
 
 <!-- Denamic Tempaltes -->
 <ng-template #logOutButton>

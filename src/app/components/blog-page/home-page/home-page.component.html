@@ -1,3 +1,4 @@
+<!-- Auther Header Content -->
 <article class="auther-container-wrapper">
     <header class="auther-container-header">
         <img class="auther-header-image" src="../../../../assets/jeremy-clarkson.jpg" alt="jeremy-clarkson">
@@ -18,7 +19,8 @@
     </header>
 </article>
 
-<section class="posts-container-wrapper">
+<!-- Articles List -->
+<section class="posts-container-wrapper" *ngIf="blogService.isFeatched$ | async; else loader">
     <div class="paggination-container">
         <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
         <button class="next-page-button">
@@ -27,7 +29,7 @@
         </button>
     </div>
 
-    <div class="posts-container" *ngFor="let article of articles | articleSearch: commonService.searchRequest">
+    <div class="posts-container" *ngFor="let article of articles | articleSearch: blogService.searchRequest">
         <app-post class="post" [article]="article" [routerLink]="['/post', 10]"></app-post>
     </div>
 
@@ -38,3 +40,8 @@
         </button>
     </div>
 </section>
+
+<!-- Denamic Tempaltes -->
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>

@@ -36,6 +36,23 @@ export class PostsService {
     }));
   }
 
+  public getArticleById(articleId: string): Observable <Article> {
+    return this.http.get<ArticleFormData>(`${environment.fbDbUrl}/posts/${articleId}.json`)
+    .pipe(map((article) => {
+      const mappedArticle: Article = {
+        ...article,
+        id: articleId,
+        releaseDate: new Date(article.releaseDate),
+      };
+
+      return mappedArticle;
+    }));
+  }
+
+  public updateArticle(updatedArticle: Article): Observable <Article> {
+    return this.http.patch<Article>(`${environment.fbDbUrl}/posts/${updatedArticle.id}.json`, updatedArticle);
+  }
+
   public removeArticle(articleId: string): Observable<void> {
     return this.http.delete<void>(`${environment.fbDbUrl}/posts/${articleId}.json`)
   }
