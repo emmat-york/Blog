@@ -1,14 +1,14 @@
-<form class="admin-form-group" [formGroup]="formGroup" (ngSubmit)="onFormSubmit()">
+<form class="admin-form-group" [formGroup]="loginFormGroup" (ngSubmit)="onFormSubmit()">
     <header class="form-group-header">
         <img class="admin-logo-image" src="../../../../assets/logo-black.png" alt="header-logo">
         <h2 class="log-in-header">Log in</h2>
     </header>
 
-    <div *ngIf="(authService.loginErrors$ | async) as errorMessage">
+    <div class="additional-errors" *ngIf="(authService.loginErrors$ | async) as errorMessage">
         {{ errorMessage }}
     </div>
 
-    <div *ngIf="guardMessage">
+    <div class="additional-errors" *ngIf="guardMessage">
         {{ guardMessage }}
     </div>
 
@@ -26,10 +26,10 @@
                 />
             </div>
 
-            <div class="error" *ngIf="formGroup.controls['email'].touched
-                && formGroup.controls['email'].invalid">
-                <span *ngIf="formGroup.controls['email'].errors?.['email']">
-                    Please, fill correct email.
+            <div class="error" *ngIf="loginFormGroup.controls['email'].touched
+                && loginFormGroup.controls['email'].invalid">
+                <span *ngIf="loginFormGroup.controls['email'].errors?.['email']">
+                    Please, enter correct email.
                 </span>
             </div>
         </div>
@@ -39,7 +39,7 @@
                 <label class="label" for="password">Password</label>
                 <input
                     class="control"
-                    type="password"
+                    [type]="loginFormGroup.value.checkbox ? 'text' : 'password'"
                     name="password"
                     id="password"
                     formControlName="password"
@@ -47,17 +47,28 @@
                 />
             </div>
 
-            <div class="error" *ngIf="formGroup.controls['password'].touched
-                && formGroup.controls['password'].invalid">
-                <span *ngIf="formGroup.controls['password'].errors?.['minlength']">
+            <div class="error" *ngIf="loginFormGroup.controls['password'].touched
+                && loginFormGroup.controls['password'].invalid">
+                <span *ngIf="loginFormGroup.controls['password'].errors?.['minlength']">
                     Password must be more than {{ minPasswordLength }} symbols.
                 </span>
             </div>
         </div>
+
+        <div class="form-control-wrapper">
+                <input
+                    class="checkbox-control"
+                    type="checkbox"
+                    name="checkbox"
+                    id="checkbox"
+                    formControlName="checkbox"
+                />
+                <label class="checkbox-label" for="checkbox">Show password</label>
+        </div>
     </section>
 
     <div class="submit-button-container">
-        <button class="submit-button" type="submit" [disabled]="formGroup.invalid || isSubmitted">
+        <button class="submit-button" type="submit" [disabled]="loginFormGroup.invalid || isSubmitted">
             log in
         </button>
     </div>

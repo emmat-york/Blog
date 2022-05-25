@@ -12,6 +12,14 @@
         box-shadow: 0 4px 10px 0 rgb(0, 0, 0, 0.25);
         background: url("../../../../assets/bg-login-image.png");
 
+        .additional-errors {
+            padding: 10px 20px;
+            text-align: center;
+            font-family: "Noto Serif Display", serif;
+            font-size: $small;
+            color: $danger;
+        }
+
         .form-group-header {
             padding: 10px 20px;
             display: flex;
@@ -36,11 +44,23 @@
         }
 
         .form-controls-container {
-            height: 180px;
             padding: 20px;
 
             .form-control-wrapper {
                 font-family: 'Nunito', sans-serif;
+
+                .checkbox-control {
+                    margin-top: 5px;
+                    margin-right: 5px;
+                    cursor: pointer;
+                }
+
+                .checkbox-label {
+                    color: $black;
+                    font-size: $medium;
+                    font-weight: 500;
+                    cursor: pointer;
+                }
 
                 .form-control {
                     padding-top: 20px;
@@ -49,26 +69,33 @@
                     .label {
                         display: block;
                         font-size: $medium;
+                        font-weight: 500;
                     }
 
                     .control {
                         @include blockSize(38px, 100%);
                         padding: 0;
                         border: none;
-                        border-bottom: 1px solid rgb(138, 138, 138);
+                        border-bottom: 1.5px solid rgb(138, 138, 138);
                         box-sizing: border-box;
                         font-size: $large;
                         font-weight: 500;
                         outline: none;
 
                         &:focus {
-                            border-bottom: 1px solid $black;
+                            border-bottom: 1.5px solid $black;
                         }
                     }
 
                     ::placeholder {
                         font-size: $medium;
+                        color: #aca9a9;
                     }
+                }
+
+                .error {
+                    font-size: $small;
+                    color: $danger;
                 }
             }
         }

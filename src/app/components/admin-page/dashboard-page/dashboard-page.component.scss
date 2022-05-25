@@ -4,7 +4,7 @@
 :host {
     display: block;
     @include blockSize(inherit, 100%);
-    background-color: $light-grey;
+    background-color: $cream;
 
     .admin-dashboard-content {
         @include blockSize(inherit, $external-container);
@@ -15,20 +15,81 @@
             width: 762px;
             margin: 0 auto;
 
+            .paggination-container {
+                @include blockSize(50px, $internal-container);
+                margin: 0 auto;
+                padding-top: 30px;
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+    
+                .paggination-dashboard {
+                    padding-right: 200px;
+                    font-family: 'Nunito', sans-serif;
+                    font-size: $small;
+                    font-weight: 400;
+                    color: $dark-grey-1;
+                }
+    
+                .next-page-button {
+                    padding: 0;
+                    border: none;
+                    background-color: $white;
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+    
+                    .button-text {
+                        font-family: 'Nunito', sans-serif;
+                        font-size: $medium;
+                        font-weight: 500;
+                        line-height: 1;
+                        color: $dark-blue;
+                    }
+    
+                    .next-button-image {
+                        @include blockSize(18px, 18px);
+                    }
+                }
+    
+                &:last-child {
+                    padding-top: 0;
+                    border-top: 0.5px solid rgb(138, 138, 138);
+                }
+            }
+
             .dashboard-header {
                 .header {
                     margin-top: 0;
-                    padding-top: 20px;
+                    padding-top: 40px;
+                    margin-bottom: 10px;
+                    text-align: center;
+                    font-family: "DM Serif Display", serif;
+                    font-size: 40px;
+                    font-weight: 400;
+                    letter-spacing: -1px;
+                }
+
+                .slogan-text {
+                    margin-bottom: 40px;
+                    font-family: 'Cormorant SC', serif;
+                    font-size: $large;
+                    line-height: 27px;
+                    text-align: center;
                 }
 
                 .search-field {
-                    @include blockSize(40px, 100%);
+                    @include blockSize(40px, calc(100% - 10px));
+                    margin-bottom: 10px;
+                    padding: 0;
                     padding-left: 10px;
                     font-family: 'Noto Serif Display', serif;
                     font-size: $small;
                     font-weight: 500;
                     border: none;
                     outline: none;
+                    background-color: $light-grey;
+                    color: $black;
                 }
             }
 
@@ -51,7 +112,7 @@
     
                         &.remove {
                             padding-left: 10px;
-                            color: rgb(225, 0, 0);
+                            color: $danger;
                         }
                     }  
                 }

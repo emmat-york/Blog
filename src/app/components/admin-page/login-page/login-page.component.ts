@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login-page.component.scss']
 })
 export class LoginPageComponent implements OnInit {
-  public formGroup: FormGroup;
+  public loginFormGroup: FormGroup;
   public minPasswordLength: number = 8;
   public isSubmitted: boolean = false;
   public guardMessage: string = "";
@@ -39,14 +39,14 @@ export class LoginPageComponent implements OnInit {
     this.isSubmitted = true;
 
     const userFormData: UserFormData = {
-      email: this.formGroup.value.email,
-      password: this.formGroup.value.password,
+      email: this.loginFormGroup.value.email,
+      password: this.loginFormGroup.value.password,
     };
 
     this.authService.login(userFormData)
     .pipe(take(1))
     .subscribe(() => {
-      this.formGroup.reset();
+      this.loginFormGroup.reset();
       this.router.navigate(["/admin", "dashboard"]);
 
       this.isSubmitted = false;
@@ -54,9 +54,10 @@ export class LoginPageComponent implements OnInit {
   }
 
   private formGroupInitialization(): void {
-    this.formGroup = this.formBuilder.group({
+    this.loginFormGroup = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
       password: [null, [Validators.required, Validators.minLength(this.minPasswordLength)]],
+      checkbox: [false],
     });
   }
 }

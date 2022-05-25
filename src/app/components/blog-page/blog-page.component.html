@@ -15,8 +15,7 @@
         <div class="additional-nav-content">
             <a class="admin-link" *ngIf="!authService.isAuth(); else logOutButton"
                 [routerLink]="['/admin', 'login']">Log In</a>
-            <input class="search-field" type="text" placeholder="Search" colorObserver
-                [(ngModel)]="blogService.searchRequest" />
+            <input [disabled]="!(postsService.articlesStorage$ | async)" class="search-field" type="text" placeholder="Search" colorObserver [(ngModel)]="blogService.searchRequest"/>
         </div>
     </div>
 </header>
@@ -28,7 +27,7 @@
 
 <!-- Global Website Footer -->
 <footer class="global-footer">
-    <app-scroll-button *ngIf="blogService.isFeatched$ | async" (click)="blogService.goToScreenTop()"></app-scroll-button>
+    <app-scroll-button *ngIf="postsService.articlesStorage$ | async" (click)="goToScreenTop()"></app-scroll-button>
     <div class="footer-links-container">
         <div class="footer-links-content">
             <img class="footer-logo-image" src="../../../assets/footer-logo.png" alt="footer-logo">

@@ -18,7 +18,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   constructor(
     private readonly postService: PostsService,
     private readonly router: Router,
-    private readonly adminService: AdminService,
+    public readonly adminService: AdminService,
   ) { }
 
   public ngOnInit(): void {
