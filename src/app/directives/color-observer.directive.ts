@@ -16,6 +16,7 @@ export class ColorObserverDirective {
     const color = "#000";
 
     this.setStyles(backgroundColor, color);
+    window.scrollTo({ top: 410, behavior: 'smooth' });
   }
 
   @HostListener("blur")

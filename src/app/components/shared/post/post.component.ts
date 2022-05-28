@@ -7,5 +7,6 @@ import { Article } from 'src/app/models/create-page.model';
   styleUrls: ['./post.component.scss']
 })
 export class PostComponent {
+  @Input() public isBlogPage: boolean;
   @Input() public article: Article;
 }

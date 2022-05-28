@@ -56,9 +56,9 @@
                 }
 
                 .checkbox-label {
-                    color: $black;
                     font-size: $medium;
                     font-weight: 500;
+                    color: $black;
                     cursor: pointer;
                 }
 
@@ -76,14 +76,14 @@
                         @include blockSize(38px, 100%);
                         padding: 0;
                         border: none;
-                        border-bottom: 1.5px solid rgb(138, 138, 138);
+                        border-bottom: 1px solid #aca9a9;
                         box-sizing: border-box;
                         font-size: $large;
                         font-weight: 500;
                         outline: none;
 
                         &:focus {
-                            border-bottom: 1.5px solid $black;
+                            border-bottom: 1px solid $black;
                         }
                     }
 

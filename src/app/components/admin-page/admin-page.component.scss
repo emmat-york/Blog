@@ -6,6 +6,8 @@
     height: inherit;
 
         .navigation-container {
+            width: 100%;
+            position: fixed;
             background-color: $black;
 
             .admin-header-with-nav {

@@ -2,61 +2,74 @@
 @import "../../../../common/mixins.scss";
 
 :host {
-    height: 200px;
-    padding: 10px 0;
-    border-top: 0.5px solid rgb(138, 138, 138);
-    box-sizing: border-box;
-    background-color: $white;
-    display: flex;
-    cursor: pointer;
+    display: block;
 
-    .post-image-container {
-        margin: 0;
-        margin-right: 20px;
+    .post-container {
+        height: 200px;
+        padding: 10px 0;
+        border-top: 0.5px solid rgb(138, 138, 138);
+        box-sizing: border-box;
+        background-color: $white;
+        display: flex;
+        cursor: pointer;
 
-        .post-image {
-            @include blockSize(180px, 270px);
-        }
-    }
-
-    .post-description-container {
-
-        .post-header-container {
-
-            .post-auther {
-                margin: 0;
-                margin-bottom: 7px;
-                font-family: 'Cormorant SC', serif;
-                font-size: $small;
-                font-weight: 500;
-                text-transform: uppercase;
-            }
-
-            .post-header {
-                margin: 0;
-                margin-bottom: 7px;
-                font-size: 22px;
-                font-weight: 700;
-                line-height: 25px;
-                color: rgba(51, 51, 51);
-            }
+        &.admin-settings {
+            height: max-content;
+            cursor: default;
         }
 
-        .text-description {
-            width: 472px;
-            margin-bottom: 10px;
-            font-family: 'Cormorant SC', serif;
-            font-size: $large;
-            font-weight: 500;
-            color: $dark-grey-1;
-        }
-
-        .post-date {
+        .post-image-container {
             margin: 0;
-            font-family: 'Nunito', sans-serif;
-            font-size: $tiny;
-            font-weight: 400;
-            color: $dark-grey-1;
+            margin-right: 20px;
+
+            .post-image {
+                @include blockSize(180px, 270px);
+            }
+        }
+
+        .post-description-container {
+
+            .post-header-container {
+
+                .post-auther {
+                    margin: 0;
+                    margin-bottom: 7px;
+                    font-family: 'Cormorant SC', serif;
+                    font-size: $small;
+                    font-weight: 500;
+                    text-transform: uppercase;
+                }
+
+                .post-header {
+                    margin: 0;
+                    margin-bottom: 7px;
+                    font-size: 22px;
+                    font-weight: 700;
+                    line-height: 25px;
+                    color: rgba(51, 51, 51);
+                }
+            }
+
+            .text-description {
+                margin-bottom: 10px;
+                font-family: 'Cormorant SC', serif;
+                font-size: $large;
+                font-weight: 500;
+                color: $dark-grey-1;
+            }
+
+            .post-date {
+                margin: 0;
+                font-family: 'Nunito', sans-serif;
+                font-size: $tiny;
+                font-weight: 400;
+                color: $dark-grey-1;
+
+                &.admin-date {
+                    font-size: $medium;
+                    color: $black;
+                }
+            }
         }
     }
 }

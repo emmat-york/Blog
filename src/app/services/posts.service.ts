@@ -21,12 +21,12 @@ export class PostsService implements OnDestroy {
     return this.http.post<CreateArticleResponse>(`${environment.fbDbUrl}/posts.json`, post);
   }
 
-  public fetchArticles(): Observable<Article[]> {
+  public fetchArticles(): Observable<null> {
     return this.http.get(`${environment.fbDbUrl}/posts.json`)
     .pipe(
       map((response) => {
       if (!response) {
-        return [];
+        return null;
       };
 
       const mappedArticles = Object.entries((response) as FetchArticlesResponse).reduce((articles, [articleId, article]): Article[] => {
@@ -40,7 +40,7 @@ export class PostsService implements OnDestroy {
       }, []);
 
       this.articlesStorage$.next(mappedArticles);
-      return mappedArticles;
+      return null;
     }));
   }
 

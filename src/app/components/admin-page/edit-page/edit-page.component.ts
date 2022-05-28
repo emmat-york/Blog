@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
-import { catchError, switchMap, take, tap } from 'rxjs/operators';
+import { switchMap, take } from 'rxjs/operators';
 import { Article } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
+import { PageTitles } from 'src/common/common-variables';
 
 @Component({
   selector: 'app-edit-page',
@@ -19,6 +21,7 @@ export class EditPageComponent implements OnInit {
     private readonly router: ActivatedRoute,
     private readonly postService: PostsService,
     private readonly formBuilder: FormBuilder,
+    private readonly titleService: Title,
   ) { }
 
   public ngOnInit(): void {
@@ -39,27 +42,28 @@ export class EditPageComponent implements OnInit {
     };
 
     this.postService.updateArticle(articleFormData)
-    .pipe(take(1))
-    .subscribe(() => {
-      this.isSubmitted = false;
-      this.article = {
-        ...this.editPageFormGroup.value,
-      };
-    });
+      .pipe(take(1))
+      .subscribe(() => {
+        this.isSubmitted = false;
+        this.article = {
+          ...this.editPageFormGroup.value,
+        };
+      });
   }
 
   private articleInicialization(): void {
     this.router.params
-    .pipe(
-      take(1),
-      switchMap((params: Params) => {
-        return this.postService.getArticleById(params["id"]);
-      }),
-    )
-    .subscribe((article: Article) => {
-      this.formGroupInitialization(article);
-      this.article = article;
-    });
+      .pipe(
+        take(1),
+        switchMap((params: Params) => {
+          return this.postService.getArticleById(params["id"]);
+        }),
+      )
+      .subscribe((article: Article) => {
+        this.formGroupInitialization(article);
+        this.article = article;
+        this.titleService.setTitle(PageTitles.ADMIN_EDIT + this.article.header);
+      });
   }
 
   private formGroupInitialization(article: Article): void {

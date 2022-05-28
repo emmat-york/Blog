@@ -8,7 +8,6 @@ import { LoginPageComponent } from '../components/admin-page/login-page/login-pa
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared.module';
 import { AuthGuard } from '../services/auth.guard';
-import { AdminService } from '../services/admin.service';
 
 @NgModule({
   declarations: [
@@ -32,6 +31,6 @@ import { AdminService } from '../services/admin.service';
     ]),
   ],
   exports: [RouterModule],
-  providers: [AuthGuard, AdminService],
+  providers: [AuthGuard],
 })
 export class AdminModule { }

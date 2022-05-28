@@ -28,8 +28,3 @@
 <main class="admin-content">
     <router-outlet></router-outlet>
 </main>
-
-<!-- Admin Panel Footer -->
-<footer>
-    <app-scroll-button *ngIf="adminService.isFeatched$ | async" (click)="adminService.goToScreenTop()"></app-scroll-button>
-</footer>

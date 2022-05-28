@@ -1,52 +1,57 @@
 <!-- Articles -->
 <section class="admin-dashboard-content">
-    <div class="articles-container">
-        <header class="dashboard-header">
+    <header class="dashboard-header">
+        <div class="internal-header-container">
             <h2 class="header">Welcome to administrator dashboard</h2>
-            <div class="slogan-text">
-                Dear Administrator, you can<br/>
+            <p class="slogan-text">
+                Dear Administrator, you can<br />
                 Create, Read, Update, Delete Your Articles here.
-            </div>
-            <input class="search-field" type="text" [(ngModel)]="searchRequest" placeholder="Search">
-        </header>
-
-        <section *ngIf="adminService.isFeatched$ | async; else loader">
-        <!-- Paggination move to separate component -->
-        <div class="paggination-container">
-            <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
-            <button class="next-page-button">
-                <span class="button-text">Next page</span>
-                <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
-            </button>
+            </p>
         </div>
+    </header>
 
-        <!-- Articles List -->
-        <article class="article" *ngFor="let article of articles | articleSearch: searchRequest">
-            <app-post class="post" [article]="article"></app-post>
-
-            <div class="edit-buttons-container">
-                <button class="edit-button" (click)="goToAditArticlePage(article.id)">
-                    Edit article
-                </button>
-                <button class="edit-button remove" (click)="removeArticle(article.id)">
-                    Remove article
+    <div class="articles-container">
+        <input class="search-field" type="text" [(ngModel)]="searchRequest" placeholder="Search">
+        <section *ngIf="articles; else loader">
+            <div class="paggination-container">
+                <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
+                <button class="next-page-button">
+                    <span class="button-text">Next page</span>
+                    <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
                 </button>
             </div>
-        </article>
 
-        <!-- Paggination -->
-        <div class="paggination-container">
-            <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
-            <button class="next-page-button">
-                <span class="button-text">Next page</span>
-                <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
-            </button>
-        </div>
+            <!-- Articles List -->
+            <article class="article" *ngFor="let article of articles | articleSearch: searchRequest">
+                <app-post class="post" [article]="article"></app-post>
+
+                <div class="edit-buttons-container">
+                    <button class="edit-button" [routerLink]="['/admin', 'post', article.id, 'edit']">
+                        Edit article
+                    </button>
+                    <button class="edit-button remove" (click)="removeArticle(article.id)">
+                        Remove article
+                    </button>
+                </div>
+            </article>
+
+            <!-- Paggination -->
+            <div class="paggination-container">
+                <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
+                <button class="next-page-button">
+                    <span class="button-text">Next page</span>
+                    <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
+                </button>
+            </div>
         </section>
     </div>
 </section>
 
-<!-- Denamic Tempaltes -->
+<!-- Admin Footer -->
+<footer>
+    <app-global-footer></app-global-footer>
+</footer>
+
 <ng-template #loader>
     <app-loader></app-loader>
 </ng-template>

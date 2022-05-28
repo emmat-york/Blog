@@ -7,6 +7,8 @@ import { PostComponent } from "../components/shared/post/post.component";
 import { CommonModule } from "@angular/common";
 import { ScrollButtonComponent } from "../components/shared/scroll-button/scroll-button.component";
 import { LoaderComponent } from "../components/shared/loader/loader.component";
+import { WordsSlicerPipe } from "../pipes/words-slicer.pipe";
+import { GlobalFooterComponent } from "../components/shared/global-footer/global-footer.component";
 
 @NgModule({
     declarations: [
@@ -15,6 +17,8 @@ import { LoaderComponent } from "../components/shared/loader/loader.component";
         LoaderComponent,
         ColorObserverDirective,
         ArticleSearchPipe,
+        WordsSlicerPipe,
+        GlobalFooterComponent,
     ],
     imports: [
         CommonModule,
@@ -30,6 +34,8 @@ import { LoaderComponent } from "../components/shared/loader/loader.component";
         LoaderComponent,
         ColorObserverDirective,
         ArticleSearchPipe,
+        WordsSlicerPipe,
+        GlobalFooterComponent,
     ],
 })
 export class SharedModule { }

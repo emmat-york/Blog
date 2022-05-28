@@ -7,13 +7,60 @@
     background-color: $cream;
 
     .admin-dashboard-content {
-        @include blockSize(inherit, $external-container);
+        min-height: 100vh;
+        width: $external-container;
         margin: 0 auto;
         background-color: $white;
+
+        .dashboard-header {
+            width: $external-container;
+            padding-top: 40px;
+            background-color: $white;
+
+            .internal-header-container {
+                width: 762px;
+                margin: 0 auto;
+
+                .header {
+                    margin-top: 0;
+                    padding-top: 40px;
+                    margin-bottom: 10px;
+                    text-align: center;
+                    font-family: "DM Serif Display", serif;
+                    font-size: 40px;
+                    font-weight: 400;
+                    letter-spacing: -1px;
+                }
+    
+                .slogan-text {
+                    margin: 0;
+                    margin-bottom: 30px;
+                    font-family: 'Cormorant SC', serif;
+                    font-size: $large;
+                    line-height: 27px;
+                    text-align: center;
+                }
+            }
+        }
 
         .articles-container {
             width: 762px;
             margin: 0 auto;
+
+            .search-field {
+                @include blockSize(40px, 100%);
+                padding: 0;
+                padding-left: 10px;
+                font-family: 'Noto Serif Display', serif;
+                font-size: $small;
+                font-weight: 500;
+                border: none;
+                border: 1px solid $medium-grey;
+                box-sizing: border-box;
+                outline: none;
+                background-color: $white;
+                color: $black;
+            }
 
             .paggination-container {
                 @include blockSize(50px, $internal-container);
@@ -55,41 +102,6 @@
                 &:last-child {
                     padding-top: 0;
                     border-top: 0.5px solid rgb(138, 138, 138);
-                }
-            }
-
-            .dashboard-header {
-                .header {
-                    margin-top: 0;
-                    padding-top: 40px;
-                    margin-bottom: 10px;
-                    text-align: center;
-                    font-family: "DM Serif Display", serif;
-                    font-size: 40px;
-                    font-weight: 400;
-                    letter-spacing: -1px;
-                }
-
-                .slogan-text {
-                    margin-bottom: 40px;
-                    font-family: 'Cormorant SC', serif;
-                    font-size: $large;
-                    line-height: 27px;
-                    text-align: center;
-                }
-
-                .search-field {
-                    @include blockSize(40px, calc(100% - 10px));
-                    margin-bottom: 10px;
-                    padding: 0;
-                    padding-left: 10px;
-                    font-family: 'Noto Serif Display', serif;
-                    font-size: $small;
-                    font-weight: 500;
-                    border: none;
-                    outline: none;
-                    background-color: $light-grey;
-                    color: $black;
                 }
             }
 
