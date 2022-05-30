@@ -46,12 +46,12 @@ export class CreatePageComponent implements OnInit {
           return [];
         }),
         withLatestFrom(this.postServise.articlesStorage$),
-        map(([articleId, articlesStorage]) => {
+        map(([{ name: articleId }, articlesStorage]) => {
           const newArticles: Article[] = [
             ...articlesStorage,
           ];
 
-          const newArticle = {
+          const newArticle: Article = {
             ...articleFormData,
             id: articleId,
           };
