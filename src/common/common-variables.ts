@@ -1,6 +1,6 @@
 export enum PageTitles {
-    BLOG_ARTICLES = "Blog | Articles",
-    ADMIN_LOGIN = "Admin | Login",
-    ADMIN_DASHBOARD = "Admin | Dashboard",
-    ADMIN_CREATE = "Admin | Create",
+    BLOG_ARTICLES = "Articles",
+    ADMIN_LOGIN = "Login",
+    ADMIN_DASHBOARD = "Dashboard",
+    ADMIN_CREATE = "Create",
 }
