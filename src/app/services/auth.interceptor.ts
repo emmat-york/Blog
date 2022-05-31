@@ -16,7 +16,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (this.authService.isAuth()) {
       req = req.clone({
         setParams: {
-          auth: this.authService.token as any,
+          auth: this.authService.token,
         },
       });
     }

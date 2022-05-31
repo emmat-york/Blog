@@ -8,13 +8,8 @@ import { BlogService } from 'src/app/services/blog.service';
   styleUrls: ['./blog-page.component.scss']
 })
 export class BlogPageComponent {
-
   constructor(
-    public readonly blogService: BlogService,
     public readonly authService: AuthService,
+    public readonly blogService: BlogService,
   ) { }
-
-  public logOut(): void {
-    this.authService.logOut();
-  }
 }

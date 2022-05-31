@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Injectable, OnDestroy } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Article, ArticleFormData, CreateArticleResponse, FetchArticlesResponse } from '../models/create-page.model';
 import { map } from 'rxjs/operators';
@@ -8,23 +8,28 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class PostsService {
+export class PostsService implements OnDestroy {
+  public articlesStorage$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>(null);
 
   constructor(private readonly http: HttpClient) { }
+
+  public ngOnDestroy(): void {
+    this.articlesStorage$.complete();
+  }
 
   public createArticle(post: ArticleFormData): Observable<CreateArticleResponse> {
     return this.http.post<CreateArticleResponse>(`${environment.fbDbUrl}/posts.json`, post);
   }
 
-  public fetchArticles(): Observable<Article[]> {
+  public fetchArticles(): Observable<null> {
     return this.http.get(`${environment.fbDbUrl}/posts.json`)
     .pipe(
       map((response) => {
       if (!response) {
-        return [];
+        return null;
       };
 
-      return Object.entries((response) as FetchArticlesResponse).reduce((articles, [articleId, article]): any => {
+      const mappedArticles = Object.entries((response) as FetchArticlesResponse).reduce((articles, [articleId, article]): Article[] => {
         const mappedArticle: Article = {
           ...article,
           id: articleId,
@@ -33,6 +38,9 @@ export class PostsService {
 
         return [...articles, mappedArticle];
       }, []);
+
+      this.articlesStorage$.next(mappedArticles);
+      return null;
     }));
   }
 
@@ -54,6 +62,6 @@ export class PostsService {
   }
 
   public removeArticle(articleId: string): Observable<void> {
-    return this.http.delete<void>(`${environment.fbDbUrl}/posts/${articleId}.json`)
+    return this.http.delete<void>(`${environment.fbDbUrl}/posts/${articleId}.json`);
   }
 }

@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ArticleFormData } from 'src/app/models/create-page.model';
+import { Article, ArticleFormData } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
-import { catchError, take, tap } from 'rxjs/operators';
+import { catchError, map, take, withLatestFrom } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
+import { PageTitles } from 'src/common/common-variables';
 
 @Component({
   selector: 'app-create-page',
@@ -16,10 +18,12 @@ export class CreatePageComponent implements OnInit {
   constructor(
     private readonly formBuilber: FormBuilder,
     private readonly postServise: PostsService,
+    private readonly titleService: Title,
   ) { }
 
   public ngOnInit(): void {
     this.formGroupInitialization();
+    this.titleService.setTitle(PageTitles.ADMIN_CREATE);
   }
 
   public onFormSubmit(): void {
@@ -35,24 +39,36 @@ export class CreatePageComponent implements OnInit {
     };
 
     this.postServise.createArticle(articleFormData)
-    .pipe(
-      take(1),
-      catchError((error) => {
-        console.log(error);
+      .pipe(
+        take(1),
+        catchError((error) => {
+          console.log(error);
+          return [];
+        }),
+        withLatestFrom(this.postServise.articlesStorage$),
+        map(([{ name: articleId }, articlesStorage]) => {
+          const newArticles: Article[] = [
+            ...articlesStorage,
+          ];
 
-        return [];
-      }),
-      tap(() => {
+          const newArticle: Article = {
+            ...articleFormData,
+            id: articleId,
+          };
+
+          newArticles.push(newArticle);
+          return newArticles;
+        }),
+      )
+      .subscribe((updatedArticles) => {
+        this.postServise.articlesStorage$.next(updatedArticles);
+        this.articleFormGroup.reset();
         this.isSubmitted = false;
-      }),
-    )
-    .subscribe(() => {
-      this.articleFormGroup.reset();
-    });
+      });
   }
 
   private formGroupInitialization(): void {
-     this.articleFormGroup = this.formBuilber.group({
+    this.articleFormGroup = this.formBuilber.group({
       auther: [null, Validators.required],
       header: [null, Validators.required],
       article: [null, Validators.required],

@@ -13,9 +13,9 @@ export class AuthService {
   
   constructor(private readonly http: HttpClient) { }
 
-  get token(): string | null {
+  get token(): string {
     const currentDate = new Date();
-    const expDate = new Date(localStorage.getItem("fb-token-exp") as string);
+    const expDate = new Date(localStorage.getItem("fb-token-exp"));
 
     if (currentDate > expDate) {
       this.logOut();
@@ -23,10 +23,10 @@ export class AuthService {
       return null;
     }
 
-    return localStorage.getItem("fb-token") as string;
+    return localStorage.getItem("fb-token");
   }
 
-  public login(userData: UserFormData): Observable<AuthResponse | HttpErrorResponse | null > {
+  public login(userData: UserFormData): Observable<AuthResponse | HttpErrorResponse> {
     const returnSecureToken = true;
     const loginPayload: LoginPayload = {
       ...userData,

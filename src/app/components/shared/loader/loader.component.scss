@@ -1,0 +1,22 @@
+@import "../../../../common/styles-variables.scss";
+@import "../../../../common/mixins.scss";
+
+:host {
+    display: block;
+    background-color: $white;
+
+    .loader-wrapper {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .loader-text {
+            margin-top: 10px;
+            font-family: 'Noto Serif Display', serif;
+            font-size: $medium;
+            font-weight: 400;
+        }
+    }
+}

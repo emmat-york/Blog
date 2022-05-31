@@ -3,12 +3,50 @@
 
 :host {
     display: block;
+    width: 100%;
+    background-color: $cream;
 
-    .create-form-group {
-        @include blockSize(600px, $internal-container);
+    .create-page-container {
+        min-height: 100vh;
+        width: $external-container;
+        margin: 0 auto;
+        background-color: $white;
 
-        textarea {
-            resize: none;
+        .create-form-group {
+            @include blockSize(600px, 762px);
+            margin: 0 auto;
+            padding-top: 40px;
+    
+            .create-page-header {
+    
+                .header {
+                    margin-bottom: 10px;
+                    font-family: "DM Serif Display", serif;
+                    font-size: 40px;
+                    font-weight: 400;
+                    text-align: center;
+                    letter-spacing: -1px;
+                }
+    
+                .header-text {
+                    text-align: center;
+                }
+            }
+
+            .form-control-wrapper {
+
+                .label {
+
+                }
+
+                .control {
+
+
+                    &.textarea {
+                        resize: none;
+                    }
+                }
+            }
         }
     }
 }
