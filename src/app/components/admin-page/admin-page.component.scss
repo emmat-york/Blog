@@ -5,103 +5,80 @@
     display: block;
     height: inherit;
 
-        .navigation-container {
-            width: 100%;
-            position: fixed;
-            background-color: $black;
+    .navigation-container {
+        @include blockSize(40px, 100%);
+        position: fixed;
+        background-color: $black;
 
-            .admin-header-with-nav {
-                width: $external-container;
-                margin: 0 auto;
+        .admin-page-navigation {
+            @include blockSize(inherit, $external-container);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            .admin-nav-list {
+                height: inherit;
+                margin: 0;
+                padding: 0;
                 display: flex;
-                justify-content: space-between;
-        
-                    .admin-page-navigation {
-                        @include blockSize(40px, $external-container);
-                        margin: 0 auto;
+
+                .logo-link {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    .global-logo-image {
+                        @include blockSize(20px, 170px);
+                        padding: 0 20px;
                         display: flex;
-                        justify-content: space-between;
                         align-items: center;
-    
-                        .navigation-container {
-                            height: inherit;
-                            display: flex;
-    
-                            .global-logo-link {
-                                display: flex;
-                                align-items: center;
-            
-                                .global-logo-image {
-                                    @include blockSize(20px, 170px);
-                                    padding: 0 20px;
-                                    display: flex;
-                                    align-items: center;
-                                    cursor: pointer;
-                                }
-                            }
-    
-                            .admin-nav-list {
-                                height: inherit;
-                                margin: 0;
-                                padding: 0;
-                                display: flex;
-                    
-                                .nav-list-item {
-                                    list-style: none;
-                                    box-sizing: border-box;
-                                    border-left: 0.5px solid $white;
-                                    color: $white;
-            
-                                    .nav-link {
-                                        height: 100%;
-                                        padding: 0 10px;
-                                        font-family: 'Noto Serif Display', serif;
-                                        font-size: $small;
-                                        font-weight: 500;
-                                        letter-spacing: 0.3px;
-                                        text-decoration: none;
-                                        color: inherit;
-                                        display: flex;
-                                        justify-content: center;
-                                        align-items: center;
-                                    }
-            
-                                    &:hover {
-                                        background-color: #F3F2F0;
-                                        color: $black;
-                                    }
-        
-                                    &:last-child {
-                                        border-right: 0.5px solid $white;
-                                    }
-                                }
-                            }
-                        }
-    
-                        .log-out-link {
-                            height: inherit;
-                            padding: 0 20px;
-                            font-family: 'Nunito', sans-serif;
-                            font-size: $medium;
-                            font-weight: 400;
-                            border: none;
-                            background-color: rgb(2,131,135);
-                            color: $white;
-                            cursor: pointer;
-    
-                            &:hover {
-                                background-color: rgb(0,85,87);
-                                color: $white;
-                            }
-                        }
+                        cursor: pointer;
                     }
+                }
+
+                .nav-list-item {
+                    list-style: none;
+                    box-sizing: border-box;
+                    border-left: 0.5px solid $white;
+                    color: $white;
+
+                    .nav-link {
+                        height: 100%;
+                        padding: 0 10px;
+                        font-family: 'Noto Serif Display', serif;
+                        font-size: $small;
+                        font-weight: 500;
+                        letter-spacing: 0.3px;
+                        text-decoration: none;
+                        color: inherit;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    &:hover {
+                        background-color: #F3F2F0;
+                        color: $black;
+                    }
+
+                    &:last-child {
+                        border-right: 0.5px solid $white;
+                    }
+                }
+            }
+
+            .auth-button {
+                height: inherit;
+                color: $white;
             }
         }
-    
-        .admin-content {
-            height: inherit;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    }
+
+    .admin-content {
+        height: inherit;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }

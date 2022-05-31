@@ -9,16 +9,18 @@ import { ScrollButtonComponent } from "../components/shared/scroll-button/scroll
 import { LoaderComponent } from "../components/shared/loader/loader.component";
 import { WordsSlicerPipe } from "../pipes/words-slicer.pipe";
 import { GlobalFooterComponent } from "../components/shared/global-footer/global-footer.component";
+import { LogoutButtonComponent } from "../components/shared/logout-button/logout-button.component";
 
 @NgModule({
     declarations: [
         PostComponent,
         ScrollButtonComponent,
         LoaderComponent,
+        GlobalFooterComponent,
+        LogoutButtonComponent,
         ColorObserverDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
-        GlobalFooterComponent,
     ],
     imports: [
         CommonModule,
@@ -32,10 +34,11 @@ import { GlobalFooterComponent } from "../components/shared/global-footer/global
         PostComponent,
         ScrollButtonComponent,
         LoaderComponent,
+        GlobalFooterComponent,
+        LogoutButtonComponent,
         ColorObserverDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
-        GlobalFooterComponent,
     ],
 })
 export class SharedModule { }

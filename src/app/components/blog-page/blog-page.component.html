@@ -7,19 +7,13 @@
             </a>
             <ul class="global-nav-list" *ngIf="authService.isAuth()">
                 <li class="nav-list-item">
-                    <a class="nav-link" [routerLink]="['/admin', 'dashboard']">To dashboard</a>
+                    <a class="nav-link" [routerLink]="['/admin', 'dashboard']">Dashboard</a>
                 </li>
             </ul>
         </nav>
 
         <div class="additional-nav-content">
-            <a
-                class="admin-link"
-                *ngIf="!authService.isAuth(); else logOutButton"
-                [routerLink]="['/admin', 'login']"
-            >
-                Log In
-            </a>
+            <app-logout-button></app-logout-button>
             <input
                 class="search-field"
                 type="text"
@@ -38,7 +32,3 @@
 
 <!-- Global Website Footer -->
 <app-global-footer></app-global-footer>
-
-<ng-template #logOutButton>
-    <a class="admin-link" (click)="logOut($event)">Log out</a>
-</ng-template>

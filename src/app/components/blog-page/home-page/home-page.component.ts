@@ -20,11 +20,10 @@ export class HomePageComponent implements OnInit, OnDestroy {
     public readonly blogService: BlogService,
     private readonly articleService: PostsService,
     private readonly titleService: Title,
-  ) { }
+  ) {}
 
   public ngOnInit(): void {
     this.articlesInicizlization();
-    this.titleService.setTitle(PageTitles.BLOG_ARTICLES);
   }
 
   public ngOnDestroy(): void {
@@ -33,10 +32,13 @@ export class HomePageComponent implements OnInit, OnDestroy {
   }
 
   private articlesInicizlization(): void {
+    this.titleService.setTitle(PageTitles.BLOG_ARTICLES);
+
     this.articleService.articlesStorage$
     .pipe(takeUntil(this.onDestroy$))
     .subscribe((articles) => {
       this.articles = articles;
+
     });
   }
 }

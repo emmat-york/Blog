@@ -22,8 +22,8 @@
             </div>
 
             <!-- Articles List -->
-            <article class="article" *ngFor="let article of articles | articleSearch: searchRequest">
-                <app-post class="post" [article]="article"></app-post>
+            <section class="article" *ngFor="let article of articles | articleSearch: searchRequest">
+                <app-post class="post" [article]="article" [routerLink]="['/post', article.id]"></app-post>
 
                 <div class="edit-buttons-container">
                     <button class="edit-button" [routerLink]="['/admin', 'post', article.id, 'edit']">
@@ -33,7 +33,7 @@
                         Remove article
                     </button>
                 </div>
-            </article>
+            </section>
 
             <!-- Paggination -->
             <div class="paggination-container">

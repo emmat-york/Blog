@@ -45,11 +45,12 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   }
 
   private articlesInicialization(): void {
+    this.titleService.setTitle(PageTitles.ADMIN_DASHBOARD);
+
     this.articlesService.articlesStorage$
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((articles) => {
         this.articles = articles;
-        this.titleService.setTitle(PageTitles.ADMIN_DASHBOARD);
       });
   }
 }

@@ -5,7 +5,6 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { switchMap, take } from 'rxjs/operators';
 import { Article } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
-import { PageTitles } from 'src/common/common-variables';
 
 @Component({
   selector: 'app-edit-page',
@@ -62,7 +61,7 @@ export class EditPageComponent implements OnInit {
       .subscribe((article: Article) => {
         this.formGroupInitialization(article);
         this.article = article;
-        this.titleService.setTitle(PageTitles.ADMIN_EDIT + this.article.header);
+        this.titleService.setTitle(this.article.header);
       });
   }
 

@@ -4,7 +4,6 @@ import { ActivatedRoute } from '@angular/router';
 import { take, withLatestFrom } from 'rxjs/operators';
 import { Article } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
-import { PageTitles } from 'src/common/common-variables';
 
 @Component({
   selector: 'app-post-page',
@@ -32,7 +31,7 @@ export class PostPageComponent implements OnInit {
       )
       .subscribe(([params, articles]) => {
         this.article = articles.find(article => article.id === params["id"]);
-        this.titleService.setTitle(PageTitles.BLOG_POST + this.article.header);
+        this.titleService.setTitle(this.article.header);
       });
   }
 }
