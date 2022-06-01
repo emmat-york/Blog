@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil, withLatestFrom } from 'rxjs/operators';
+import { switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Article } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
 
@@ -42,10 +42,12 @@ export class PostPageComponent implements OnInit, OnDestroy {
     this.route.params
       .pipe(
         takeUntil(this.onDestroy$),
-        withLatestFrom(this.articleService.articlesStorage$),
+        switchMap((params) => {
+          return this.articleService.getArticleById(params['id']);
+        }),
       )
-      .subscribe(([params, articles]) => {
-        this.article = articles.find(article => article.id === params["id"]);
+      .subscribe((article) => {
+        this.article = article;
         this.titleService.setTitle(this.article.header);
       });
   }

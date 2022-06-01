@@ -1,4 +1,4 @@
-<section class="article-container">
+<section class="article-container" *ngIf="article; else loader">
     <h2 class="article-header">{{ article.header }}</h2>
     <p class="article-release-date">
         <span class="auther">{{ article.auther }}</span>
@@ -10,3 +10,7 @@
     </article>
     <button class="return-back-button" (click)="onReturnBack()">Return back</button>
 </section>
+
+<ng-template #loader>
+    <app-loader></app-loader>
+</ng-template>
