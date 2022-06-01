@@ -27,6 +27,7 @@ export class LogoutButtonComponent implements OnInit {
       this.router.navigate(['/']);
       this.authService.logOut();
     } else {
+      this.authStatus = "Log out";
       this.router.navigate(['/admin', 'login']);
     }
   }
