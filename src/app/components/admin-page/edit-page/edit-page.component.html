@@ -1,36 +1,30 @@
-<section class="page-wrapper">
-    <div *ngIf="article">
-        <div>{{ article.auther }}</div>
-        <div>{{ article.header }}</div>
-        <div>{{ article.article }}</div>
-        <div>{{ article.photo }}</div>
-    </div>
-    <form *ngIf="editPageFormGroup; else loader" [formGroup]="editPageFormGroup" (ngSubmit)="onFormSubmit()">
-        <header>
-            Article edit page
+<section class="create-page-container" *ngIf="editPageFormGroup; else loader">
+    <form class="create-form-group" [formGroup]="editPageFormGroup" (ngSubmit)="onFormSubmit()">
+        <header class="create-page-header">
+            <h2 class="header">Edit article: {{ article.header }}</h2>
         </header>
-    
-        <div>
-            <label for="auther">Auther</label>
-            <input id="auther" type="text" formControlName="auther">
+
+        <div class="form-control-wrapper">
+            <label class="label" for="auther">Auther</label>
+            <input class="control" id="auther" type="text" formControlName="auther">
         </div>
-    
-        <div>
-            <label for="header">Header</label>
-            <input id="header" type="text" formControlName="header">
+
+        <div class="form-control-wrapper">
+            <label class="label" for="header">Header</label>
+            <input class="control" id="header" type="text" formControlName="header">
         </div>
-    
-        <div>
-            <label for="article">Article</label>
-            <textarea id="article" cols="20" rows="15" formControlName="article"></textarea>
+
+        <div class="form-control-wrapper">
+            <label class="label" for="article">Article</label>
+            <textarea class="control textarea" id="article" cols="20" rows="15" formControlName="article"></textarea>
         </div>
-    
-        <div>
-            <label for="photo">Photo</label>
-            <input type="text" id="photo" formControlName="photo">
+
+        <div class="form-control-wrapper">
+            <label class="label" for="photo">Photo</label>
+            <input class="control" type="text" id="photo" formControlName="photo">
         </div>
-    
-        <button type="submit" [disabled]="editPageFormGroup.invalid || isSubmitted">Edit article</button>
+
+        <button class="submit-button" type="submit" [disabled]="editPageFormGroup.invalid || isSubmitted">Apply changes</button>
     </form>
 </section>
 

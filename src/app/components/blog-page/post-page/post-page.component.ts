@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { switchMap, takeUntil, withLatestFrom } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 import { Article } from 'src/app/models/create-page.model';
 import { PostsService } from 'src/app/services/posts.service';
 

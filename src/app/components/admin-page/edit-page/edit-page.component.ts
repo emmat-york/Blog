@@ -18,7 +18,7 @@ export class EditPageComponent implements OnInit {
 
   constructor(
     private readonly router: ActivatedRoute,
-    private readonly postService: PostsService,
+    private readonly articleService: PostsService,
     private readonly formBuilder: FormBuilder,
     private readonly titleService: Title,
   ) { }
@@ -40,7 +40,7 @@ export class EditPageComponent implements OnInit {
       releaseDate: new Date(),
     };
 
-    this.postService.updateArticle(articleFormData)
+    this.articleService.updateArticle(articleFormData)
       .pipe(take(1))
       .subscribe(() => {
         this.isSubmitted = false;
@@ -55,7 +55,7 @@ export class EditPageComponent implements OnInit {
       .pipe(
         take(1),
         switchMap((params: Params) => {
-          return this.postService.getArticleById(params["id"]);
+          return this.articleService.getArticleById(params["id"]);
         }),
       )
       .subscribe((article: Article) => {
