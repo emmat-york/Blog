@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthResponse, LoginPayload, UserFormData } from '../models/auth-model';
+import { AuthResponse, LoginPayload, UserFormData } from '../models/auth.model';
 
 @Injectable({
   providedIn: "root"

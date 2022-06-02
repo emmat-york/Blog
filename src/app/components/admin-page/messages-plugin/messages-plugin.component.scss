@@ -1,0 +1,35 @@
+@import "../../../../common/styles-variables.scss";
+@import "../../../../common/mixins.scss";
+
+:host {
+    display: block;
+
+    .plugin-container {
+        position: fixed;
+        bottom: 40px;
+        left: 40px;
+        @include blockSize(140px, 320px);
+        border: 1px solid $medium-grey;
+        background-color: $white;
+
+        .message-text {
+            @include blockSize(inherit, inherit);
+            font-family: 'Noto Serif Display', serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &.success {
+                color: $success;
+            }
+
+            &.warning {
+                color: $warning;
+            }
+
+            &.danger {
+                color: $danger;
+            }
+        }
+    }
+}

@@ -5,6 +5,7 @@ import { PostsService } from 'src/app/services/posts.service';
 import { catchError, map, take, withLatestFrom } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { PageTitles } from 'src/common/common-variables';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-create-page',
@@ -19,7 +20,8 @@ export class CreatePageComponent implements OnInit {
     private readonly formBuilber: FormBuilder,
     private readonly postServise: PostsService,
     private readonly titleService: Title,
-  ) { }
+    private readonly alertService: AlertService,
+  ) {}
 
   public ngOnInit(): void {
     this.formGroupInitialization();
@@ -43,6 +45,7 @@ export class CreatePageComponent implements OnInit {
         take(1),
         catchError((error) => {
           console.log(error);
+          this.alertService.error("Something went wrong while creating the article!");
           return [];
         }),
         withLatestFrom(this.postServise.articlesStorage$),
@@ -64,6 +67,7 @@ export class CreatePageComponent implements OnInit {
         this.postServise.articlesStorage$.next(updatedArticles);
         this.articleFormGroup.reset();
         this.isSubmitted = false;
+        this.alertService.success("Article has been seccessfully created!");
       });
   }
 
