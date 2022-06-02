@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
-import { switchMap, take } from 'rxjs/operators';
+import { catchError, switchMap, take } from 'rxjs/operators';
 import { Article } from 'src/app/models/create-page.model';
+import { AlertService } from 'src/app/services/alert.service';
 import { PostsService } from 'src/app/services/posts.service';
 
 @Component({
@@ -21,7 +22,8 @@ export class EditPageComponent implements OnInit {
     private readonly articleService: PostsService,
     private readonly formBuilder: FormBuilder,
     private readonly titleService: Title,
-  ) { }
+    private readonly alertService: AlertService
+  ) {}
 
   public ngOnInit(): void {
     this.articleInicialization();
@@ -41,12 +43,21 @@ export class EditPageComponent implements OnInit {
     };
 
     this.articleService.updateArticle(articleFormData)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        catchError((error) => {
+          console.log(error);
+          this.alertService.error("Something went wrong while updating article!");
+
+          return null;
+        })
+      )
       .subscribe(() => {
         this.isSubmitted = false;
         this.article = {
           ...this.editPageFormGroup.value,
         };
+        this.alertService.success("Article has been successfully updated!");
       });
   }
 

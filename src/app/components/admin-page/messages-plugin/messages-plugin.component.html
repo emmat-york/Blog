@@ -1,0 +1,9 @@
+<section class="plugin-container" *ngIf="messageText">
+    <div class="message-text" [ngClass]="{
+        'success': type === 'success',
+        'warning': type === 'warning',
+        'error': type === 'error'
+    }">
+        <div class="alert-message">{{ messageText }}</div>
+    </div>
+</section>
