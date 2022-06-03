@@ -5,7 +5,7 @@ import { takeUntil } from 'rxjs/operators';
 import { Article } from 'src/app/models/article.model';
 import { BlogService } from 'src/app/services/blog.service';
 import { ArticleService } from 'src/app/services/article.service';
-import { PageTitles } from 'src/common/common-variables';
+import { PageTitles } from 'src/app/models/title.model';
 
 @Component({
   selector: 'app-home-page',

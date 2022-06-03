@@ -10,6 +10,8 @@ import { LoaderComponent } from "../components/shared/loader/loader.component";
 import { WordsSlicerPipe } from "../pipes/words-slicer.pipe";
 import { GlobalFooterComponent } from "../components/shared/global-footer/global-footer.component";
 import { AuthButtonComponent } from "../components/shared/auth-button/auth-button.component";
+import { LogoutModalComponent } from '../components/shared/logout-modal/logout-modal.component';
+import { RefDirective } from '../directives/ref.directive';
 
 @NgModule({
     declarations: [
@@ -18,7 +20,9 @@ import { AuthButtonComponent } from "../components/shared/auth-button/auth-butto
         LoaderComponent,
         GlobalFooterComponent,
         AuthButtonComponent,
+        LogoutModalComponent,
         ColorObserverDirective,
+        RefDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
     ],
@@ -27,6 +31,7 @@ import { AuthButtonComponent } from "../components/shared/auth-button/auth-butto
         HttpClientModule,
         FormsModule,
     ],
+    entryComponents: [LogoutModalComponent],
     exports: [
         CommonModule,
         HttpClientModule,
@@ -36,7 +41,9 @@ import { AuthButtonComponent } from "../components/shared/auth-button/auth-butto
         LoaderComponent,
         GlobalFooterComponent,
         AuthButtonComponent,
+        LogoutModalComponent,
         ColorObserverDirective,
+        RefDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
     ],
