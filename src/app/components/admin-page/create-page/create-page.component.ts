@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Article, ArticleFormData } from 'src/app/models/create-page.model';
-import { PostsService } from 'src/app/services/posts.service';
+import { Article, ArticleFormData } from 'src/app/models/article.model';
+import { ArticleService } from 'src/app/services/article.service';
 import { catchError, map, take, withLatestFrom } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { PageTitles } from 'src/common/common-variables';
@@ -18,7 +18,7 @@ export class CreatePageComponent implements OnInit {
 
   constructor(
     private readonly formBuilber: FormBuilder,
-    private readonly postServise: PostsService,
+    private readonly articleService: ArticleService,
     private readonly titleService: Title,
     private readonly alertService: AlertService,
   ) {}
@@ -40,7 +40,7 @@ export class CreatePageComponent implements OnInit {
       releaseDate: new Date(),
     };
 
-    this.postServise.createArticle(articleFormData)
+    this.articleService.createArticle(articleFormData)
       .pipe(
         take(1),
         catchError((error) => {
@@ -48,7 +48,7 @@ export class CreatePageComponent implements OnInit {
           this.alertService.error("Something went wrong while creating the article!");
           return [];
         }),
-        withLatestFrom(this.postServise.articlesStorage$),
+        withLatestFrom(this.articleService.articlesStorage$),
         map(([{ name: articleId }, articlesStorage]) => {
           const newArticles: Article[] = [
             ...articlesStorage,
@@ -64,7 +64,7 @@ export class CreatePageComponent implements OnInit {
         }),
       )
       .subscribe((updatedArticles) => {
-        this.postServise.articlesStorage$.next(updatedArticles);
+        this.articleService.articlesStorage$.next(updatedArticles);
         this.articleFormGroup.reset();
         this.isSubmitted = false;
         this.alertService.success("Article has been seccessfully created!");
@@ -74,6 +74,7 @@ export class CreatePageComponent implements OnInit {
   private formGroupInitialization(): void {
     this.articleFormGroup = this.formBuilber.group({
       auther: [null, Validators.required],
+      autherLink: [null, Validators.required],
       header: [null, Validators.required],
       article: [null, Validators.required],
       photo: [null, Validators.required],

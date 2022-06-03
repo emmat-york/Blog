@@ -9,7 +9,7 @@ import { ScrollButtonComponent } from "../components/shared/scroll-button/scroll
 import { LoaderComponent } from "../components/shared/loader/loader.component";
 import { WordsSlicerPipe } from "../pipes/words-slicer.pipe";
 import { GlobalFooterComponent } from "../components/shared/global-footer/global-footer.component";
-import { LogoutButtonComponent } from "../components/shared/logout-button/logout-button.component";
+import { AuthButtonComponent } from "../components/shared/auth-button/auth-button.component";
 
 @NgModule({
     declarations: [
@@ -17,7 +17,7 @@ import { LogoutButtonComponent } from "../components/shared/logout-button/logout
         ScrollButtonComponent,
         LoaderComponent,
         GlobalFooterComponent,
-        LogoutButtonComponent,
+        AuthButtonComponent,
         ColorObserverDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
@@ -35,7 +35,7 @@ import { LogoutButtonComponent } from "../components/shared/logout-button/logout
         ScrollButtonComponent,
         LoaderComponent,
         GlobalFooterComponent,
-        LogoutButtonComponent,
+        AuthButtonComponent,
         ColorObserverDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,

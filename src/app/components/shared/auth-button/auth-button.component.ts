@@ -5,11 +5,11 @@ import { AuthService } from 'src/app/services/auth.service';
 type ButtonType = "Log In" | "Log out";
 
 @Component({
-  selector: 'app-logout-button',
-  templateUrl: './logout-button.component.html',
-  styleUrls: ['./logout-button.component.scss']
+  selector: 'app-auth-button',
+  templateUrl: './auth-button.component.html',
+  styleUrls: ['./auth-button.component.scss']
 })
-export class LogoutButtonComponent implements OnInit {
+export class AuthButtonComponent implements OnInit {
   public authStatus: ButtonType;
 
   constructor(

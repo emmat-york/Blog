@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { Article, ArticleFormData, CreateArticleResponse, FetchArticlesResponse } from '../models/create-page.model';
+import { Article, ArticleFormData, CreateArticleResponse, FetchArticlesResponse } from '../models/article.model';
 import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PostsService implements OnDestroy {
+export class ArticleService implements OnDestroy {
   public articlesStorage$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>(null);
 
   constructor(private readonly http: HttpClient) { }

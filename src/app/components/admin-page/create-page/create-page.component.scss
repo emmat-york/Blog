@@ -10,10 +10,11 @@
         min-height: 100vh;
         width: $external-container;
         margin: 0 auto;
+        padding-bottom: 40px;
         background-color: $white;
 
         .create-form-group {
-            @include blockSize(600px, 762px);
+            width: $internal-container;
             margin: 0 auto;
             padding-top: 40px;
     
@@ -53,7 +54,7 @@
                     color: $black;
 
                     &.textarea {
-                        height: 300px;
+                        height: 380px;
                         resize: none;
                     }
                 }

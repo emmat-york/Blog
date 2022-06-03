@@ -6,7 +6,7 @@
                 <img class="global-logo-image" src="../../../assets/header-logo.png" alt="header-logo">
             </li>
             <li class="nav-list-item">
-                <a class="nav-link" [routerLink]="['/']">Main page</a>
+                <a class="nav-link" [routerLink]="['/']">Main</a>
             </li>
             <li class="nav-list-item">
                 <a class="nav-link" [routerLink]="['/admin', 'dashboard']">Dashboard</a>
@@ -15,7 +15,7 @@
                 <a class="nav-link" [routerLink]="['/admin', 'create']">Create</a>
             </li>
         </ul>
-        <app-logout-button class="auth-button"></app-logout-button>
+        <app-auth-button class="auth-button"></app-auth-button>
     </nav>
 </header>
 
@@ -23,5 +23,10 @@
 <main class="admin-content">
     <router-outlet></router-outlet>
 </main>
+
+<!-- Admin Footer -->
+<footer>
+    <app-global-footer></app-global-footer>
+</footer>
 
 <app-messages-plugin></app-messages-plugin>
