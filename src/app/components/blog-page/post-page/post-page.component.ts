@@ -3,8 +3,8 @@ import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
-import { Article } from 'src/app/models/create-page.model';
-import { PostsService } from 'src/app/services/posts.service';
+import { Article } from 'src/app/models/article.model';
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-post-page',
@@ -19,7 +19,7 @@ export class PostPageComponent implements OnInit, OnDestroy {
     private readonly titleService: Title,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
-    private readonly articleService: PostsService,
+    private readonly articleService: ArticleService,
   ) { }
 
   public ngOnInit(): void {

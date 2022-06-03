@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PostsService } from 'src/app/services/posts.service';
-import { Article } from 'src/app/models/create-page.model';
+import { ArticleService } from 'src/app/services/article.service';
+import { Article } from 'src/app/models/article.model';
 import { catchError, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Title } from '@angular/platform-browser';
@@ -19,7 +19,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
-    public readonly articlesService: PostsService,
+    public readonly articlesService: ArticleService,
     private readonly titleService: Title,
     private readonly alertService: AlertService,
   ) {}
