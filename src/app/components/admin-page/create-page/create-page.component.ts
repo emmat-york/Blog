@@ -4,7 +4,7 @@ import { Article, ArticleFormData } from 'src/app/models/article.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { catchError, map, take, withLatestFrom } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
-import { PageTitles } from 'src/common/common-variables';
+import { PageTitles } from 'src/app/models/title.model';
 import { AlertService } from 'src/app/services/alert.service';
 
 @Component({

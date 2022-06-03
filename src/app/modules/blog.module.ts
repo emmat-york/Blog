@@ -4,7 +4,6 @@ import { HomePageComponent } from '../components/blog-page/home-page/home-page.c
 import { PostPageComponent } from '../components/blog-page/post-page/post-page.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared.module';
-import { BlogService } from '../services/blog.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +15,5 @@ import { BlogService } from '../services/blog.service';
     RouterModule,
     SharedModule,
   ],
-  providers: [BlogService],
 })
 export class BlogModule { }

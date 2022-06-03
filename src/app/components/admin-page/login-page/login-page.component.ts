@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { finalize, take } from 'rxjs';
 import { UserFormData } from 'src/app/models/auth.model';
 import { AuthService } from 'src/app/services/auth.service';
-import { PageTitles } from 'src/common/common-variables';
+import { PageTitles } from 'src/app/models/title.model';
 
 @Component({
   selector: 'app-login-page',
