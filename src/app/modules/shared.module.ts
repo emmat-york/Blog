@@ -9,7 +9,9 @@ import { ScrollButtonComponent } from "../components/shared/scroll-button/scroll
 import { LoaderComponent } from "../components/shared/loader/loader.component";
 import { WordsSlicerPipe } from "../pipes/words-slicer.pipe";
 import { GlobalFooterComponent } from "../components/shared/global-footer/global-footer.component";
-import { LogoutButtonComponent } from "../components/shared/logout-button/logout-button.component";
+import { AuthButtonComponent } from "../components/shared/auth-button/auth-button.component";
+import { LogoutModalComponent } from '../components/shared/logout-modal/logout-modal.component';
+import { RefDirective } from '../directives/ref.directive';
 
 @NgModule({
     declarations: [
@@ -17,8 +19,10 @@ import { LogoutButtonComponent } from "../components/shared/logout-button/logout
         ScrollButtonComponent,
         LoaderComponent,
         GlobalFooterComponent,
-        LogoutButtonComponent,
+        AuthButtonComponent,
+        LogoutModalComponent,
         ColorObserverDirective,
+        RefDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
     ],
@@ -27,6 +31,7 @@ import { LogoutButtonComponent } from "../components/shared/logout-button/logout
         HttpClientModule,
         FormsModule,
     ],
+    entryComponents: [LogoutModalComponent],
     exports: [
         CommonModule,
         HttpClientModule,
@@ -35,8 +40,10 @@ import { LogoutButtonComponent } from "../components/shared/logout-button/logout
         ScrollButtonComponent,
         LoaderComponent,
         GlobalFooterComponent,
-        LogoutButtonComponent,
+        AuthButtonComponent,
+        LogoutModalComponent,
         ColorObserverDirective,
+        RefDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
     ],

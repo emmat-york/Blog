@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { PostsService } from './services/posts.service';
+import { ArticleService } from './services/article.service';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +8,10 @@ import { PostsService } from './services/posts.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private readonly postServise: PostsService) { }
+  constructor(private readonly articleService: ArticleService) { }
 
   public ngOnInit(): void {
-    this.postServise.fetchArticles()
+    this.articleService.fetchArticles()
     .pipe(take(1))
     .subscribe(() => {
       console.log("articles fetching has been completed");

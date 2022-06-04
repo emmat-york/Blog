@@ -1,14 +1,13 @@
 <section class="article-container" *ngIf="article; else loader">
     <h2 class="article-header">{{ article.header }}</h2>
     <p class="article-release-date">
-        <span class="auther">{{ article.auther }}</span>
+            <a class="authel-link" [href]="article.autherLink" target="_blank">{{ article.auther }}</a>
         <span> | {{ article.releaseDate| date: 'EEEE LLLL dd yyyy, hh zzz' }}, The Sunday Times</span>
     </p>
     <img class="article-image" [src]="article.photo" alt="article-image">
     <article class="article">
         {{ article.article }}
     </article>
-    <button class="return-back-button" (click)="onReturnBack()">Return back</button>
 </section>
 
 <ng-template #loader>

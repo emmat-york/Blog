@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AuthResponse, LoginPayload, UserFormData } from '../models/auth-model';
+import { AuthResponse, LoginPayload, UserFormData } from '../models/auth.model';
 
 @Injectable({
   providedIn: "root"
@@ -48,7 +48,7 @@ export class AuthService {
     return !!this.token;
   }
 
-  private setToken(authResponse: AuthResponse | null): void {
+  private setToken(authResponse: AuthResponse): void {
     if (authResponse) {
       const mappedExpiresInToMiliseconds: number = Number(authResponse.expiresIn) * 1000;
       const currentDate = new Date().getTime();

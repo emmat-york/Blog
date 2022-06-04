@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { Article } from 'src/app/models/create-page.model';
+import { Article } from 'src/app/models/article.model';
 import { BlogService } from 'src/app/services/blog.service';
-import { PostsService } from 'src/app/services/posts.service';
-import { PageTitles } from 'src/common/common-variables';
+import { ArticleService } from 'src/app/services/article.service';
+import { PageTitles } from 'src/app/models/title.model';
 
 @Component({
   selector: 'app-home-page',
@@ -18,7 +18,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   constructor(
     public readonly blogService: BlogService,
-    private readonly articleService: PostsService,
+    private readonly articleService: ArticleService,
     private readonly titleService: Title,
   ) {}
 

@@ -1,5 +1,5 @@
-@import "../../../../common/styles-variables.scss";
-@import "../../../../common/mixins.scss";
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/mixins.scss";
 
 :host {
     display: block;
@@ -28,9 +28,12 @@
             color: $dark-grey-1;
             text-align: center;
 
-            .auther {
+            .authel-link {
                 color: $dark-blue;
+                cursor: pointer;
+                text-decoration: none;
             }
+
         }
 
         .article-image {
@@ -46,18 +49,6 @@
             font-size: 21px;
             line-height: 1.5;
             word-spacing: 4;
-        }
-
-        .return-back-button {
-            display: block;
-            margin: 0 auto;
-            padding: 0;
-            border: none;
-            font-family: 'Nunito', sans-serif;
-            font-size: $large;
-            background-color: inherit;
-            color: $dark-blue;
-            cursor: pointer;
         }
     }
 }

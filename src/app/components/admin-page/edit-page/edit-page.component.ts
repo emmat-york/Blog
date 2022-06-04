@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Params } from '@angular/router';
-import { switchMap, take } from 'rxjs/operators';
-import { Article } from 'src/app/models/create-page.model';
-import { PostsService } from 'src/app/services/posts.service';
+import { catchError, switchMap, take } from 'rxjs/operators';
+import { Article } from 'src/app/models/article.model';
+import { AlertService } from 'src/app/services/alert.service';
+import { ArticleService } from 'src/app/services/article.service';
 
 @Component({
   selector: 'app-edit-page',
@@ -18,10 +19,11 @@ export class EditPageComponent implements OnInit {
 
   constructor(
     private readonly router: ActivatedRoute,
-    private readonly articleService: PostsService,
+    private readonly articleService: ArticleService,
     private readonly formBuilder: FormBuilder,
     private readonly titleService: Title,
-  ) { }
+    private readonly alertService: AlertService
+  ) {}
 
   public ngOnInit(): void {
     this.articleInicialization();
@@ -41,12 +43,21 @@ export class EditPageComponent implements OnInit {
     };
 
     this.articleService.updateArticle(articleFormData)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        catchError((error) => {
+          console.log(error);
+          this.alertService.error("Something went wrong while updating article!");
+
+          return null;
+        })
+      )
       .subscribe(() => {
         this.isSubmitted = false;
         this.article = {
           ...this.editPageFormGroup.value,
         };
+        this.alertService.success("Article has been successfully updated!");
       });
   }
 
@@ -66,10 +77,11 @@ export class EditPageComponent implements OnInit {
   }
 
   private formGroupInitialization(article: Article): void {
-    const { auther, header, article: articleText, photo } = article;
+    const { auther, autherLink, header, article: articleText, photo } = article;
 
     this.editPageFormGroup = this.formBuilder.group({
       auther: [auther, Validators.required],
+      autherLink: [autherLink, Validators.required],
       header: [header, Validators.required],
       article: [articleText, Validators.required],
       photo: [photo, Validators.required],

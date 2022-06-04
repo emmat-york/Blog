@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { PostsService } from 'src/app/services/posts.service';
-import { Article } from 'src/app/models/create-page.model';
-import { take, takeUntil } from 'rxjs/operators';
+import { ArticleService } from 'src/app/services/article.service';
+import { Article } from 'src/app/models/article.model';
+import { catchError, take, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Title } from '@angular/platform-browser';
-import { PageTitles } from 'src/common/common-variables';
+import { PageTitles } from 'src/app/models/title.model';
+import { AlertService } from 'src/app/services/alert.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -18,9 +19,10 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
-    public readonly articlesService: PostsService,
+    public readonly articlesService: ArticleService,
     private readonly titleService: Title,
-  ) { }
+    private readonly alertService: AlertService,
+  ) {}
 
   public ngOnInit(): void {
     this.articlesInicialization();
@@ -33,10 +35,18 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   public removeArticle(articleId: string): void {
     this.articlesService.removeArticle(articleId)
-      .pipe(take(1))
+      .pipe(
+        take(1),
+        catchError((error) => {
+          console.log(error);
+          this.alertService.error("Something went wrong while removing the article!");
+          return null;
+        }),
+      )
       .subscribe(() => {
         this.articles = this.articles.filter(article => article.id !== articleId);
         this.articlesService.articlesStorage$.next(this.articles);
+        this.alertService.success("Article has been seccessfully removed!");
       });
   }
 

@@ -8,6 +8,8 @@ import { LoginPageComponent } from '../components/admin-page/login-page/login-pa
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared.module';
 import { AuthGuard } from '../services/auth.guard';
+import { MessagesPluginComponent } from '../components/admin-page/messages-plugin/messages-plugin.component';
+import { AlertService } from '../services/alert.service';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,7 @@ import { AuthGuard } from '../services/auth.guard';
     DashboardPageComponent,
     CreatePageComponent,
     EditPageComponent,
+    MessagesPluginComponent,
   ],
   imports: [
     SharedModule,
@@ -31,6 +34,6 @@ import { AuthGuard } from '../services/auth.guard';
     ]),
   ],
   exports: [RouterModule],
-  providers: [AuthGuard],
+  providers: [AuthGuard, AlertService],
 })
 export class AdminModule { }
