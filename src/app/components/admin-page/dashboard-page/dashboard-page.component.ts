@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { PageTitles } from 'src/app/models/title.model';
 import { AlertService } from 'src/app/services/alert.service';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -14,7 +15,7 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class DashboardPageComponent implements OnInit, OnDestroy {
   public searchRequest: string = "";
-  public articles: Article[];
+  public articles: Article[] = [];
   public isDeleting: boolean = false;
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 
@@ -22,6 +23,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     public readonly articlesService: ArticleService,
     private readonly titleService: Title,
     private readonly alertService: AlertService,
+    private readonly blogService: BlogService,
   ) {}
 
   public ngOnInit(): void {
@@ -50,12 +52,9 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       });
   }
 
-  public goToScreenTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
   private articlesInicialization(): void {
     this.titleService.setTitle(PageTitles.ADMIN_DASHBOARD);
+    this.blogService.goToScreenTop();
 
     this.articlesService.articlesStorage$
       .pipe(takeUntil(this.onDestroy$))
