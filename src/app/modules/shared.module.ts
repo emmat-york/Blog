@@ -11,7 +11,7 @@ import { WordsSlicerPipe } from "../pipes/words-slicer.pipe";
 import { GlobalFooterComponent } from "../components/shared/global-footer/global-footer.component";
 import { AuthButtonComponent } from "../components/shared/auth-button/auth-button.component";
 import { LogoutModalComponent } from '../components/shared/logout-modal/logout-modal.component';
-import { RefDirective } from '../directives/ref.directive';
+import { RemoveArticleModalComponent } from '../components/shared/remove-article-modal/remove-article-modal.component';
 
 @NgModule({
     declarations: [
@@ -22,9 +22,9 @@ import { RefDirective } from '../directives/ref.directive';
         AuthButtonComponent,
         LogoutModalComponent,
         ColorObserverDirective,
-        RefDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
+        RemoveArticleModalComponent,
     ],
     imports: [
         CommonModule,
@@ -43,7 +43,6 @@ import { RefDirective } from '../directives/ref.directive';
         AuthButtonComponent,
         LogoutModalComponent,
         ColorObserverDirective,
-        RefDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
     ],

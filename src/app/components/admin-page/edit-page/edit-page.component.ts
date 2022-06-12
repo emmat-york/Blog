@@ -6,6 +6,7 @@ import { catchError, switchMap, take } from 'rxjs/operators';
 import { Article } from 'src/app/models/article.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { ArticleService } from 'src/app/services/article.service';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-edit-page',
@@ -22,7 +23,8 @@ export class EditPageComponent implements OnInit {
     private readonly articleService: ArticleService,
     private readonly formBuilder: FormBuilder,
     private readonly titleService: Title,
-    private readonly alertService: AlertService
+    private readonly alertService: AlertService,
+    private readonly blogService: BlogService,
   ) {}
 
   public ngOnInit(): void {
@@ -62,6 +64,8 @@ export class EditPageComponent implements OnInit {
   }
 
   private articleInicialization(): void {
+    this.blogService.goToScreenTop();
+
     this.router.params
       .pipe(
         take(1),

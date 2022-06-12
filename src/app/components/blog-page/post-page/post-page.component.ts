@@ -1,10 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 import { Article } from 'src/app/models/article.model';
 import { ArticleService } from 'src/app/services/article.service';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-post-page',
@@ -20,7 +21,8 @@ export class PostPageComponent implements OnInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly articleService: ArticleService,
-  ) { }
+    private readonly blogService: BlogService,
+  ) {}
 
   public ngOnInit(): void {
     this.articlesInicizlization();
@@ -31,18 +33,13 @@ export class PostPageComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
-  public onReturnBack(): void {
-    window.scrollTo({ top: 0, behavior: 'auto' });
-    this.router.navigate(['/']);
-  }
-
   private articlesInicizlization(): void {
-    window.scrollTo({ top: 0, behavior: 'auto' });
+    this.blogService.goToScreenTop();
 
     this.route.params
       .pipe(
         takeUntil(this.onDestroy$),
-        switchMap((params) => {
+        switchMap((params: Params) => {
           return this.articleService.getArticleById(params['id']);
         }),
       )

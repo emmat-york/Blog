@@ -4,11 +4,11 @@ import { BlogService } from 'src/app/services/blog.service';
 @Component({
   selector: 'app-logout-modal',
   templateUrl: './logout-modal.component.html',
-  styleUrls: ['./logout-modal.component.scss']
+  styleUrls: ['../../../../styles/modals.scss']
 })
 export class LogoutModalComponent {
 
-  constructor(private blogService: BlogService) {}
+  constructor(private readonly blogService: BlogService) {}
 
   public onCancel(): void {
     this.blogService.onModalClose$.next("Cancel");

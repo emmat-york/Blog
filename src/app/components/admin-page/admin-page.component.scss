@@ -68,9 +68,13 @@
                 }
             }
 
-            .auth-button {
+            .auth-button-container {
                 height: inherit;
-                color: $white;
+
+                .auth-button {
+                    height: inherit;
+                    color: $white;
+                }
             }
         }
     }
