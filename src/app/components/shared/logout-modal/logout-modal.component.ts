@@ -4,7 +4,7 @@ import { BlogService } from 'src/app/services/blog.service';
 @Component({
   selector: 'app-logout-modal',
   templateUrl: './logout-modal.component.html',
-  styleUrls: ['./logout-modal.component.scss']
+  styleUrls: ['../../../../styles/modals.scss']
 })
 export class LogoutModalComponent {
 

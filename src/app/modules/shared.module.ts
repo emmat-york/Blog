@@ -12,6 +12,7 @@ import { GlobalFooterComponent } from "../components/shared/global-footer/global
 import { AuthButtonComponent } from "../components/shared/auth-button/auth-button.component";
 import { LogoutModalComponent } from '../components/shared/logout-modal/logout-modal.component';
 import { RefDirective } from '../directives/ref.directive';
+import { RemoveArticleModalComponent } from '../components/shared/remove-article-modal/remove-article-modal.component';
 
 @NgModule({
     declarations: [
@@ -25,6 +26,7 @@ import { RefDirective } from '../directives/ref.directive';
         RefDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
+        RemoveArticleModalComponent,
     ],
     imports: [
         CommonModule,

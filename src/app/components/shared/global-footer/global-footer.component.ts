@@ -4,7 +4,7 @@ import { ArticleService } from 'src/app/services/article.service';
 @Component({
   selector: 'app-global-footer',
   templateUrl: './global-footer.component.html',
-  styleUrls: ['./global-footer.component.scss']
+  styleUrls: ['../../../../styles/modals.scss']
 })
 export class GlobalFooterComponent {
 
