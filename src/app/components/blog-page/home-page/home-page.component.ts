@@ -33,12 +33,12 @@ export class HomePageComponent implements OnInit, OnDestroy {
 
   private articlesInicizlization(): void {
     this.titleService.setTitle(PageTitles.BLOG_ARTICLES);
+    this.blogService.goToScreenTop();
 
     this.articleService.articlesStorage$
     .pipe(takeUntil(this.onDestroy$))
     .subscribe((articles) => {
       this.articles = articles;
-
     });
   }
 }

@@ -1,5 +1,9 @@
-<section class="create-page-container" *ngIf="editPageFormGroup; else loader">
-    <form class="create-form-group" [formGroup]="editPageFormGroup" (ngSubmit)="onFormSubmit()">
+<section class="create-page-container">
+    <form class="create-form-group" 
+        *ngIf="editPageFormGroup; else loader"
+        [formGroup]="editPageFormGroup"
+        (ngSubmit)="onFormSubmit()"
+        >
         <header class="create-page-header">
             <h2 class="header">Edit article: {{ article.header }}</h2>
         </header>

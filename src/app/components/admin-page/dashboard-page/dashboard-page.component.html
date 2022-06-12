@@ -10,6 +10,8 @@
         </div>
     </header>
 
+    <ng-template></ng-template>
+
     <div class="articles-container">
         <input class="search-field" type="text" [(ngModel)]="searchRequest" placeholder="Search">
         <section *ngIf="articles; else loader">

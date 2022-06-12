@@ -20,8 +20,4 @@ export class AdminPageComponent {
     this.authService.logOut();
     this.router.navigate(["/admin", "login"]);
   }
-
-  public goToScreenTop(): void {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
 }

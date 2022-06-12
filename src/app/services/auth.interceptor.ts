@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
-  ) { }
+  ) {}
 
   public intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (this.authService.isAuth()) {

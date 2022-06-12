@@ -2,7 +2,7 @@
 <header class="global-header-with-nav">
     <div class="header-wrapper">
         <nav class="global-navigation-container">
-            <a class="global-logo-link" [routerLink]="['/']">
+            <a class="global-logo-link" (click)="goToMainPage()">
                 <img class="global-logo-image" src="../../../assets/header-logo.png" alt="header-logo">
             </a>
             <ul class="global-nav-list" *ngIf="authService.isAuth()">

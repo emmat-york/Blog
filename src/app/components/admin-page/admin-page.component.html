@@ -15,7 +15,9 @@
                 <a class="nav-link" [routerLink]="['/admin', 'create']">Create</a>
             </li>
         </ul>
-        <app-auth-button class="auth-button"></app-auth-button>
+        <div class="auth-button-container">
+            <app-auth-button class="auth-button"></app-auth-button>
+        </div>
     </nav>
 </header>
 
@@ -25,7 +27,7 @@
 </main>
 
 <!-- Admin Footer -->
-<footer>
+<footer *ngIf="authService.isAuth()">
     <app-global-footer></app-global-footer>
 </footer>
 

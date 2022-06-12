@@ -6,6 +6,7 @@ import { catchError, map, take, withLatestFrom } from 'rxjs/operators';
 import { Title } from '@angular/platform-browser';
 import { PageTitles } from 'src/app/models/title.model';
 import { AlertService } from 'src/app/services/alert.service';
+import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
   selector: 'app-create-page',
@@ -21,11 +22,12 @@ export class CreatePageComponent implements OnInit {
     private readonly articleService: ArticleService,
     private readonly titleService: Title,
     private readonly alertService: AlertService,
+    private readonly blogService: BlogService,
   ) {}
 
   public ngOnInit(): void {
+    this.componentInizialization();
     this.formGroupInitialization();
-    this.titleService.setTitle(PageTitles.ADMIN_CREATE);
   }
 
   public onFormSubmit(): void {
@@ -69,6 +71,11 @@ export class CreatePageComponent implements OnInit {
         this.isSubmitted = false;
         this.alertService.success("Article has been seccessfully created!");
       });
+  }
+
+  private componentInizialization(): void {
+    this.titleService.setTitle(PageTitles.ADMIN_CREATE);
+    this.blogService.goToScreenTop();
   }
 
   private formGroupInitialization(): void {

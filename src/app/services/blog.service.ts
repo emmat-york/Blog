@@ -9,4 +9,8 @@ export class BlogService {
   public searchRequest: string = "";
   public authStatus: ButtonType;
   public readonly onModalClose$ = new Subject<AuthAction>();
+
+  public goToScreenTop(): void {
+    window.scrollTo({ top: 0, behavior: 'auto' });
+  }
 }

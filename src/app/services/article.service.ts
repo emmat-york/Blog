@@ -3,7 +3,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Article, ArticleFormData, CreateArticleResponse, FetchArticlesResponse } from '../models/article.model';
-import { map } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -23,25 +23,26 @@ export class ArticleService implements OnDestroy {
 
   public fetchArticles(): Observable<null> {
     return this.http.get(`${environment.fbDbUrl}/posts.json`)
-    .pipe(
-      map((response) => {
-      if (!response) {
-        return null;
-      };
+      .pipe(
+        map((response) => {
+          const mappedArticles = Object.entries((response) as FetchArticlesResponse).reduce((articles, [articleId, article]): Article[] => {
+            const mappedArticle: Article = {
+              ...article,
+              id: articleId,
+              releaseDate: new Date(article.releaseDate),
+            };
 
-      const mappedArticles = Object.entries((response) as FetchArticlesResponse).reduce((articles, [articleId, article]): Article[] => {
-        const mappedArticle: Article = {
-          ...article,
-          id: articleId,
-          releaseDate: new Date(article.releaseDate),
-        };
+            return [...articles, mappedArticle];
+          }, []);
 
-        return [...articles, mappedArticle];
-      }, []);
-
-      this.articlesStorage$.next(mappedArticles);
-      return null;
-    }));
+          this.articlesStorage$.next(mappedArticles);
+          return null;
+        }),
+        catchError((error) => {
+          console.log(error);
+          return [];
+        }),
+      );
   }
 
   public getArticleById(articleId: string): Observable <Article> {
