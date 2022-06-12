@@ -1,12 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { ArticleService } from 'src/app/services/article.service';
 import { Article } from 'src/app/models/article.model';
-import { catchError, take, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Title } from '@angular/platform-browser';
 import { PageTitles } from 'src/app/models/title.model';
-import { AlertService } from 'src/app/services/alert.service';
 import { BlogService } from 'src/app/services/blog.service';
+import { RemoveArticleModalComponent } from '../../shared/remove-article-modal/remove-article-modal.component';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -22,8 +22,9 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   constructor(
     public readonly articlesService: ArticleService,
     private readonly titleService: Title,
-    private readonly alertService: AlertService,
     private readonly blogService: BlogService,
+    private readonly resolver: ComponentFactoryResolver,
+    private readonly viewContainerRef: ViewContainerRef,
   ) {}
 
   public ngOnInit(): void {
@@ -36,20 +37,15 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   }
 
   public removeArticle(articleId: string): void {
-    this.articlesService.removeArticle(articleId)
-      .pipe(
-        take(1),
-        catchError((error) => {
-          console.log(error);
-          this.alertService.error("Something went wrong while removing the article!");
-          return null;
-        }),
-      )
-      .subscribe(() => {
-        this.articles = this.articles.filter(article => article.id !== articleId);
-        this.articlesService.articlesStorage$.next(this.articles);
-        this.alertService.success("Article has been seccessfully removed!");
-      });
+    // Modal opening
+    const modalFactory = this.resolver.resolveComponentFactory(RemoveArticleModalComponent);
+    const removeModalComponent: ComponentRef<RemoveArticleModalComponent> = this.viewContainerRef.createComponent(modalFactory);
+
+    removeModalComponent.instance.modalData = {
+      articleId,
+      articles: this.articles,
+      viewContainerRef: this.viewContainerRef,
+    };
   }
 
   private articlesInicialization(): void {

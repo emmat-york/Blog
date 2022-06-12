@@ -8,7 +8,7 @@ import { BlogService } from 'src/app/services/blog.service';
 })
 export class LogoutModalComponent {
 
-  constructor(private blogService: BlogService) {}
+  constructor(private readonly blogService: BlogService) {}
 
   public onCancel(): void {
     this.blogService.onModalClose$.next("Cancel");

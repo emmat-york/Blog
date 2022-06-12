@@ -1,3 +1,5 @@
+import { ViewContainerRef } from "@angular/core";
+
 export interface ArticleFormData {
     auther: string;
     autherLink: string;
@@ -17,4 +19,10 @@ export interface CreateArticleResponse {
 
 export interface FetchArticlesResponse {
     [articleId: string]: ArticleFormData;
+}
+
+export interface RemoveArticleModalData {
+    articleId: string;
+    articles: Article[];
+    viewContainerRef: ViewContainerRef;
 }

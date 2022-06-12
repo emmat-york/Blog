@@ -1,7 +1,6 @@
-import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject, takeUntil } from 'rxjs';
-import { RefDirective } from 'src/app/directives/ref.directive';
 import { AuthAction } from 'src/app/models/auth.model';
 import { AuthService } from 'src/app/services/auth.service';
 import { BlogService } from 'src/app/services/blog.service';
@@ -13,14 +12,14 @@ import { LogoutModalComponent } from '../logout-modal/logout-modal.component';
   styleUrls: ['./auth-button.component.scss']
 })
 export class AuthButtonComponent implements OnInit, OnDestroy {
-  @ViewChild(RefDirective) private ref: RefDirective;
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
+    public blogService: BlogService,
     private readonly authService: AuthService,
     private readonly router: Router,
     private readonly resolver: ComponentFactoryResolver,
-    public blogService: BlogService,
+    private readonly viewContainerRef: ViewContainerRef,
   ) {}
 
   public ngOnInit(): void {
@@ -36,7 +35,7 @@ export class AuthButtonComponent implements OnInit, OnDestroy {
     if (this.blogService.authStatus === "Log out") {
       // Modal opening
       const modalFactory = this.resolver.resolveComponentFactory(LogoutModalComponent);
-      this.ref.containerRef.createComponent(modalFactory);
+      this.viewContainerRef.createComponent(modalFactory);
     } else {
       this.router.navigate(['/admin', 'login']);
     }
@@ -52,9 +51,9 @@ export class AuthButtonComponent implements OnInit, OnDestroy {
         this.blogService.authStatus = "Log In";
         this.router.navigate(['/']);
         this.authService.logOut();
-        this.ref.containerRef.clear();
+        this.viewContainerRef.clear();
       } else {
-        this.ref.containerRef.clear();
+        this.viewContainerRef.clear();
       }
     });
   }
