@@ -11,7 +11,7 @@ import { catchError, map } from 'rxjs/operators';
 export class ArticleService implements OnDestroy {
   public articlesStorage$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>([]);
 
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
   public ngOnDestroy(): void {
     this.articlesStorage$.complete();
