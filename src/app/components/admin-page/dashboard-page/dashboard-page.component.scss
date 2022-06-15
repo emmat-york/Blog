@@ -105,6 +105,11 @@
                 }
             }
 
+            .articles-section {
+                display: flex;
+                flex-direction: column-reverse;
+            }
+
             .article {
 
                 .edit-buttons-container {

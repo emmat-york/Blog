@@ -1,5 +1,5 @@
 <!-- Articles List -->
-<section class="posts-container-wrapper" *ngIf="articles; else loader">
+<section class="articles-container-wrapper" *ngIf="articles; else loader">
     <div class="paggination-container">
         <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
         <button class="next-page-button">
@@ -8,9 +8,12 @@
         </button>
     </div>
 
-    <div class="posts-container" *ngFor="let article of articles| articleSearch: blogService.searchRequest">
-        <app-post class="post" [isBlogPage]="true" [article]="article" [routerLink]="['/post', article.id]"></app-post>
-    </div>
+    <section class="articles-section">
+        <div class="article-container" *ngFor="let article of articles| articleSearch: blogService.searchRequest">
+            <app-post class="article" [isBlogPage]="true" [article]="article" [routerLink]="['/post', article.id]">
+            </app-post>
+        </div>
+    </section>
 
     <div class="paggination-container">
         <button class="next-page-button">
