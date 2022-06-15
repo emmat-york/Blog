@@ -9,9 +9,9 @@ import { AuthResponse, LoginPayload, UserFormData } from '../models/auth.model';
 })
 export class AuthService {
   public loginErrors$: Subject<string> = new Subject<string>();
-  private loginPath: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`;
+  private readonly loginPath: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`;
   
-  constructor(private readonly http: HttpClient) { }
+  constructor(private readonly http: HttpClient) {}
 
   get token(): string {
     const currentDate = new Date();

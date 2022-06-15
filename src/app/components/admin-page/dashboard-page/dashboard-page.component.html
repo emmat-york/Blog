@@ -24,16 +24,18 @@
             </div>
 
             <!-- Articles List -->
-            <section class="article" *ngFor="let article of articles | articleSearch: searchRequest">
-                <app-post class="post" [article]="article" [routerLink]="['/post', article.id]"></app-post>
+            <section class="articles-section">
+                <div class="article" *ngFor="let article of articles | articleSearch: searchRequest">
+                    <app-post class="post" [article]="article" [routerLink]="['/post', article.id]"></app-post>
 
-                <div class="edit-buttons-container">
-                    <button class="edit-button" [routerLink]="['/admin', 'post', article.id, 'edit']">
-                        Edit article
-                    </button>
-                    <button class="edit-button remove" (click)="removeArticle(article.id)">
-                        Remove article
-                    </button>
+                    <div class="edit-buttons-container">
+                        <button class="edit-button" [routerLink]="['/admin', 'post', article.id, 'edit']">
+                            Edit article
+                        </button>
+                        <button class="edit-button remove" (click)="removeArticle(article.id)">
+                            Remove article
+                        </button>
+                    </div>
                 </div>
             </section>
 
