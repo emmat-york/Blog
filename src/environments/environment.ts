@@ -1,17 +1,17 @@
 import { Environment } from "./environment-model";
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAUYlZgYXsESU5DBXDTq15ppchV7X5kIY4",
-  authDomain: "autoreview-c2b09.firebaseapp.com",
-  projectId: "autoreview-c2b09",
-  storageBucket: "autoreview-c2b09.appspot.com",
-  messagingSenderId: "429922282552",
-  appId: "1:429922282552:web:18bb4e7ecff1ff9b364acd",
-  measurementId: "G-BMRD96MEBT"
+  apiKey: "AIzaSyAWs4st5XYJWKsdT4_K_Bgq-SUEJdtkPaI",
+  authDomain: "clarkson-s-reviews.firebaseapp.com",
+  projectId: "clarkson-s-reviews",
+  storageBucket: "clarkson-s-reviews.appspot.com",
+  messagingSenderId: "169085516353",
+  appId: "1:169085516353:web:fbb8784cecd12fc49de4c0",
+  measurementId: "G-2KM62ZWPN4"
 };
 
 export const environment: Environment = {
   production: false,
-  apiKey: firebaseConfig.apiKey,
-  fbDbUrl: "https://autoreview-c2b09-default-rtdb.firebaseio.com",
+  apiKey: firebaseConfig.apiKey, // Using for the auth data
+  fbDbUrl: "https://clarkson-s-reviews-default-rtdb.firebaseio.com", // Using for get access to data base
 };

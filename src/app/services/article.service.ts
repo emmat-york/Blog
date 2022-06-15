@@ -9,7 +9,7 @@ import { catchError, map } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ArticleService implements OnDestroy {
-  public articlesStorage$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>(null);
+  public articlesStorage$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>([]);
 
   constructor(private readonly http: HttpClient) { }
 
@@ -17,12 +17,12 @@ export class ArticleService implements OnDestroy {
     this.articlesStorage$.complete();
   }
 
-  public createArticle(post: ArticleFormData): Observable<CreateArticleResponse> {
-    return this.http.post<CreateArticleResponse>(`${environment.fbDbUrl}/posts.json`, post);
+  public createArticle(article: ArticleFormData): Observable<CreateArticleResponse> {
+    return this.http.post<CreateArticleResponse>(`${environment.fbDbUrl}/articles.json`, article);
   }
 
   public fetchArticles(): Observable<null> {
-    return this.http.get(`${environment.fbDbUrl}/posts.json`)
+    return this.http.get(`${environment.fbDbUrl}/articles.json`)
       .pipe(
         map((response) => {
           const mappedArticles = Object.entries((response) as FetchArticlesResponse).reduce((articles, [articleId, article]): Article[] => {
@@ -46,7 +46,7 @@ export class ArticleService implements OnDestroy {
   }
 
   public getArticleById(articleId: string): Observable <Article> {
-    return this.http.get<ArticleFormData>(`${environment.fbDbUrl}/posts/${articleId}.json`)
+    return this.http.get<ArticleFormData>(`${environment.fbDbUrl}/articles/${articleId}.json`)
     .pipe(map((article) => {
       const mappedArticle: Article = {
         ...article,
@@ -59,10 +59,10 @@ export class ArticleService implements OnDestroy {
   }
 
   public updateArticle(updatedArticle: Article): Observable <Article> {
-    return this.http.patch<Article>(`${environment.fbDbUrl}/posts/${updatedArticle.id}.json`, updatedArticle);
+    return this.http.patch<Article>(`${environment.fbDbUrl}/articles/${updatedArticle.id}.json`, updatedArticle);
   }
 
   public removeArticle(articleId: string): Observable<void> {
-    return this.http.delete<void>(`${environment.fbDbUrl}/posts/${articleId}.json`);
+    return this.http.delete<void>(`${environment.fbDbUrl}/articles/${articleId}.json`);
   }
 }

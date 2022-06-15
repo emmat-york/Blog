@@ -6,7 +6,7 @@
     width: $external-container;
     margin: 0 auto;
 
-    .posts-container-wrapper {
+    .articles-container-wrapper {
         width: $external-container;
         margin: 0 auto;
         background-color: $white;
@@ -54,12 +54,17 @@
             }
         }
 
-        .posts-container {
-            width: $internal-container;
-            margin: 0 auto;
+        .articles-section {
+            display: flex;
+            flex-direction: column-reverse;
 
-            .post {
-                outline: none;
+            .article-container {
+                width: $internal-container;
+                margin: 0 auto;
+    
+                .article {
+                    outline: none;
+                }
             }
         }
     }
