@@ -1,4 +1,4 @@
-import { Environment } from "./environment-model";
+import { Environment } from "../app/models/environment.model";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAWs4st5XYJWKsdT4_K_Bgq-SUEJdtkPaI",
@@ -13,5 +13,5 @@ export const firebaseConfig = {
 export const environment: Environment = {
   production: false,
   apiKey: firebaseConfig.apiKey, // Using for the auth data
-  fbDbUrl: "https://clarkson-s-reviews-default-rtdb.firebaseio.com", // Using for get access to data base
+  baseStorageUrl: "https://clarkson-s-reviews-default-rtdb.firebaseio.com", // Using for get access to data base
 };
