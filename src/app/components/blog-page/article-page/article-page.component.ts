@@ -8,11 +8,11 @@ import { ArticleService } from 'src/app/services/article.service';
 import { BlogService } from 'src/app/services/blog.service';
 
 @Component({
-  selector: 'app-post-page',
-  templateUrl: './post-page.component.html',
-  styleUrls: ['./post-page.component.scss']
+  selector: 'app-article-page',
+  templateUrl: './article-page.component.html',
+  styleUrls: ['./article-page.component.scss']
 })
-export class PostPageComponent implements OnInit, OnDestroy {
+export class ArticlePageComponent implements OnInit, OnDestroy {
   public article: Article;
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 
