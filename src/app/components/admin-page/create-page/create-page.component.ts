@@ -23,7 +23,7 @@ export class CreatePageComponent implements OnInit {
     private readonly titleService: Title,
     private readonly alertService: AlertService,
     private readonly blogService: BlogService,
-  ) {}
+  ) { }
 
   public ngOnInit(): void {
     this.componentInizialization();
@@ -46,9 +46,8 @@ export class CreatePageComponent implements OnInit {
       .pipe(
         take(1),
         catchError((error) => {
-          console.log(error);
           this.alertService.error("Something went wrong while creating the article!");
-          return [];
+          throw new Error(error);
         }),
         withLatestFrom(this.articleService.articlesStorage$),
         map(([{ name: articleId }, articlesStorage]) => {

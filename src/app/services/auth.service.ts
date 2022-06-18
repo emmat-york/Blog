@@ -3,12 +3,12 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse, LoginPayload, UserFormData } from '../models/auth.model';
-import { Authentication } from './abstract/authentication.interface';
+import { AuthenticationApi } from './abstract/authentication.interface';
 
 @Injectable({
   providedIn: "root"
 })
-export class AuthService implements Authentication {
+export class AuthService implements AuthenticationApi {
   public loginErrors$: Subject<string> = new Subject<string>();
   private readonly loginPath: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`;
   
@@ -16,7 +16,7 @@ export class AuthService implements Authentication {
 
   public get token(): string {
     const currentDate = new Date();
-    const expDate = new Date(localStorage.getItem("fb-token-exp"));
+    const expDate = new Date(localStorage.getItem("token-exp-date"));
 
     if (currentDate > expDate) {
       this.logOut();
@@ -24,7 +24,7 @@ export class AuthService implements Authentication {
       return null;
     }
 
-    return localStorage.getItem("fb-token");
+    return localStorage.getItem("auth-token");
   }
 
   public login(userData: UserFormData): Observable<AuthResponse | HttpErrorResponse> {
@@ -34,7 +34,7 @@ export class AuthService implements Authentication {
       returnSecureToken,
     };
 
-    return this.http.post<any>(this.loginPath, loginPayload)
+    return this.http.post<AuthResponse>(this.loginPath, loginPayload)
     .pipe(
       tap(this.setToken),
       catchError(this.handleLoginError.bind(this))
@@ -56,8 +56,8 @@ export class AuthService implements Authentication {
   
       const expData = new Date(currentDate + mappedExpiresInToMiliseconds);
   
-      localStorage.setItem("fb-token", authResponse.idToken);
-      localStorage.setItem("fb-token-exp", expData.toString());
+      localStorage.setItem("auth-token", authResponse.idToken);
+      localStorage.setItem("token-exp-date", expData.toString());
     } else {
       localStorage.clear();
     }

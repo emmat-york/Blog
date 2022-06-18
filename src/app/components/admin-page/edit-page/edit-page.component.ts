@@ -50,10 +50,8 @@ export class EditPageComponent implements OnInit {
       .pipe(
         take(1),
         catchError((error) => {
-          console.log(error);
           this.alertService.error("Something went wrong while updating article!");
-
-          return null;
+          throw new Error(error);
         })
       )
       .subscribe(() => {

@@ -20,7 +20,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
     public readonly blogService: BlogService,
     private readonly articleService: ArticleService,
     private readonly titleService: Title,
-  ) {}
+  ) { }
 
   public ngOnInit(): void {
     this.articlesInicizlization();

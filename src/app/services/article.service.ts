@@ -4,12 +4,12 @@ import { Observable, BehaviorSubject } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Article, ArticleFormData, CreateArticleResponse, FetchArticlesResponse } from '../models/article.model';
 import { catchError, map } from 'rxjs/operators';
-import { ArticlesStorageAPI } from './abstract/blog-articles.interface';
+import { ArticlesDatabaseApi } from './abstract/articles-database.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService implements ArticlesStorageAPI {
+export class ArticleService implements ArticlesDatabaseApi {
   public articlesStorage$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>(null);
 
   constructor(private readonly http: HttpClient) {
