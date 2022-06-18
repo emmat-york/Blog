@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BlogPageComponent } from '../components/blog-page/blog-page.component';
 import { HomePageComponent } from '../components/blog-page/home-page/home-page.component';
-import { PostPageComponent } from '../components/blog-page/post-page/post-page.component';
+import { ArticlePageComponent } from '../components/blog-page/article-page/article-page.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared.module';
 
@@ -9,7 +9,7 @@ import { SharedModule } from './shared.module';
   declarations: [
     BlogPageComponent,
     HomePageComponent,
-    PostPageComponent,
+    ArticlePageComponent,
   ],
   imports: [
     RouterModule,

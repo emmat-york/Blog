@@ -3,17 +3,18 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, Subject, tap, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthResponse, LoginPayload, UserFormData } from '../models/auth.model';
+import { Authentication } from './abstract/authentication.interface';
 
 @Injectable({
   providedIn: "root"
 })
-export class AuthService {
+export class AuthService implements Authentication {
   public loginErrors$: Subject<string> = new Subject<string>();
   private readonly loginPath: string = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${environment.apiKey}`;
   
-  constructor(private readonly http: HttpClient) {}
+  constructor(private readonly http: HttpClient) { }
 
-  get token(): string {
+  public get token(): string {
     const currentDate = new Date();
     const expDate = new Date(localStorage.getItem("fb-token-exp"));
 

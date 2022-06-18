@@ -4,11 +4,12 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 import { Article, ArticleFormData, CreateArticleResponse, FetchArticlesResponse } from '../models/article.model';
 import { catchError, map, tap } from 'rxjs/operators';
+import { BlogArticles } from './abstract/blog-articles.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ArticleService implements OnDestroy {
+export class ArticleService implements BlogArticles, OnDestroy {
   public articlesStorage$: BehaviorSubject<Article[]> = new BehaviorSubject<Article[]>([]);
 
   constructor(private readonly http: HttpClient) { }
