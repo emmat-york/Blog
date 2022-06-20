@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { combineLatest, Subject } from 'rxjs';
-import { filter, takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { filter, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Article } from 'src/app/models/article.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { BlogService } from 'src/app/services/blog.service';
@@ -35,17 +35,17 @@ export class ArticlePageComponent implements OnInit, OnDestroy {
   private articlesInicizlization(): void {
     this.blogService.goToScreenTop();
 
-    combineLatest([this.articleService.articlesStorage$, this.route.params])
-      .pipe(
-        takeUntil(this.onDestroy$),
-        filter(([articles, _]) => !!articles.length),
-      )
-      .subscribe(([articles, params]) => {
-        const articleId = params['id'];
-        const currentArticle = articles.find((article) => article.id === articleId);
-
-        this.article = currentArticle;
-        this.titleService.setTitle(currentArticle.header);
-      });
+    this.articleService.articlesStorage$
+    .pipe(
+      takeUntil(this.onDestroy$),
+      filter((articles) => !!articles),
+      withLatestFrom(this.route.params)
+    )
+    .subscribe(([articles, params]) => {
+      const articleId = params['id'];
+      this.article = articles.find((article) => article.id === articleId);
+      
+      this.titleService.setTitle(this.article.header);
+    });
   }
 }

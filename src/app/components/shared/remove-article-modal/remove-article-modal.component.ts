@@ -16,7 +16,7 @@ export class RemoveArticleModalComponent implements OnInit {
   constructor(
     private readonly articlesService: ArticleService,
     private readonly alertService: AlertService,
-  ) {}
+  ) { }
 
   public ngOnInit(): void {
     this.articleData = this.modalData;
@@ -33,16 +33,16 @@ export class RemoveArticleModalComponent implements OnInit {
     .pipe(
       take(1),
       catchError((error) => {
-        console.log(error);
         this.alertService.error("Something went wrong while removing the article!");
-        return null;
+        throw new Error(error);
       }),
     )
     .subscribe(() => {
       const newArticles = articles.filter(article => article.id !== articleId);
       this.articlesService.articlesStorage$.next(newArticles);
-      this.modalData.viewContainerRef.clear();
+
       this.alertService.success("Article has been seccessfully removed!");
+      this.modalData.viewContainerRef.clear();
     });
   }
 }

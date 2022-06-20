@@ -4,12 +4,14 @@ import { HomePageComponent } from '../components/blog-page/home-page/home-page.c
 import { ArticlePageComponent } from '../components/blog-page/article-page/article-page.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from './shared.module';
+import { PagginationPipe } from '../pipes/paggination.pipe';
 
 @NgModule({
   declarations: [
     BlogPageComponent,
     HomePageComponent,
     ArticlePageComponent,
+    PagginationPipe,
   ],
   imports: [
     RouterModule,
