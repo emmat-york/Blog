@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute, Params } from '@angular/router';
-import { catchError, switchMap, take } from 'rxjs/operators';
+import { ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
+import { catchError, take, filter, withLatestFrom, takeUntil } from 'rxjs/operators';
 import { Article } from 'src/app/models/article.model';
 import { AlertService } from 'src/app/services/alert.service';
 import { ArticleService } from 'src/app/services/article.service';
@@ -16,7 +17,8 @@ import { BlogService } from 'src/app/services/blog.service';
 export class EditPageComponent implements OnInit {
   public editPageFormGroup: FormGroup;
   public article: Article;
-  public isSubmitted: boolean = false;
+  public isSubmitted: boolean;
+  private readonly onDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
     private readonly router: ActivatedRoute,
@@ -25,7 +27,7 @@ export class EditPageComponent implements OnInit {
     private readonly titleService: Title,
     private readonly alertService: AlertService,
     private readonly blogService: BlogService,
-  ) {}
+  ) { }
 
   public ngOnInit(): void {
     this.articleInicialization();
@@ -48,10 +50,8 @@ export class EditPageComponent implements OnInit {
       .pipe(
         take(1),
         catchError((error) => {
-          console.log(error);
           this.alertService.error("Something went wrong while updating article!");
-
-          return null;
+          throw new Error(error);
         })
       )
       .subscribe(() => {
@@ -59,6 +59,7 @@ export class EditPageComponent implements OnInit {
         this.article = {
           ...this.editPageFormGroup.value,
         };
+
         this.alertService.success("Article has been successfully updated!");
       });
   }
@@ -66,16 +67,17 @@ export class EditPageComponent implements OnInit {
   private articleInicialization(): void {
     this.blogService.goToScreenTop();
 
-    this.router.params
+    this.articleService.articlesStorage$
       .pipe(
-        take(1),
-        switchMap((params: Params) => {
-          return this.articleService.getArticleById(params["id"]);
-        }),
+        takeUntil(this.onDestroy$),
+        filter((articles) => !!articles),
+        withLatestFrom(this.router.params)
       )
-      .subscribe((article: Article) => {
-        this.formGroupInitialization(article);
-        this.article = article;
+      .subscribe(([articles, params]) => {
+        const articleId = params['id'];
+        this.article = articles.find((article) => article.id === articleId);
+
+        this.formGroupInitialization(this.article);
         this.titleService.setTitle(this.article.header);
       });
   }
