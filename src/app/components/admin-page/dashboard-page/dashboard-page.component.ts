@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
 import { PageTitles } from 'src/app/models/title.model';
 import { BlogService } from 'src/app/services/blog.service';
 import { RemoveArticleModalComponent } from '../../shared/remove-article-modal/remove-article-modal.component';
+import { ChangeDirection, PagginationValues } from '../../blog-page/home-page/home-page.component';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -16,7 +17,9 @@ import { RemoveArticleModalComponent } from '../../shared/remove-article-modal/r
 export class DashboardPageComponent implements OnInit, OnDestroy {
   public searchRequest: string = "";
   public articles: Article[] = [];
-  public isDeleting: boolean = false;
+  public isDeleting: boolean;
+  public pageNumber: number = 1;
+  public pagginationValues: PagginationValues;
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -34,6 +37,11 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+  }
+
+  public onPageChange(direction: ChangeDirection): void {
+    direction === "Previous" ? this.pageNumber-- : this.pageNumber++;
+    this.setPaggination();
   }
 
   public removeArticle(articleId: string): void {
@@ -56,6 +64,21 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((articles) => {
         this.articles = articles;
+        this.setPaggination();
       });
+  }
+
+  private setPaggination(): void {
+    // Example: Articles count - 11. Page - 2.
+    const firstIndex = (this.pageNumber - 1) * 10; // (2 - 1) * 10 = 10 - First index.
+    const possibleLastIndex = this.pageNumber * 10; // 2 * 10 = 20 - Max count of articles on the page.
+
+    const pageArticlesLenght = this.articles
+    .slice(firstIndex, possibleLastIndex).length; // Sliced articles in this range. 
+
+    this.pagginationValues = {
+      valueFrom: firstIndex, // Index of the first article - 10.
+      valueTo: firstIndex + pageArticlesLenght, // The last article index - 10 + 1 = 11.
+    };
   }
 }

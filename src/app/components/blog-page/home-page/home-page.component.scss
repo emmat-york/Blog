@@ -63,7 +63,7 @@
 
         .articles-section {
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
 
             .article-container {
                 width: $internal-container;

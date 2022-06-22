@@ -7,7 +7,7 @@ import { BlogService } from 'src/app/services/blog.service';
 import { ArticleService } from 'src/app/services/article.service';
 import { PageTitles } from 'src/app/models/title.model';
 
-type ChangeDirection = "Previous" | "Next";
+export type ChangeDirection = "Previous" | "Next";
 
 export interface PagginationValues {
   valueFrom: number;

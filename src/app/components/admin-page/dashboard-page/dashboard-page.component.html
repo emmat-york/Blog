@@ -14,16 +14,24 @@
         <input class="search-field" type="text" [(ngModel)]="searchRequest" placeholder="Search">
         <section *ngIf="articles; else loader">
             <div class="paggination-container">
-                <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
-                <button class="next-page-button">
+                <button class="page-button" [class.button-invisible]="pageNumber === 1" (click)="onPageChange('Previous')">
+                    <img class="button-image previous" src="../../../../assets/next-page.png" alt="next-page">
+                    <span class="button-text">Previous page</span>
+                </button>
+        
+                <div class="paggination-dashboard">
+                    {{ "Showing " + (pagginationValues.valueFrom + 1) + " - " + (pagginationValues.valueTo) + " of " + articles.length }}
+                </div>
+        
+                <button class="page-button" [class.button-invisible]="articles.length <= pageNumber * 10" (click)="onPageChange('Next')">
                     <span class="button-text">Next page</span>
-                    <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
+                    <img class="button-image" src="../../../../assets/next-page.png" alt="next-page">
                 </button>
             </div>
 
             <!-- Articles List -->
             <section class="articles-section">
-                <div class="article" *ngFor="let article of articles | articleSearch: searchRequest">
+                <div class="article" *ngFor="let article of articles | paggination: pagginationValues | articleSearch: searchRequest">
                     <app-post class="post" [article]="article" [routerLink]="['/post', article.id]"></app-post>
 
                     <div class="edit-buttons-container">
@@ -39,10 +47,14 @@
 
             <!-- Paggination -->
             <div class="paggination-container">
-                <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
-                <button class="next-page-button">
+                <button class="page-button" [class.button-invisible]="pageNumber === 1" (click)="onPageChange('Previous')">
+                    <img class="button-image previous" src="../../../../assets/next-page.png" alt="next-page">
+                    <span class="button-text">Previous page</span>
+                </button>
+        
+                <button class="page-button" [class.button-invisible]="articles.length <= pageNumber * 10" (click)="onPageChange('Next')">
                     <span class="button-text">Next page</span>
-                    <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
+                    <img class="button-image" src="../../../../assets/next-page.png" alt="next-page">
                 </button>
             </div>
         </section>
