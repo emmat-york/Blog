@@ -7,7 +7,8 @@ import { Title } from '@angular/platform-browser';
 import { PageTitles } from 'src/app/models/title.model';
 import { BlogService } from 'src/app/services/blog.service';
 import { RemoveArticleModalComponent } from '../../shared/remove-article-modal/remove-article-modal.component';
-import { ChangeDirection, PagginationValues } from '../../blog-page/home-page/home-page.component';
+import { ChangeDirection, PaginationValues } from 'src/app/models/pagination.model';
+import { getPaginationValues } from 'src/app/helpers/pagination.helper';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -19,7 +20,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   public articles: Article[] = [];
   public isDeleting: boolean;
   public pageNumber: number = 1;
-  public pagginationValues: PagginationValues;
+  public paginationValues: PaginationValues;
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -41,11 +42,10 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
 
   public onPageChange(direction: ChangeDirection): void {
     direction === "Previous" ? this.pageNumber-- : this.pageNumber++;
-    this.setPaggination();
+    this.setPagination();
   }
 
   public removeArticle(articleId: string): void {
-    // Modal opening
     const modalFactory = this.resolver.resolveComponentFactory(RemoveArticleModalComponent);
     const removeModalComponent: ComponentRef<RemoveArticleModalComponent> = this.viewContainerRef.createComponent(modalFactory);
 
@@ -64,21 +64,14 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((articles) => {
         this.articles = articles;
-        this.setPaggination();
+
+        if (this.articles) {
+          this.setPagination();
+        }
       });
   }
 
-  private setPaggination(): void {
-    // Example: Articles count - 11. Page - 2.
-    const firstIndex = (this.pageNumber - 1) * 10; // (2 - 1) * 10 = 10 - First index.
-    const possibleLastIndex = this.pageNumber * 10; // 2 * 10 = 20 - Max count of articles on the page.
-
-    const pageArticlesLenght = this.articles
-    .slice(firstIndex, possibleLastIndex).length; // Sliced articles in this range. 
-
-    this.pagginationValues = {
-      valueFrom: firstIndex, // Index of the first article - 10.
-      valueTo: firstIndex + pageArticlesLenght, // The last article index - 10 + 1 = 11.
-    };
+  private setPagination(): void {
+    this.paginationValues = getPaginationValues(this.articles, this.pageNumber);
   }
 }
