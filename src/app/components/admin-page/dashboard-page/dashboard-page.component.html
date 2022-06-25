@@ -1,10 +1,9 @@
-<!-- Articles -->
 <section class="admin-dashboard-content">
     <header class="dashboard-header">
         <div class="internal-header-container">
             <h2 class="header">Welcome to administrator dashboard</h2>
             <p class="slogan-text">
-                Dear Administrator, you can<br />
+                Dear Administrator, you can<br/>
                 Create, Read, Update, Delete Your Articles here.
             </p>
         </div>
@@ -14,16 +13,25 @@
         <input class="search-field" type="text" [(ngModel)]="searchRequest" placeholder="Search">
         <section *ngIf="articles; else loader">
             <div class="paggination-container">
-                <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
-                <button class="next-page-button">
-                    <span class="button-text">Next page</span>
-                    <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
-                </button>
+                <app-pagination-button
+                    [class.button-invisible]="pageNumber === 1"
+                    [buttonType]="'Previous'"
+                    (click)="onPageChange('Previous')"
+                ></app-pagination-button>
+        
+                <div class="paggination-dashboard">
+                    {{ "Showing " + (paginationValues.valueFrom + 1) + " - " + (paginationValues.valueTo) + " of " + articles.length }}
+                </div>
+
+                <app-pagination-button
+                    [class.button-invisible]="articles.length <= pageNumber * 10"
+                    [buttonType]="'Next'"
+                    (click)="onPageChange('Next')"
+                ></app-pagination-button>
             </div>
 
-            <!-- Articles List -->
             <section class="articles-section">
-                <div class="article" *ngFor="let article of articles | articleSearch: searchRequest">
+                <div class="article" *ngFor="let article of articles | pagination: paginationValues | articleSearch: searchRequest">
                     <app-post class="post" [article]="article" [routerLink]="['/post', article.id]"></app-post>
 
                     <div class="edit-buttons-container">
@@ -37,13 +45,18 @@
                 </div>
             </section>
 
-            <!-- Paggination -->
             <div class="paggination-container">
-                <div class="paggination-dashboard">Showing 1 - 10 of {{ articles.length }} results</div>
-                <button class="next-page-button">
-                    <span class="button-text">Next page</span>
-                    <img class="next-button-image" src="../../../../assets/next-page.png" alt="next-page">
-                </button>
+                <app-pagination-button
+                    [class.button-invisible]="pageNumber === 1"
+                    [buttonType]="'Previous'"
+                    (click)="onPageChange('Previous')"
+                ></app-pagination-button>
+        
+                <app-pagination-button
+                    [class.button-invisible]="articles.length <= pageNumber * 10"
+                    [buttonType]="'Next'"
+                    (click)="onPageChange('Next')"
+                ></app-pagination-button>
             </div>
         </section>
     </div>

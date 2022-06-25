@@ -12,6 +12,8 @@ import { GlobalFooterComponent } from "../components/shared/global-footer/global
 import { AuthButtonComponent } from "../components/shared/auth-button/auth-button.component";
 import { LogoutModalComponent } from '../components/shared/logout-modal/logout-modal.component';
 import { RemoveArticleModalComponent } from '../components/shared/remove-article-modal/remove-article-modal.component';
+import { PaginationPipe } from "../pipes/pagination.pipe";
+import { PaginationButtonComponent } from '../components/shared/pagination-button/pagination-button.component';
 
 @NgModule({
     declarations: [
@@ -21,10 +23,12 @@ import { RemoveArticleModalComponent } from '../components/shared/remove-article
         GlobalFooterComponent,
         AuthButtonComponent,
         LogoutModalComponent,
+        RemoveArticleModalComponent,
+        PaginationButtonComponent,
         ColorObserverDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
-        RemoveArticleModalComponent,
+        PaginationPipe,
     ],
     imports: [
         CommonModule,
@@ -42,9 +46,11 @@ import { RemoveArticleModalComponent } from '../components/shared/remove-article
         GlobalFooterComponent,
         AuthButtonComponent,
         LogoutModalComponent,
+        PaginationButtonComponent,
         ColorObserverDirective,
         ArticleSearchPipe,
         WordsSlicerPipe,
+        PaginationPipe,
     ],
 })
 export class SharedModule { }

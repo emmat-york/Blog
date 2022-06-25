@@ -32,7 +32,7 @@ export class ArticleService implements ArticlesDatabaseApi {
               return [...articles, mappedArticle];
             }, []);
 
-            return mappedArticles;
+            return mappedArticles.reverse();
         }),
         catchError((error) => {
           this.articlesStorage$.next([]);

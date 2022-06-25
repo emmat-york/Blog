@@ -7,6 +7,8 @@ import { Title } from '@angular/platform-browser';
 import { PageTitles } from 'src/app/models/title.model';
 import { BlogService } from 'src/app/services/blog.service';
 import { RemoveArticleModalComponent } from '../../shared/remove-article-modal/remove-article-modal.component';
+import { ChangeDirection, PaginationValues } from 'src/app/models/pagination.model';
+import { getPaginationValues } from 'src/app/helpers/pagination.helper';
 
 @Component({
   selector: 'app-dashboard-page',
@@ -16,7 +18,9 @@ import { RemoveArticleModalComponent } from '../../shared/remove-article-modal/r
 export class DashboardPageComponent implements OnInit, OnDestroy {
   public searchRequest: string = "";
   public articles: Article[] = [];
-  public isDeleting: boolean = false;
+  public isDeleting: boolean;
+  public pageNumber: number = 1;
+  public paginationValues: PaginationValues;
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 
   constructor(
@@ -36,8 +40,12 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
     this.onDestroy$.complete();
   }
 
+  public onPageChange(direction: ChangeDirection): void {
+    direction === "Previous" ? this.pageNumber-- : this.pageNumber++;
+    this.setPagination();
+  }
+
   public removeArticle(articleId: string): void {
-    // Modal opening
     const modalFactory = this.resolver.resolveComponentFactory(RemoveArticleModalComponent);
     const removeModalComponent: ComponentRef<RemoveArticleModalComponent> = this.viewContainerRef.createComponent(modalFactory);
 
@@ -56,6 +64,14 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.onDestroy$))
       .subscribe((articles) => {
         this.articles = articles;
+
+        if (this.articles) {
+          this.setPagination();
+        }
       });
+  }
+
+  private setPagination(): void {
+    this.paginationValues = getPaginationValues(this.articles, this.pageNumber);
   }
 }

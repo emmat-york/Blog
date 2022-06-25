@@ -26,31 +26,6 @@
                 color: $dark-grey-1;
             }
 
-            .page-button {
-                padding: 0;
-                border: none;
-                background-color: $white;
-                display: flex;
-                align-items: center;
-                cursor: pointer;
-
-                .button-text {
-                    font-family: 'Nunito', sans-serif;
-                    font-size: $medium;
-                    font-weight: 500;
-                    line-height: 1;
-                    color: $dark-blue;
-                }
-
-                .button-image {
-                    @include blockSize(18px, 18px);
-
-                    &.previous {
-                        transform: rotate(180deg);
-                    }
-                }
-            }
-
             .button-invisible {
                 visibility: hidden;
             }
@@ -63,7 +38,7 @@
 
         .articles-section {
             display: flex;
-            flex-direction: column-reverse;
+            flex-direction: column;
 
             .article-container {
                 width: $internal-container;
