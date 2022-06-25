@@ -1,0 +1,11 @@
+<button class="pagination-button">
+    <ng-container *ngIf="buttonType === 'Previous'; else Next">
+        <img class="button-image" [src]="'../../../../assets/' + buttonType + '-page.png'" [alt]="buttonType + ' page'">
+        <span class="button-text">{{ buttonType + " page" }}</span>
+    </ng-container>
+</button>
+
+<ng-template #Next>
+    <span class="button-text">{{ buttonType + " page" }}</span>
+    <img class="button-image" [src]="'../../../../assets/' + buttonType + '-page.png'" [alt]="buttonType + ' page'">
+</ng-template>

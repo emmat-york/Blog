@@ -67,36 +67,18 @@
                 margin: 0 auto;
                 padding-top: 30px;
                 display: flex;
-                justify-content: flex-end;
+                justify-content: space-between;
                 align-items: center;
     
                 .paggination-dashboard {
-                    padding-right: 200px;
                     font-family: 'Nunito', sans-serif;
                     font-size: $small;
                     font-weight: 400;
                     color: $dark-grey-1;
                 }
     
-                .next-page-button {
-                    padding: 0;
-                    border: none;
-                    background-color: $white;
-                    display: flex;
-                    align-items: center;
-                    cursor: pointer;
-    
-                    .button-text {
-                        font-family: 'Nunito', sans-serif;
-                        font-size: $medium;
-                        font-weight: 500;
-                        line-height: 1;
-                        color: $dark-blue;
-                    }
-    
-                    .next-button-image {
-                        @include blockSize(18px, 18px);
-                    }
+                .button-invisible {
+                    visibility: hidden;
                 }
     
                 &:last-child {
