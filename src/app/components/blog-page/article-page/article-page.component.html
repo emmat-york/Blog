@@ -5,7 +5,7 @@
         <span> | {{ article.releaseDate| date: 'EEEE LLLL dd yyyy, hh zzz' }}, The Sunday Times</span>
     </p>
     <img class="article-image" [src]="article.photo" alt="article-image">
-    <article class="article">
+    <article class="article" #text>
         {{ article.article }}
     </article>
 </section>
