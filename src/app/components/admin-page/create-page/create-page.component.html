@@ -20,8 +20,13 @@
         </div>
 
         <div class="form-control-wrapper">
+            <label class="label" for="previewText">Preview text</label>
+            <input class="control" id="previewText" type="text" formControlName="previewText">
+        </div>
+
+        <div class="form-control-wrapper">
             <label class="label" for="article">Article</label>
-            <textarea class="control textarea" id="article" cols="20" rows="15" formControlName="article"></textarea>
+            <editor id="article" [init]="{base_url: '/tinymce', suffix: '.min'}" formControlName="article"></editor>
         </div>
 
         <div class="form-control-wrapper">

@@ -1,4 +1,3 @@
-<!-- Admin Panel Header -->
 <header class="navigation-container" *ngIf="authService.isAuth()">
     <nav class="admin-page-navigation">
         <ul class="admin-nav-list">
@@ -21,12 +20,10 @@
     </nav>
 </header>
 
-<!-- Admin Panel Content -->
 <main class="admin-content">
     <router-outlet></router-outlet>
 </main>
 
-<!-- Admin Footer -->
 <footer *ngIf="authService.isAuth()">
     <app-global-footer></app-global-footer>
 </footer>

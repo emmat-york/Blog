@@ -4,6 +4,7 @@ export interface ArticleFormData {
     auther: string;
     autherLink: string;
     header: string;
+    previewText: string;
     article: string;
     releaseDate: Date;
     photo: string;

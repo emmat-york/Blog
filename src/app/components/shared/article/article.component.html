@@ -1,0 +1,22 @@
+<div class="article-container" [class.admin-settings]="!isBlogPage">
+    <figure class="article-image-container" *ngIf="isBlogPage">
+        <img
+            class="article-image"
+            [src]="article.photo"
+            alt="article-image"
+        />
+    </figure>
+    <section class="article-description-container">
+        <header class="article-header-container">
+            <p class="article-auther">{{ article.auther }}</p>
+            <h2 class="article-header">{{ article.header }}</h2>
+        </header>
+        <article class="text-description">
+            {{ article.previewText | wordsSlicer }}
+        </article>
+        <p class="article-date" [class.admin-date]="!isBlogPage">
+            <span>{{ article.releaseDate | date: 'EEEE LLLL dd yyyy, hh zzz'}}</span>
+            <span *ngIf="isBlogPage">, The Sunday Times</span>
+        </p>
+    </section>
+</div>
