@@ -10,6 +10,7 @@ import { SharedModule } from './shared.module';
 import { AuthGuard } from '../services/auth.guard';
 import { MessagesPluginComponent } from '../components/admin-page/messages-plugin/messages-plugin.component';
 import { AlertService } from '../services/alert.service';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -32,8 +33,11 @@ import { AlertService } from '../services/alert.service';
         { path: 'post/:id/edit', component: EditPageComponent, canActivate: [AuthGuard] },
       ] },
     ]),
+    EditorModule,
   ],
   exports: [RouterModule],
-  providers: [AuthGuard, AlertService],
+  providers: [AuthGuard, AlertService,
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js' }
+  ],
 })
 export class AdminModule { }

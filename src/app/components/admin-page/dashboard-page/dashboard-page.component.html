@@ -34,7 +34,7 @@
 
             <section class="articles-section">
                 <div class="article" *ngFor="let article of articles | pagination: paginationValues | articleSearch: searchRequest">
-                    <app-post class="post" [article]="article" [routerLink]="['/post', article.id]"></app-post>
+                    <app-article class="post" [article]="article" [routerLink]="['/post', article.id]"></app-article>
 
                     <div class="edit-buttons-container">
                         <button class="edit-button" [routerLink]="['/admin', 'post', article.id, 'edit']">
