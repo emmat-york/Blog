@@ -83,12 +83,13 @@ export class EditPageComponent implements OnInit {
   }
 
   private formGroupInitialization(article: Article): void {
-    const { auther, autherLink, header, article: articleText, photo } = article;
+    const { auther, autherLink, header, article: articleText, photo, previewText } = article;
 
     this.editPageFormGroup = this.formBuilder.group({
       auther: [auther, Validators.required],
       autherLink: [autherLink, Validators.required],
       header: [header, Validators.required],
+      previewText: [previewText, Validators.required],
       article: [articleText, Validators.required],
       photo: [photo, Validators.required],
     });

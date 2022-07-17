@@ -20,8 +20,7 @@
 
     <section class="articles-section">
         <div class="article-container" *ngFor="let article of articles | pagination: paginationValues | articleSearch: blogService.searchRequest">
-            <app-post class="article" [isBlogPage]="true" [article]="article" [routerLink]="['/post', article.id]">
-            </app-post>
+            <app-article class="article" [isBlogPage]="true" [article]="article" [routerLink]="['/post', article.id]"></app-article>
         </div>
     </section>
 

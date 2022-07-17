@@ -55,7 +55,6 @@ export class CreatePageComponent implements OnInit {
             ...articlesStorage,
           ];
 
-          debugger;
           const newArticle: Article = {
             ...articleFormData,
             id: articleId,
@@ -83,6 +82,7 @@ export class CreatePageComponent implements OnInit {
       auther: [null, Validators.required],
       autherLink: [null, Validators.required],
       header: [null, Validators.required],
+      previewText: [null, Validators.required],
       article: [null, Validators.required],
       photo: [null, Validators.required],
     });

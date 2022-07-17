@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -13,7 +13,6 @@ import { BlogService } from 'src/app/services/blog.service';
   styleUrls: ['./article-page.component.scss']
 })
 export class ArticlePageComponent implements OnInit, OnDestroy {
-  @ViewChild("text", {static: false}) public textArea: ElementRef<HTMLElement>;
   public article: Article;
   private readonly onDestroy$: Subject<void> = new Subject<void>();
 

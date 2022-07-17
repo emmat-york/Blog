@@ -20,6 +20,11 @@
         </div>
 
         <div class="form-control-wrapper">
+            <label class="label" for="previewText">Preview text</label>
+            <input class="control" id="previewText" type="text" formControlName="previewText">
+        </div>
+
+        <div class="form-control-wrapper">
             <label class="label" for="article">Article</label>
             <editor id="article" [init]="{base_url: '/tinymce', suffix: '.min'}" formControlName="article"></editor>
         </div>

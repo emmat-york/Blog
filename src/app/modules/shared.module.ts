@@ -3,7 +3,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ColorObserverDirective } from "../directives/color-observer.directive";
 import { FormsModule } from "@angular/forms";
 import { ArticleSearchPipe } from "../pipes/article-search.pipe";
-import { PostComponent } from "../components/shared/post/post.component";
+import { ArticleComponent } from "../components/shared/article/article.component";
 import { CommonModule } from "@angular/common";
 import { ScrollButtonComponent } from "../components/shared/scroll-button/scroll-button.component";
 import { LoaderComponent } from "../components/shared/loader/loader.component";
@@ -17,7 +17,7 @@ import { PaginationButtonComponent } from '../components/shared/pagination-butto
 
 @NgModule({
     declarations: [
-        PostComponent,
+        ArticleComponent,
         ScrollButtonComponent,
         LoaderComponent,
         GlobalFooterComponent,
@@ -40,7 +40,7 @@ import { PaginationButtonComponent } from '../components/shared/pagination-butto
         CommonModule,
         HttpClientModule,
         FormsModule,
-        PostComponent,
+        ArticleComponent,
         ScrollButtonComponent,
         LoaderComponent,
         GlobalFooterComponent,

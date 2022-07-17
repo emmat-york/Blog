@@ -4,7 +4,7 @@
 :host {
     display: block;
 
-    .post-container {
+    .article-container {
         height: 200px;
         padding: 10px 0;
         border-top: 0.5px solid rgb(138, 138, 138);
@@ -18,20 +18,20 @@
             cursor: default;
         }
 
-        .post-image-container {
+        .article-image-container {
             margin: 0;
             margin-right: 20px;
 
-            .post-image {
+            .article-image {
                 @include blockSize(180px, 270px);
             }
         }
 
-        .post-description-container {
+        .article-description-container {
 
-            .post-header-container {
+            .article-header-container {
 
-                .post-auther {
+                .article-auther {
                     margin: 0;
                     margin-bottom: 7px;
                     font-family: 'Cormorant SC', serif;
@@ -40,7 +40,7 @@
                     text-transform: uppercase;
                 }
 
-                .post-header {
+                .article-header {
                     margin: 0;
                     margin-bottom: 7px;
                     font-size: 22px;
@@ -58,7 +58,7 @@
                 color: $dark-grey-1;
             }
 
-            .post-date {
+            .article-date {
                 margin: 0;
                 font-family: 'Nunito', sans-serif;
                 font-size: $tiny;
