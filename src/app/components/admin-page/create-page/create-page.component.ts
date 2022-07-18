@@ -85,6 +85,7 @@ export class CreatePageComponent implements OnInit {
       previewText: [null, Validators.required],
       article: [null, Validators.required],
       photo: [null, Validators.required],
+      photoDescription: [null, Validators.required],
     });
   }
 }
