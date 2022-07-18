@@ -38,6 +38,11 @@
             <input class="control" type="text" id="photo" formControlName="photo">
         </div>
 
+        <div class="form-control-wrapper">
+            <label class="label" for="photoDescription">Photo description</label>
+            <input class="control" type="text" id="photoDescription" formControlName="photoDescription">
+        </div>
+
         <button class="submit-button" type="submit" [disabled]="editPageFormGroup.invalid || isSubmitted">Apply changes</button>
     </form>
 </section>

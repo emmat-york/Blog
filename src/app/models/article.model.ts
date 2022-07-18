@@ -8,6 +8,7 @@ export interface ArticleFormData {
     article: string;
     releaseDate: Date;
     photo: string;
+    photoDescription: string;
 }
 
 export interface Article extends ArticleFormData {

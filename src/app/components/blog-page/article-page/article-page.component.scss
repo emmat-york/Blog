@@ -38,16 +38,21 @@
 
         .article-image {
             display: block;
-            width: 708px;
-            margin: 0 auto;
-            padding-bottom: 40px;
+            padding-bottom: 20px;
+        }
+
+        .photo-description {
+            position: relative;
+            font-family: "Nunito", sans-serif;
+            font-size: $large;
+            color: dimgray;
+            text-align: center;
         }
 
         .article {
             padding-bottom: 20px;
             font-family: 'Ibarra Real Nova', serif;
             font-size: 22px;
-            line-height: 1.5;
         }
     }
 }

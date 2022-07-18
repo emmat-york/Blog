@@ -50,15 +50,21 @@
                 font-family: "Noto Serif Display", serif;
 
                 .checkbox-control {
-                    margin-top: 5px;
+                    @include blockSize(16px, 16px);
                     margin-right: 5px;
+                    appearance: none;
+                    border: 1px solid $medium-grey;
                     cursor: pointer;
+
+                    &:checked {
+                        background-image: url("../../../../assets/check-solid.svg");
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
                 }
 
                 .checkbox-label {
                     font-size: $medium;
-                    font-weight: 500;
-                    color: $black;
                     cursor: pointer;
                 }
 

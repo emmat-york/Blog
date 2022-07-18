@@ -1,26 +1,17 @@
 @import "../../../../styles/variables.scss";
 @import "../../../../styles/mixins.scss";
 
-:host {
-    display: block;
-    
-    .admin-link {
-        height: 100%;
-        padding: 0 20px;
-        font-family: 'Nunito', sans-serif;
-        font-size: $medium;
-        font-weight: 400;
-        text-decoration: none;
-        background-color: rgb(2,131,135);
-        color: inherit;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: default;
-    
-        &:hover {
-            background-color: rgb(0,85,87);
-            cursor: pointer;
-        }
-    }
+.admin-link {
+    height: 100%;
+    padding: 0 20px;
+    font-family: 'Nunito', sans-serif;
+    font-size: $medium;
+    font-weight: 400;
+    text-decoration: none;
+    background-color: #1573A2;;
+    color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
