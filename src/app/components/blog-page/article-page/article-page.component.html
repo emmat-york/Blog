@@ -4,7 +4,7 @@
             <a class="authel-link" [href]="article.autherLink" target="_blank">{{ article.auther }}</a>
         <span> | {{ article.releaseDate| date: 'EEEE LLLL dd yyyy, hh zzz' }}, The Sunday Times</span>
     </p>
-    <img class="article-image" [src]="article.photo" alt="article-image">
+    <img class="article-image" [src]="article.photo" alt="article-image" (click)="onOpenArticleImage()">
     <div class="photo-description">{{ article.photoDescription }}</div>
     <article class="article" [innerHTML]="article.article"></article>
 </section>
