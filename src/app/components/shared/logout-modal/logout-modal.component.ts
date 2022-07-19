@@ -17,4 +17,10 @@ export class LogoutModalComponent {
   public onSignOut(): void {
     this.blogService.onModalClose$.next("SignOut");
   }
+
+  public onCLickOutside(event: any): void {
+    if (event.srcElement.className === "window-background") {
+      this.onCancel();
+    }
+  }
 }

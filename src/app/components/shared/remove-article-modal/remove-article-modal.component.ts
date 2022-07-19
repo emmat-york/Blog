@@ -26,6 +26,12 @@ export class RemoveArticleModalComponent implements OnInit {
     this.modalData.viewContainerRef.clear();
   }
 
+  public onCLickOutside(event: any): void {
+    if (event.srcElement.className === "window-background") {
+      this.onCancel();
+    }
+  }
+
   public onRemoveArticle(): void {
     const { articleId, articles } = this.articleData;
 

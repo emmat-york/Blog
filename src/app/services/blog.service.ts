@@ -6,7 +6,7 @@ import { AuthAction, ButtonType } from '../models/auth.model';
   providedIn: "root",
 })
 export class BlogService {
-  public searchRequest: string = "";
+  public searchRequest: string;
   public authStatus: ButtonType;
   public readonly onModalClose$ = new Subject<AuthAction>();
 
