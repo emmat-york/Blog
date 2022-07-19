@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, ComponentFactoryResolver, ComponentRef, OnDestroy, OnInit, ViewContainerRef } from '@angular/core';
 import { Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -6,6 +6,7 @@ import { filter, takeUntil, withLatestFrom } from 'rxjs/operators';
 import { Article } from 'src/app/models/article.model';
 import { ArticleService } from 'src/app/services/article.service';
 import { BlogService } from 'src/app/services/blog.service';
+import { ArticlePhotoModalComponent } from './article-photo-modal/article-photo-modal.component';
 
 @Component({
   selector: 'app-article-page',
@@ -21,6 +22,8 @@ export class ArticlePageComponent implements OnInit, OnDestroy {
     private readonly route: ActivatedRoute,
     private readonly articleService: ArticleService,
     private readonly blogService: BlogService,
+    private readonly viewContainerRef: ViewContainerRef,
+    private readonly resolver: ComponentFactoryResolver,
   ) { }
 
   public ngOnInit(): void {
@@ -30,6 +33,13 @@ export class ArticlePageComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.onDestroy$.next();
     this.onDestroy$.complete();
+  }
+
+  public onOpenArticleImage(): void {
+    const modalFactory = this.resolver.resolveComponentFactory(ArticlePhotoModalComponent);
+    const modal: ComponentRef<ArticlePhotoModalComponent> = this.viewContainerRef.createComponent(modalFactory);
+    modal.instance.articleImagePath = this.article.photo;
+    modal.instance.viewContainerRef = this.viewContainerRef;
   }
 
   private articlesInicizlization(): void {

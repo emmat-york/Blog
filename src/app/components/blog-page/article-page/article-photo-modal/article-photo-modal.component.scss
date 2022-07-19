@@ -1,0 +1,13 @@
+@import "../../../../../styles/mixins.scss";
+@import "../../../../../styles/modals.scss";
+
+.photo-container {
+    position: absolute;
+    @include blockSize(580px, 920px);
+    top: calc(50% - 290px);
+    left: calc(50% - 460px);
+
+    .modal-photo {
+        @include blockSize(inherit, inherit);
+    }
+}
