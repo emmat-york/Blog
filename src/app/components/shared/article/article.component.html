@@ -11,9 +11,7 @@
             <p class="article-auther">{{ article.auther }}</p>
             <h2 class="article-header">{{ article.header }}</h2>
         </header>
-        <article class="text-description">
-            {{ article.previewText | wordsSlicer }}
-        </article>
+        <article class="text-description">{{ article.previewText | wordsSlicer }}</article>
         <p class="article-date" [class.admin-date]="!isBlogPage">
             <span>{{ article.releaseDate | date: 'EEEE LLLL dd yyyy, hh zzz'}}</span>
             <span *ngIf="isBlogPage">, The Sunday Times</span>
