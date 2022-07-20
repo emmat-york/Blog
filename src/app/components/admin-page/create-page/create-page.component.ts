@@ -31,10 +31,6 @@ export class CreatePageComponent implements OnInit {
   }
 
   public onFormSubmit(): void {
-    if (this.articleFormGroup.invalid) {
-      return;
-    };
-
     this.isSubmitted = true;
 
     const articleFormData: ArticleFormData = {
@@ -60,7 +56,7 @@ export class CreatePageComponent implements OnInit {
             id: articleId,
           };
 
-          newArticles.push(newArticle);
+          newArticles.unshift(newArticle);
           return newArticles;
         }),
       )

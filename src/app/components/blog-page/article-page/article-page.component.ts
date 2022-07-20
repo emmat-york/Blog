@@ -38,8 +38,11 @@ export class ArticlePageComponent implements OnInit, OnDestroy {
   public onOpenArticleImage(): void {
     const modalFactory = this.resolver.resolveComponentFactory(ArticlePhotoModalComponent);
     const modal: ComponentRef<ArticlePhotoModalComponent> = this.viewContainerRef.createComponent(modalFactory);
-    modal.instance.articleImagePath = this.article.photo;
-    modal.instance.viewContainerRef = this.viewContainerRef;
+    modal.instance.modalData = {
+      articleImagePath: this.article.photo,
+      viewContainerRef: this.viewContainerRef,
+      photoDescription: this.article.photoDescription,
+    };
   }
 
   private articlesInicizlization(): void {

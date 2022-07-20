@@ -4,12 +4,9 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'wordsSlicer'
 })
 export class WordsSlicerPipe implements PipeTransform {
-
   transform(article: string): string {
-    const characters: string = "!@#$%^&*()_-+=:;.,/?§±<>~{}[]\|";
-
     const articleMappedInArray = article.split(" ");
-    const slicedArray = articleMappedInArray.slice(0, 32);
+    const slicedArray = articleMappedInArray.slice(0, 28);
 
     const slicedArticle = slicedArray.join(" ") + "...";
 

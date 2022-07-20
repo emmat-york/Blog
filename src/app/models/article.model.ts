@@ -28,3 +28,9 @@ export interface RemoveArticleModalData {
     articles: Article[];
     viewContainerRef: ViewContainerRef;
 }
+
+export interface ArticalPhotoModal {
+    articleImagePath: string;
+    viewContainerRef: ViewContainerRef;
+    photoDescription: string;
+}
