@@ -1,4 +1,5 @@
-import { Component, ViewContainerRef } from '@angular/core';
+import { Component } from '@angular/core';
+import { ArticalPhotoModal } from 'src/app/models/article.model';
 
 @Component({
   selector: 'app-article-photo-modal',
@@ -6,12 +7,11 @@ import { Component, ViewContainerRef } from '@angular/core';
   styleUrls: ['./article-photo-modal.component.scss']
 })
 export class ArticlePhotoModalComponent {
-  articleImagePath: string;
-  viewContainerRef: ViewContainerRef;
+  public modalData: ArticalPhotoModal;
 
   public onCloseModal(event: any): void {
     if (event.srcElement.className === "window-background") {
-      this.viewContainerRef.clear();
+      this.modalData.viewContainerRef.clear();
     }
   }
 }

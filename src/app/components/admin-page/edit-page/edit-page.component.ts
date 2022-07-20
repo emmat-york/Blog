@@ -34,10 +34,6 @@ export class EditPageComponent implements OnInit {
   }
 
   public onFormSubmit(): void {
-    if (this.editPageFormGroup.invalid) {
-      return;
-    };
-
     this.isSubmitted = true;
 
     const articleFormData: Article = {
