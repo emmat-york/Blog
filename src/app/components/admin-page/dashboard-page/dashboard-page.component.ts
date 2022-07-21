@@ -43,6 +43,7 @@ export class DashboardPageComponent implements OnInit, OnDestroy {
   public onPageChange(direction: ChangeDirection): void {
     direction === "Previous" ? this.pageNumber-- : this.pageNumber++;
     this.setPagination();
+    this.blogService.goToScreenTop();
   }
 
   public removeArticle(articleId: string): void {

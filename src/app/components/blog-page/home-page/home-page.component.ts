@@ -38,6 +38,7 @@ export class HomePageComponent implements OnInit, OnDestroy {
   public onPageChange(direction: ChangeDirection): void {
     direction === "Previous" ? this.pageNumber-- : this.pageNumber++;
     this.setPagination();
+    this.blogService.goToScreenTop();
   }
 
   private articlesInicizlization(): void {
