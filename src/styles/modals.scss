@@ -45,7 +45,7 @@
             cursor: pointer;
 
             &.cancel {
-                background-color: rgb(2,131,135);
+                background-color: $light-blue;
             }
 
             &.logOut {
