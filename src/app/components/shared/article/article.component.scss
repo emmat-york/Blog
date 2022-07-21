@@ -5,7 +5,7 @@
     display: block;
 
     .article-container {
-        min-height: 200px;
+        height: max-content;
         padding: 10px 0;
         border-top: 0.5px solid rgb(138, 138, 138);
         box-sizing: border-box;
