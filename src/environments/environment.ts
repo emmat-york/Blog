@@ -11,7 +11,7 @@ export const firebaseConfig = {
 };
 
 export const environment: Environment = {
-  production: false,
+  production: true,
   apiKey: firebaseConfig.apiKey, // Using for the auth data
   baseStorageUrl: "https://clarkson-s-reviews-default-rtdb.firebaseio.com", // Using for get access to data base
 };
